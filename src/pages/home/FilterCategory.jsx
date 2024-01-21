@@ -16,10 +16,8 @@ import accsesorisePhoto from "../../assets/accsesorise.jpg";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 const FilterCategory = () => {
-  
   const navigate = useNavigate();
   const handleCategoryButton = (e) => {
-    
     const category = e.target.value;
     navigate(`${ROUTES.ITEMS}?filter=${category}`);
   };
@@ -47,7 +45,7 @@ const FilterCategory = () => {
           margin: "1%",
           backgroundImage: `url(${clothPhoto})`,
           backgroundSize: "cover",
-          backgroundPosition:"center",
+          backgroundPosition: "center",
           height: "40vh",
           width: "20vw",
         }}
@@ -85,7 +83,7 @@ const FilterCategory = () => {
           margin: "1%",
           backgroundImage: `url(${accsesorisePhoto})`,
           backgroundSize: "cover",
-          backgroundPosition:"center",
+          backgroundPosition: "center",
           height: "40vh",
           width: "20vw",
         }}
@@ -123,7 +121,7 @@ const FilterCategory = () => {
           margin: "1%",
           backgroundImage: `url(${shoePhoto})`,
           backgroundSize: "cover",
-          backgroundPosition:"center",
+          backgroundPosition: "center",
           height: "40vh",
           width: "20vw",
         }}

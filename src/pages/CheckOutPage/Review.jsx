@@ -18,6 +18,7 @@ const Review = ({ inputsValue, inputsValue1, dataFromServer }) => {
     inputsValue1.last,
   ];
   const formatCardNumber = (cardNumber) => {
+    if (!cardNumber) return;
     const maskedNumber = "XXXXXXXXX" + cardNumber.slice(-4);
     return maskedNumber;
   };

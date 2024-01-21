@@ -25,19 +25,26 @@ import { checkoutNormalize } from "./checkoutNormalize";
 import { getToken } from "../../service/storageService";
 import { jwtDecode } from "jwt-decode";
 import ROUTES from "../../routes/ROUTES";
+import { validatePayment } from "../../validation/validatePayment";
 
 const steps = ["Address", "Payment details", "Review your order"];
 
 const Checkout = () => {
   const navigate = useNavigate();
   const [errorsState, setErrorsState] = React.useState(null);
+  const [errorStatePay, setErrorStatePay] = React.useState(null);
   const [activeStep, setActiveStep] = React.useState(0);
+  const addersFormRef = React.useRef();
+  const paymentFormRef = React.useRef();
   // const [address, setAddress] = React.useState(inputsValueObjCheckout);
   //const navigate = useNavigate();
   //const [thisAble, setAble] = React.useState(true);
   //const addressRef = React.useRef();
   const [inputsValue, setInputsValue] = React.useState({
-    change: "",
+    cardName: "",
+    cardNumber: "",
+    expDate: "",
+    cvv: "",
   });
   const [inputsValue1, setInputsValue1] = React.useState({
     first: "",
@@ -97,31 +104,31 @@ const Checkout = () => {
     axios
       .get("/users/" + userId)
       .then(({ data }) => {
-        console.log(data.user.name.first, "user");
+        //console.log(data.user.name.first, "user");
         setSellerName({
           first: data.user.name.first,
           last: data.user.name.last,
         });
-        //console.log(data.name.first, "user");
+        console.log(data.name.first, "user");
       })
       .catch((err) => {
         console.log(err);
       });
   }, [dataFromServer]);
-  const handleInputsChange1 = (e) => {
-    setInputsValue1((currentState) => ({
-      ...currentState,
-      [e.target.id]: e.target.value,
-    }));
-    //chargeAble(inputsValue, setAble);
-  };
-  const handleInputsChange = (e) => {
-    setInputsValue((currentState) => ({
-      ...currentState,
-      [e.target.id]: e.target.value,
-    }));
-    //chargeAble2(inputsValue, setAble);
-  };
+  // const handleInputsChange1 = (e) => {
+  //   setInputsValue1((currentState) => ({
+  //     ...currentState,
+  //     [e.target.id]: e.target.value,
+  //   }));
+  //   //chargeAble(inputsValue, setAble);
+  // };
+  // const handleInputsChange = (e) => {
+  //   setInputsValue((currentState) => ({
+  //     ...currentState,
+  //     [e.target.id]: e.target.value,
+  //   }));
+  //   //chargeAble2(inputsValue, setAble);
+  // };
   // useEffect(() => {
   //   console.log(addressRef);
   // }, [addressRef]);
@@ -130,17 +137,20 @@ const Checkout = () => {
       case 0:
         return (
           <AddressForm
-            handleInputsChange1={handleInputsChange1}
+            // handleInputsChange1={handleInputsChange1}
             inputsValue1={inputsValue1}
             errorsState={errorsState}
+            ref={addersFormRef}
           />
         );
 
       case 1:
         return (
           <Payment
-            handleInputsChange={handleInputsChange}
+            // handleInputsChange={handleInputsChange}
             inputsValue={inputsValue}
+            errorStatePay={errorStatePay}
+            ref={paymentFormRef}
           />
         );
       case 2:
@@ -148,6 +158,8 @@ const Checkout = () => {
           <Review
             inputsValue={inputsValue}
             inputsValue1={inputsValue1}
+            // childState={childState}
+            // childStatePay={childStatePay}
             dataFromServer={dataFromServer}
           />
         );
@@ -164,10 +176,10 @@ const Checkout = () => {
       // if (joiResponse) return;
       console.log("sold");
       setActiveStep(activeStep + 1);
-      // const { data } = await axios.put("/items/" + _id, {
-      //   status: "sold",
-      // });
-      //console.log(data);
+      const { data } = await axios.put("/items/" + _id, {
+        status: "sold",
+      });
+      console.log(data);
       //navigate(`${ROUTES.ORDERPLACED}/${_id}`);
     } catch (err) {
       console.log(err);
@@ -185,10 +197,22 @@ const Checkout = () => {
   };
   const handleNext = () => {
     if (activeStep === 0) {
-      const joiResponse = validateAddress(inputsValue1);
+      const childState = addersFormRef.current.getChildState();
+      console.log(childState);
+      setInputsValue1(childState);
+      const joiResponse = validateAddress(childState);
       setErrorsState(joiResponse);
-      console.log(joiResponse);
+
       if (joiResponse) return;
+    }
+    if (activeStep === 1) {
+      const childStatePay = paymentFormRef.current.getChildState();
+      console.log(childStatePay);
+      setInputsValue(childStatePay);
+      const joiResponsePay = validatePayment(childStatePay);
+      setErrorStatePay(joiResponsePay);
+      // console.log(errorsStatePay);
+      if (joiResponsePay) return;
     }
 
     setActiveStep(activeStep + 1);

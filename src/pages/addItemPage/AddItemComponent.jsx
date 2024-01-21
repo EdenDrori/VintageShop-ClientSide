@@ -162,7 +162,6 @@ const AddItem = () => {
             onChange={handleUploadImage}
             endAdornment={
               <InputAdornment position="end">
-                {/* Optionally, you can add an icon or button here */}
               </InputAdornment>
             }
             label="Image"
