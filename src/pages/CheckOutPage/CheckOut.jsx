@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
 import Paper from "@mui/material/Paper";
 import Stepper from "@mui/material/Stepper";
+import { Alert } from "@mui/material";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
@@ -17,16 +18,19 @@ import AddressForm from "./AddressForm";
 import Payment from "./Payment";
 import Review from "./Review";
 import axios from "axios";
-import { useNavigate ,useParams} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { validateAddress } from "../../validation/validateAddress";
 import { inputsValueObjCheckout } from "./inputsValueObjCheckout";
 import { checkoutNormalize } from "./checkoutNormalize";
 import { getToken } from "../../service/storageService";
 import { jwtDecode } from "jwt-decode";
+import ROUTES from "../../routes/ROUTES";
 
-const steps = ["Shipping address", "Payment details", "Review your order"];
+const steps = ["Address", "Payment details", "Review your order"];
 
 const Checkout = () => {
+  const navigate = useNavigate();
+  const [errorsState, setErrorsState] = React.useState(null);
   const [activeStep, setActiveStep] = React.useState(0);
   // const [address, setAddress] = React.useState(inputsValueObjCheckout);
   //const navigate = useNavigate();
@@ -43,26 +47,33 @@ const Checkout = () => {
     street: "",
     //houseNumber: "",
   });
-  const [dataFromServer, setDataFromServer] = React.useState();
-    const { _id } = useParams();
-    useEffect(() => {
-      let token = getToken();
-      let idFromToken = jwtDecode(token)._id;
-      axios
-        .get(`/users/${idFromToken}`)
-        .then(({ data }) => {
-          //console.log(data);
-          const newData = checkoutNormalize(data.user);
-         // console.log(newData, "new");
-          setInputsValue1(newData);
-        })
-        .catch((err) => {
-          //console.log(err);
-          // toast.info("Error from server, can't get your profile", {
-          //   position: toast.POSITION.TOP_CENTER,
-          // });
-        });
-    }, []);
+  const [dataFromServer, setDataFromServer] = React.useState({
+    title: "",
+    description: "",
+    price: "",
+    phone: "",
+    userId: "",
+  });
+  const [sellerName, setSellerName] = React.useState({ first: "", last: "" });
+  const { _id } = useParams();
+  useEffect(() => {
+    let token = getToken();
+    let idFromToken = jwtDecode(token)._id;
+    axios
+      .get(`/users/${idFromToken}`)
+      .then(({ data }) => {
+        //console.log(data);
+        const newData = checkoutNormalize(data.user);
+        // console.log(newData, "new");
+        setInputsValue1(newData);
+      })
+      .catch((err) => {
+        //console.log(err);
+        // toast.info("Error from server, can't get your profile", {
+        //   position: toast.POSITION.TOP_CENTER,
+        // });
+      });
+  }, []);
   useEffect(() => {
     axios
       .get("/items/" + _id)
@@ -71,6 +82,8 @@ const Checkout = () => {
           title: data.title,
           description: data.description,
           price: data.price,
+          phone: data.phone,
+          userId: data.userId,
         });
         //console.log(dataFromServer);
       })
@@ -78,6 +91,23 @@ const Checkout = () => {
         console.log(err);
       });
   }, []);
+  useEffect(() => {
+    const userId = dataFromServer.userId;
+    if (!userId) return;
+    axios
+      .get("/users/" + userId)
+      .then(({ data }) => {
+        console.log(data.user.name.first, "user");
+        setSellerName({
+          first: data.user.name.first,
+          last: data.user.name.last,
+        });
+        //console.log(data.name.first, "user");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [dataFromServer]);
   const handleInputsChange1 = (e) => {
     setInputsValue1((currentState) => ({
       ...currentState,
@@ -102,6 +132,7 @@ const Checkout = () => {
           <AddressForm
             handleInputsChange1={handleInputsChange1}
             inputsValue1={inputsValue1}
+            errorsState={errorsState}
           />
         );
 
@@ -126,38 +157,39 @@ const Checkout = () => {
   };
 
   // const [addressInfo, setAddressInfo] = React.useState({});
-  const handleSoldItem =async () => {
-     try {
-    // const joiResponse = validateItem(inputsValue);
-    // setErrorsState(joiResponse);
-    // if (joiResponse) return;
-    const { data } = await axios.put("/items/" + _id, {
-      
-      status: "sold",
-      
-    });
-   // console.log(data);
-  } catch (err) {
-    console.log(err);
-    // toast("Somthing is missing... try again", {
-    //   position: "top-center",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    //   theme: "light",
-    // });
-  }
+  const handleSoldItem = async () => {
+    try {
+      // const joiResponse = validateItem(inputsValue);
+      // setErrorsState(joiResponse);
+      // if (joiResponse) return;
+      console.log("sold");
+      setActiveStep(activeStep + 1);
+      // const { data } = await axios.put("/items/" + _id, {
+      //   status: "sold",
+      // });
+      //console.log(data);
+      //navigate(`${ROUTES.ORDERPLACED}/${_id}`);
+    } catch (err) {
+      console.log(err);
+      // toast("Somthing is missing... try again", {
+      //   position: "top-center",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      // });
+    }
   };
   const handleNext = () => {
-    // if (activeStep === 0) {
-    //   // const joiResponse = validateAddress(addressInfo);
-    //   // console.log(joiResponse);
-    //   // if (joiResponse) return;
-    //   console.log("Address Form Data:", addressRef.current);
-    // }
+    if (activeStep === 0) {
+      const joiResponse = validateAddress(inputsValue1);
+      setErrorsState(joiResponse);
+      console.log(joiResponse);
+      if (joiResponse) return;
+    }
 
     setActiveStep(activeStep + 1);
   };
@@ -165,7 +197,10 @@ const Checkout = () => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-
+  const orderNumber = Math.round(Math.random() * 1_000_000);
+  const handleBackAllItems = () => {
+    navigate(ROUTES.ITEMS);
+  };
   return (
     <Fragment>
       <CssBaseline />
@@ -209,14 +244,20 @@ const Checkout = () => {
                 Thank you for your order.
               </Typography>
               <Typography variant="subtitle1">
-                Your order number is #2001539. We have emailed your order
-                confirmation, and will send you an update when your order has
-                shipped.
+                Your order number is #{orderNumber}.<br /> You can contact the
+                seller for more info.
+                <br /> seller name: {sellerName.first} {sellerName.last}
+                <br />
+                number: {dataFromServer.phone}
               </Typography>
+              <Button onClick={handleBackAllItems}>Back to all items</Button>
             </Fragment>
           ) : (
             <Fragment>
               {getStepContent(activeStep)}
+              {/* {errorsState && (
+                <Alert severity="warning">{errorsState.country}</Alert>
+              )} */}
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>

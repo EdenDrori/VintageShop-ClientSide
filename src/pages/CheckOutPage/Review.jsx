@@ -9,7 +9,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Review = ({ inputsValue, inputsValue1,dataFromServer }) => {
+const Review = ({ inputsValue, inputsValue1, dataFromServer }) => {
   const addresses = [
     inputsValue1.street,
     inputsValue1.city,
@@ -17,21 +17,27 @@ const Review = ({ inputsValue, inputsValue1,dataFromServer }) => {
     inputsValue1.first,
     inputsValue1.last,
   ];
+  const formatCardNumber = (cardNumber) => {
+    const maskedNumber = "XXXXXXXXX" + cardNumber.slice(-4);
+    return maskedNumber;
+  };
   const payments = [
     { name: "Card holder", detail: inputsValue.cardName },
-    { name: "Card number", detail: inputsValue.cardNumber },
-    { name: "Expiry date", detail: inputsValue.cardExpDate },
+    { name: "Card number", detail: formatCardNumber(inputsValue.cardNumber) },
+    { name: "Expiry date", detail: inputsValue.expDate },
   ];
-  const { _id } = useParams();
+  console.log(inputsValue);
+
+  //const { _id } = useParams();
   //console.log(_id);
   //console.log("address",address);
-  const [itemDetails, setItemDetails] = useState({
-    title: "",
-    description: "",
-    price: "",
-  });
+  // const [itemDetails, setItemDetails] = useState({
+  //   title: "",
+  //   description: "",
+  //   price: "",
+  // });
   //  setItemDetails(dataFromServer);
-   console.log(dataFromServer);
+  // console.log(dataFromServer);
   // console.log(itemDetails);
   // // useEffect(() => {
   //   axios

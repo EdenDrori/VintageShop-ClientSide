@@ -6,7 +6,7 @@ const inputsValueObjCheckout = () => {
     country: "",
     city: "",
     street: "",
-    houseNumber: "",
+    //houseNumber: "",
     // zip: "",
   };
   return inputs;

@@ -7,7 +7,7 @@ const addressSchema = Joi.object({
   country: Joi.string().min(2).max(256).required(),
   city: Joi.string().min(2).max(256).required(),
   street: Joi.string().min(2).max(256).required(),
-  houseNumber: Joi.number().min(2).max(256).required(),
+  //houseNumber: Joi.number().min(2).max(256).required(),
 });
 
 const validateAddress = (inputToCheck) =>

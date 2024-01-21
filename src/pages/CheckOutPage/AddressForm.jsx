@@ -15,9 +15,9 @@ import { checkoutNormalize } from "./checkoutNormalize";
 import { inputsValueObjCheckout } from "./inputsValueObjCheckout";
 import { validateAddress } from "../../validation/validateAddress";
 
-const AddressForm = ({ handleInputsChange1, inputsValue1 }) => {
-  const [errorsState, setErrorsState] = useState(null);
- 
+const AddressForm = ({ handleInputsChange1, inputsValue1, errorsState }) => {
+  //const [errorsState, setErrorsState] = useState(null);
+
   //refferns = inputsValue;
   // useEffect(() => {
   //   let token = getToken();
@@ -68,7 +68,7 @@ const AddressForm = ({ handleInputsChange1, inputsValue1 }) => {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Shipping address
+        Address
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
@@ -83,10 +83,11 @@ const AddressForm = ({ handleInputsChange1, inputsValue1 }) => {
             value={inputsValue1.first}
             onChange={handleInputs}
           />
+          {errorsState && errorsState.first && (
+            <Alert severity="warning">{errorsState.first}</Alert>
+          )}
         </Grid>
-        {errorsState && errorsState.first && (
-          <Alert severity="warning">{errorsState.first}</Alert>
-        )}
+
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -99,26 +100,44 @@ const AddressForm = ({ handleInputsChange1, inputsValue1 }) => {
             value={inputsValue1.last}
             onChange={handleInputs}
           />
+          {errorsState && errorsState.last && (
+            <Alert severity="warning">{errorsState.last}</Alert>
+          )}
         </Grid>
-        {errorsState && errorsState.last && (
-          <Alert severity="warning">{errorsState.last}</Alert>
-        )}
+
         <Grid item xs={12}>
           <TextField
             required
             id="street"
-            name="address1"
-            label="Address (street and house number)"
+            name="street"
+            label="Street"
             fullWidth
-            autoComplete="shipping address-line1"
+            autoComplete="street"
             variant="standard"
             value={inputsValue1.street}
+            onChange={handleInputs}
+          />
+          {errorsState && errorsState.street && (
+            <Alert severity="warning">{errorsState.street}</Alert>
+          )}
+        </Grid>
+
+        {/* <Grid item xs={6}>
+          <TextField
+            required
+            id="houseNumber"
+            name="houseNumber"
+            label="House number"
+            fullWidth
+            autoComplete="houseNumber"
+            variant="standard"
+            value={inputsValue1.houseNumber}
             onChange={handleInputs}
           />
         </Grid>
         {errorsState && errorsState.street && (
           <Alert severity="warning">{errorsState.street}</Alert>
-        )}
+        )} */}
 
         <Grid item xs={12} sm={6}>
           <TextField
@@ -132,10 +151,10 @@ const AddressForm = ({ handleInputsChange1, inputsValue1 }) => {
             value={inputsValue1.city}
             onChange={handleInputs}
           />
+          {errorsState && errorsState.city && (
+            <Alert severity="warning">{errorsState.city}</Alert>
+          )}
         </Grid>
-        {errorsState && errorsState.city && (
-          <Alert severity="warning">{errorsState.city}</Alert>
-        )}
 
         <Grid item xs={12} sm={6}>
           <TextField
@@ -149,17 +168,9 @@ const AddressForm = ({ handleInputsChange1, inputsValue1 }) => {
             value={inputsValue1.country}
             onChange={handleInputs}
           />
-        </Grid>
-        {errorsState && errorsState.country && (
-          <Alert severity="warning">{errorsState.country}</Alert>
-        )}
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={
-              <Checkbox color="secondary" name="saveAddress" value="yes" />
-            }
-            label="Use this address for payment details"
-          />
+          {errorsState && errorsState.country && (
+            <Alert severity="warning">{errorsState.country}</Alert>
+          )}
         </Grid>
       </Grid>
     </React.Fragment>

@@ -21,6 +21,7 @@ import ItemsPage from "../pages/itemsPage/ItemsPage";
 import ItemDetailsPage from "../pages/ItemDetailsPage/ItemDetailsPage";
 import Checkout from "../pages/CheckOutPage/CheckOut";
 
+
 const Router = () => {
   return (
     <Routes>
@@ -98,6 +99,7 @@ const Router = () => {
           </AuthGuard>
         }
       />
+      
 
       <Route path="*" element={<Error404Page />} />
     </Routes>
