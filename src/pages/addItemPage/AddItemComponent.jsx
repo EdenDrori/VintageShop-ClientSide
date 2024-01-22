@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Container,
   TextField,
@@ -17,12 +17,14 @@ import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import { addItemClick } from "./addItemClick";
 import { inputsValueObj } from "./inputsValueObj";
+import ImageUpload from "../../components/imageInput";
 
 const AddItem = () => {
   const [errorsState, setErrorsState] = useState(null);
+  const urlRef = useRef();
   const navigate = useNavigate();
   const [inputsValue, setInputValue] = useState(inputsValueObj());
-  const [file, setFile] = useState();
+  
 
   const handleInputChange = (e) => {
     setInputValue((currentState) => ({
@@ -31,14 +33,18 @@ const AddItem = () => {
     }));
   };
   const handleAddItemClick = () => {
-    addItemClick(inputsValue, setErrorsState, navigate);
+    const childState = urlRef.current.getChildState();
+    
+   // setFile(childState);
+    addItemClick(inputsValue, setErrorsState, navigate, childState);
+    
     //console.log(inputsValue);
   };
-  const handleUploadImage = (e) => {
-    //console.log(e.target.files);
-    //console.log(file, "file");
-    setFile(URL.createObjectURL(e.target.files[0]));
-  };
+  // const handleUploadImage = (e) => {
+  //   //console.log(e.target.files);
+  //   //console.log(file, "file");
+  //   setFile(URL.createObjectURL(e.target.files[0]));
+  // };
   return (
     <Container sx={{ paddingBottom: "60px" }}>
       <Typography
@@ -119,7 +125,7 @@ const AddItem = () => {
         {errorsState && errorsState.price && (
           <Alert severity="warning">{errorsState.price}</Alert>
         )}
-   
+
         <TextField
           id="size"
           label="size"
@@ -131,42 +137,9 @@ const AddItem = () => {
         {errorsState && errorsState.size && (
           <Alert severity="warning">{errorsState.size}</Alert>
         )}
-        {/* <TextField
-          id="status"
-          label="status"
-          variant="outlined"
-          sx={{ mt: "10px" }}
-          onChange={handleInputChange}
-          value={inputsValue.status}
-          required
-        />
-        {errorsState && errorsState.status && (
-          <Alert severity="warning">{errorsState.status}</Alert>
-        )} */}
-        {/* <TextField
-          id="url"
-          label="Url"
-          variant="outlined"
-          sx={{ mt: "10px" }}
-          onChange={handleInputChange}
-          value={inputsValue.url}
-        />
-        {errorsState && errorsState.url && (
-          <Alert severity="warning">{errorsState.url}</Alert>
-        )} */}
-        <FormControl variant="outlined" fullWidth sx={{ mt: 2 }}>
-          <InputLabel htmlFor="image-upload">Image</InputLabel>
-          <OutlinedInput
-            id="image-upload"
-            type="file"
-            onChange={handleUploadImage}
-            endAdornment={
-              <InputAdornment position="end">
-              </InputAdornment>
-            }
-            label="Image"
-          />
-        </FormControl>
+
+        <ImageUpload ref={urlRef} />
+
         <TextField
           id="alt"
           label="Alt"

@@ -61,12 +61,12 @@ const FilterCategory = () => {
             fontSize: "1.2rem",
             display: "flex",
             justifyContent: "center",
-            transition: "background-color 0.3s", // Add transition for a smooth effect
+            transition: "background-color 0.3s",
             "&:hover": {
-              backgroundColor: "rgba(255, 255, 255, 0.5)", // Adjust the opacity as needed
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
             },
           }}
-          value="Dress"
+          value="clothing"
           onClick={handleCategoryButton}
         >
           Clothing
@@ -99,9 +99,9 @@ const FilterCategory = () => {
             fontSize: "1.2rem",
             display: "flex",
             justifyContent: "center",
-            transition: "background-color 0.3s", // Add transition for a smooth effect
+            transition: "background-color 0.3s",
             "&:hover": {
-              backgroundColor: "rgba(255, 255, 255, 0.5)", // Adjust the opacity as needed
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
             },
           }}
           value="Belt"
@@ -139,9 +139,9 @@ const FilterCategory = () => {
             fontSize: "1.2rem",
             display: "flex",
             justifyContent: "center",
-            transition: "background-color 0.3s", // Add transition for a smooth effect
+            transition: "background-color 0.3s",
             "&:hover": {
-              backgroundColor: "rgba(255, 255, 255, 0.5)", // Adjust the opacity as needed
+              backgroundColor: "rgba(255, 255, 255, 0.5)",
             },
           }}
           value="Shoe"

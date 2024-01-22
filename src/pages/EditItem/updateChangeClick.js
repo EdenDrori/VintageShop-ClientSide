@@ -8,7 +8,8 @@ const updateChangesClick = async (
   status,
   setErrorsState,
   navigate,
-  _id
+  _id,
+  childState
 ) => {
   try {
     const joiResponse = validateItem(inputsValue);
@@ -22,7 +23,7 @@ const updateChangesClick = async (
       size: inputsValue.size,
       status: status,
       image: {
-        url: inputsValue.url,
+        url: childState,
         alt: inputsValue.alt,
       },
       price: inputsValue.price,

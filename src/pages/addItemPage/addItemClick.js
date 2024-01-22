@@ -4,15 +4,22 @@ import { normalizeDataItem } from "./normalizeDataItem";
 import axios from "axios";
 import ROUTES from "../../routes/ROUTES";
 
-const addItemClick = async (inputsValue, setErrorsState, navigate) => {
+const addItemClick = async (
+  inputsValue,
+  setErrorsState,
+  navigate,
+  childState
+) => {
   try {
     const joiResponse = validateItem(inputsValue);
-     //console.log(joiResponse);
+    //console.log(joiResponse);
     setErrorsState(joiResponse);
-   
+
     if (joiResponse) return;
-    const request = normalizeDataItem(inputsValue);
+    const request = normalizeDataItem(inputsValue, childState);
+   
     const { data } = await axios.post("/items", request);
+    console.log(data);
 
     toast("New item has been published! :)", {
       position: "top-center",

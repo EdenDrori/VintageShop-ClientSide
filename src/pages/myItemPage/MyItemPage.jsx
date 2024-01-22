@@ -117,6 +117,7 @@ const MyItemPage = () => {
       });
     }
   };
+
   const handleLikeItem = async (_id) => {
     try {
       const { data } = await axios.patch("/items/" + _id);
@@ -233,7 +234,7 @@ const MyItemPage = () => {
         <Grid item xs={12} md={9}>
           <Grid container spacing={2}>
             {dataFromServer.map((item) => (
-              <Grid item key={nextKey()} xs={12} sm={6} md={4} lg={3}>
+              <Grid item key={nextKey()} xs={12} sm={6} md={4} lg={4}>
                 <ItemComponent
                   _id={item._id}
                   title={item.title}
@@ -271,6 +272,7 @@ const MyItemPage = () => {
               pt: 2,
               pr: 1,
               pl: 1,
+              ml: 5,
             }}
           >
             <Typography variant="h4">Account Balance</Typography>

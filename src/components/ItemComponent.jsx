@@ -127,7 +127,7 @@ const ItemComponent = ({
           image={img}
           alt={alt}
           sx={{
-            height: "30vh",
+            height: "40vh",
             objectFit: "cover",
             //height: "100%",
             width: "100%", // Ensure the image takes the full width of the container
@@ -260,7 +260,7 @@ ItemComponent.propTypes = {
   onViewItem: PropTypes.func.isRequired,
 };
 ItemComponent.defaultProps = {
-  img: "https://www.livemint.com/lm-img/img/2023/08/14/1600x900/garena_free_fire_max_1688877791610_1691982307589.jpg",
+  img: "https://i.pinimg.com/564x/cb/c1/c1/cbc1c1aeef9092676adcd3c13a167860.jpg",
   alt: "running",
 };
 export default ItemComponent;

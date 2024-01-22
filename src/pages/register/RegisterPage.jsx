@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -22,13 +22,15 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import { inputsValueObj } from "./inputsValueObj";
 import { submit } from "./submit";
+import ImageUpload from "../../components/imageInput";
+import ProfileImage from "../../components/profileImage";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [errorsState, setErrorsState] = useState(null);
   const [inputsValue, setInputsValue] = useState(inputsValueObj);
   const [thisChecked, setChecked] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
+  const urlRef = useRef();
   const handleCheckChange = (e) => {
     setChecked(e.target.checked);
   };
@@ -39,15 +41,16 @@ const RegisterPage = () => {
     }));
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    setSelectedFile(file);
-   // console.log(file);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-    submit(navigate, inputsValue, selectedFile, setErrorsState, thisChecked);
+    const childState = urlRef.current.getChildState();
+    submit(
+      navigate,
+      inputsValue,
+      setErrorsState,
+      thisChecked,
+      childState
+    );
   };
 
   return (
@@ -227,46 +230,7 @@ const RegisterPage = () => {
             )}
           </Grid>
           <Grid item xs={12}>
-            {/* <TextField
-              fullWidth
-              name="url"
-              label="Url"
-              id="url"
-              autoComplete="new-url"
-              value={inputsValue.url}
-              onChange={handleInputsChange}
-              sx={{
-                "& fieldset": {
-                  borderColor: "inputs.default",
-                },
-                "&:hover fieldset": {
-                  borderColor: "primary.dark",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "primary.dark",
-                },
-              }}
-            />
-            {errorsState && errorsState.url && (
-              <Alert severity="warning">{errorsState.url}</Alert>
-            )} */}
-            <FormControl variant="outlined" fullWidth sx={{ mt: 2 }}>
-              <OutlinedInput
-                id="image-upload"
-                type="file"
-                onChange={handleImageUpload}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <label htmlFor="image-upload">
-                      <IconButton component="span">
-                        <AttachFileIcon />
-                      </IconButton>
-                    </label>
-                  </InputAdornment>
-                }
-                label="Image"
-              />
-            </FormControl>
+            <ProfileImage ref={urlRef} />
           </Grid>
           <Grid item xs={12}>
             <TextField

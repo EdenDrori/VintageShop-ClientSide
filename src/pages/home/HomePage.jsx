@@ -47,11 +47,10 @@ const HomePage = () => {
   //to make the background all of the site:
   // useEffect(() => {
   //   // Apply global styles to the body
-  //   document.body.style.margin = "0";
-  //   document.body.style.padding = "0";
-  //   document.body.style.backgroundColor = `url(${blackBackground})`;
-  //   document.body.style.backgroundSize = "cover";
-
+  //   // document.body.style.margin = "0";
+  //   // document.body.style.padding = "0";
+  //   document.body.style.backgroundImage = `url(${blackBackground})`;
+  //   //document.body.style.backgroundSize = "cover";
   // }, []);
 
   const handleSignup = () => {
@@ -148,7 +147,13 @@ const HomePage = () => {
           </Typography>
           <Typography
             variant="h6"
-            sx={{ textAlign: "center", marginBottom: "1%", fontWeight: "100",paddingLeft:"1%",paddingRight:"1%" }}
+            sx={{
+              textAlign: "center",
+              marginBottom: "1%",
+              fontWeight: "100",
+              paddingLeft: "1%",
+              paddingRight: "1%",
+            }}
           >
             You can like your favorite items and post your oun items for sell
           </Typography>
@@ -165,7 +170,7 @@ const HomePage = () => {
             Sign up
           </Button>
         </Box>
-        <Grid container sx={{marginBottom:"6%"}}>
+        <Grid container sx={{ marginBottom: "6%" }}>
           <Grid
             item
             xs={0}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -17,8 +17,12 @@ import ROUTES from "../../routes/ROUTES";
 import { getToken } from "../../service/storageService";
 import { jwtDecode } from "jwt-decode";
 import { AccountCircle } from "@mui/icons-material";
+import ImageUpload from "../../components/imageInput";
+import ProfileImage from "../../components/profileImage";
+
 const EditProfile = () => {
   const navigate = useNavigate();
+  const urlRef = useRef();
   const [errorsState, setErrorsState] = useState(null);
   const [inputsValue, setInputsValue] = useState(inputsValueObj);
   const { userId } = useParams();
@@ -44,7 +48,14 @@ const EditProfile = () => {
   };
   const handleEditProfile = (event) => {
     event.preventDefault();
-    editProfileSubmit(inputsValue, setErrorsState, navigate, idFromToken);
+    const childState = urlRef.current.getChildState();
+    editProfileSubmit(
+      inputsValue,
+      setErrorsState,
+      navigate,
+      idFromToken,
+      childState
+    );
   };
   return (
     <Box
@@ -132,18 +143,7 @@ const EditProfile = () => {
             )}
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              fullWidth
-              name="url"
-              label="Url"
-              id="url"
-              autoComplete="new-url"
-              value={inputsValue.url}
-              onChange={handleInputsChange}
-            />
-            {errorsState && errorsState.url && (
-              <Alert severity="warning">{errorsState.url}</Alert>
-            )}
+            <ProfileImage ref={urlRef} />
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -159,7 +159,7 @@ const EditProfile = () => {
               <Alert severity="warning">{errorsState.alt}</Alert>
             )}
           </Grid>
-         
+
           <Grid item xs={12}>
             <TextField
               required
@@ -220,7 +220,6 @@ const EditProfile = () => {
               <Alert severity="warning">{errorsState.houseNumber}</Alert>
             )}
           </Grid>
-         
         </Grid>
         <Grid container spacing={2}>
           <Grid item lg={8} md={8} sm={8} xs>

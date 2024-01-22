@@ -11,6 +11,11 @@ import useQueryParams from "../../hooks/useQueryParams";
 import { toast } from "react-toastify";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
+// const filterValues = {
+//   clothing: ["Dress", "Skirt", "Shirt"],
+//   accessories: ["belt", "hat"],
+// };
+
 const ItemsPage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
   const [initialDataFromServer, setInitialDataFromServer] = useState([]);
@@ -50,9 +55,19 @@ const ItemsPage = () => {
   useEffect(() => {
     if (!initialDataFromServer.length) return;
     const filter = query.filter ? query.filter : "";
+    // const filterSubvalues = filterValues[filter];
     setDataFromServer(
-      initialDataFromServer.filter((item) => item.title.startsWith(filter))
+      initialDataFromServer.filter((item) =>
+        item.title.toLowerCase().startsWith(filter.toLowerCase())
+      )
     );
+    // setDataFromServer(
+    //   initialDataFromServer.filter(
+    //     (item) =>
+    //       filterSubvalues.some((x) => item.title.toLowerCase().startsWith(x))
+    //     //item.title.toLowerCase().startsWith(filter.toLowerCase())
+    //   )
+    // );
   }, [query, initialDataFromServer]);
 
   const handleDeleteItem = async (_id) => {

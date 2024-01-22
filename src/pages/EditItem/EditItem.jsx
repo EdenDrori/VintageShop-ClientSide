@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Container,
   TextField,
@@ -18,12 +18,14 @@ import axios from "axios";
 import { inputsValueObj } from "../addItemPage/inputsValueObj";
 import { newDataForInputs } from "./newDataForInputs";
 import { updateChangesClick } from "./updateChangeClick";
+import ImageUpload from "../../components/imageInput";
 
 const EditItem = () => {
   const [errorsState, setErrorsState] = useState(null);
   const navigate = useNavigate();
   const [inputsValue, setInputValue] = useState(inputsValueObj());
   const [status, setStatus] = useState("available");
+  const urlRef = useRef();
 
   const { _id } = useParams();
   useEffect(() => {
@@ -44,7 +46,15 @@ const EditItem = () => {
     }));
   };
   const handleUpdateChangesClick = () => {
-    updateChangesClick(inputsValue, status, setErrorsState, navigate, _id);
+    const childState = urlRef.current.getChildState();
+    updateChangesClick(
+      inputsValue,
+      status,
+      setErrorsState,
+      navigate,
+      _id,
+      childState
+    );
   };
   return (
     <Container sx={{ padding: "50px", paddingBottom: "60px" }}>
@@ -128,29 +138,8 @@ const EditItem = () => {
         {errorsState && errorsState.size && (
           <Alert severity="warning">{errorsState.size}</Alert>
         )}
-        {/* <TextField
-          id="status"
-          label="status"
-          variant="outlined"
-          sx={{ mt: "10px" }}
-          onChange={handleInputChange}
-          value={inputsValue.status}
-        />
-        {errorsState && errorsState.status && (
-          <Alert severity="warning">{errorsState.status}</Alert>
-        )} */}
 
-        <TextField
-          id="url"
-          label="Url"
-          variant="outlined"
-          sx={{ mt: "10px" }}
-          onChange={handleInputChange}
-          value={inputsValue.url}
-        />
-        {errorsState && errorsState.url && (
-          <Alert severity="warning">{errorsState.url}</Alert>
-        )}
+        <ImageUpload ref={urlRef} />
         <TextField
           id="alt"
           label="Alt"

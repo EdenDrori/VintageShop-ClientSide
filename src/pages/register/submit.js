@@ -6,15 +6,19 @@ import { normalizeData } from "./normalizeData";
 const submit = async (
   navigate,
   inputsValue,
-  selectedFile,
   setErrorsState,
-  thisChecked
+  thisChecked,
+  childState
 ) => {
   try {
     const joiResponse = validateRegister(inputsValue);
     setErrorsState(joiResponse);
     if (joiResponse) return;
-    let request = normalizeData(inputsValue, thisChecked, selectedFile);
+    let request = normalizeData(
+      inputsValue,
+      thisChecked,
+      childState
+    );
     const { data } = await axios.post("/users", request);
     toast("You have successfully registered! Please log in now", {
       position: "top-center",
