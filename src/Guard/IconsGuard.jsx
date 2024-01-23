@@ -22,7 +22,7 @@ const IconsGuard = ({ children }) => {
   const isMyItemsPage = location.pathname === "/myitem";
 
   // Check if user is a business and on the "/my-items" page
-  if (userData && userData.isBusiness && isMyItemsPage) {
+  if (userData && userData.isBusiness && isMyItemsPage || userData.isAdmin) {
     return children;
   } else {
     return null; // Return null to indicate no rendering

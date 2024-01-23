@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import {
   ref as storageRef,
   uploadBytes,
@@ -6,33 +6,49 @@ import {
   listAll,
 } from "firebase/storage";
 import { storage } from "../service/firebase";
-import { v4 as uuidv4 } from 'uuid';
- // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
-const ImageUpload = forwardRef((props, ref) => {
+import { v4 as uuidv4 } from "uuid";
+import { Button, Container, Typography } from "@mui/material";
+
+const ImageUpload = forwardRef((url, ref) => {
   const [imageUpload, setImageUpload] = useState(null);
   const [currentURL, setCurrentURL] = useState("");
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
+  const [previewURL, setPreviewURL] = useState(null);
 
-  // Referring to storageRef as firebaseRef to avoid naming conflicts
   const firebaseRef = storageRef(storage, "images/");
+  useEffect(() => {
+    
+    setPreviewURL(url.url);
+  }, []);
+  console.log(url);
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
 
-  // Function to upload the file
+    if (file) {
+      setImageUpload(file);
+      setIsImageUploaded(false);
+
+      const previewURL = URL.createObjectURL(file);
+      setPreviewURL(previewURL);
+    }
+  };
+
   const uploadFile = async () => {
     if (imageUpload == null) return;
+
     const uuid = uuidv4();
-    
     const imageRef = storageRef(storage, `images/${uuid}_${imageUpload.name}`);
 
     try {
       const snapshot = await uploadBytes(imageRef, imageUpload);
       const url = await getDownloadURL(snapshot.ref);
       setCurrentURL(url);
-      
+      setIsImageUploaded(true);
     } catch (error) {
       console.error("Error uploading file:", error);
     }
   };
 
-  // Load initial images
   const loadInitialImages = async () => {
     try {
       const response = await listAll(firebaseRef);
@@ -45,7 +61,6 @@ const ImageUpload = forwardRef((props, ref) => {
     }
   };
 
-  // Call loadInitialImages directly instead of using useEffect
   loadInitialImages();
 
   useImperativeHandle(ref, () => ({
@@ -53,15 +68,72 @@ const ImageUpload = forwardRef((props, ref) => {
   }));
 
   return (
-    <div className="App">
-      <input
-        type="file"
-        onChange={(event) => {
-          setImageUpload(event.target.files[0]);
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        margin: "auto",
+        //maxWidth: "500px",
+        padding: "20px",
+        // textAlign: "center",
+      }}
+    >
+      <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "end",
+          padding: 0,
         }}
-      />
-      <button onClick={uploadFile}> Upload Image</button>
-    </div>
+      >
+        <Button
+          component="label"
+          htmlFor="file-input"
+          variant="outlined"
+          disabled={isImageUploaded}
+          sx={{ marginBottom: 1 }}
+        >
+          {isImageUploaded ? "Image Chosen" : "Choose file"}
+          <input
+            id="file-input"
+            type="file"
+            style={{ display: "none" }}
+            onChange={handleFileChange}
+          />
+        </Button>
+        <Button
+          onClick={uploadFile}
+          variant="outlined"
+          disabled={isImageUploaded}
+          sx={{ marginTop: 1 }}
+        >
+          {isImageUploaded ? "Image Chosen" : "Upload Image"}
+        </Button>
+      </Container>
+
+      <Container sx={{ paddingLeft: 0 }}>
+        {previewURL && (
+          <img
+            src={previewURL}
+            alt="Preview"
+            style={{ maxWidth: "100px", maxHeight: "100px" }}
+          />
+        )}
+      </Container>
+
+      {/* {isImageUploaded && (
+        <Container sx={{ marginLeft: 1 }}>
+          <Typography variant="subtitle1">Image Preview:</Typography>
+          <img
+            src={currentURL}
+            alt="Preview"
+            style={{ maxWidth: "100px", maxHeight: "100px", marginTop: "10px" }}
+          />
+        </Container>
+      )} */}
+    </Container>
   );
 });
 

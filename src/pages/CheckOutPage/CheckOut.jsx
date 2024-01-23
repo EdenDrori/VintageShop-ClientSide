@@ -221,6 +221,9 @@ const Checkout = () => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+  const handleButtonSold=()=>{
+    activeStep === steps.length - 1 ? handleSoldItem() : handleNext();
+  }
   const orderNumber = Math.round(Math.random() * 1_000_000);
   const handleBackAllItems = () => {
     navigate(ROUTES.ITEMS);
@@ -291,11 +294,7 @@ const Checkout = () => {
 
                 <Button
                   variant="contained"
-                  onClick={
-                    activeStep === steps.length - 1
-                      ? handleSoldItem
-                      : handleNext
-                  }
+                  onClick={handleButtonSold}
                   sx={{ mt: 3, ml: 1 }}
                 >
                   {activeStep === steps.length - 1 ? "Place order" : "Next"}

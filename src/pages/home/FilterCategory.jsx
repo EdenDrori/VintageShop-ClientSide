@@ -104,10 +104,10 @@ const FilterCategory = () => {
               backgroundColor: "rgba(255, 255, 255, 0.5)",
             },
           }}
-          value="Belt"
+          value="accessories"
           onClick={handleCategoryButton}
         >
-          Accesories
+          Accessories
         </Button>
       </Grid>
       <Grid
@@ -144,7 +144,7 @@ const FilterCategory = () => {
               backgroundColor: "rgba(255, 255, 255, 0.5)",
             },
           }}
-          value="Shoe"
+          value="shoes"
           onClick={handleCategoryButton}
         >
           Shoes

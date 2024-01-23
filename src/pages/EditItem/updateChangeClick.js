@@ -6,6 +6,7 @@ import axios from "axios";
 const updateChangesClick = async (
   inputsValue,
   status,
+  category,
   setErrorsState,
   navigate,
   _id,
@@ -18,6 +19,7 @@ const updateChangesClick = async (
     const { data } = await axios.put("/items/" + _id, {
       title: inputsValue.title,
       brand: inputsValue.brand,
+      category: category,
       description: inputsValue.description,
       phone: inputsValue.phone,
       size: inputsValue.size,

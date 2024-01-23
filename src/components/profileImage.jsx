@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import {
   ref as storageRef,
   uploadBytes,
@@ -7,14 +7,32 @@ import {
 } from "firebase/storage";
 import { storage } from "../service/firebase";
 import { v4 as uuidv4 } from "uuid";
+import { Button, Container, Avatar } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
 
-const ProfileImage = forwardRef((props, ref) => {
+const ProfileImage = forwardRef((url, ref) => {
   const [imageUpload, setImageUpload] = useState(null);
   const [currentURL, setCurrentURL] = useState("");
-
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
+  const [previewURL, setPreviewURL] = useState(null);
   // Referring to storageRef as firebaseRef to avoid naming conflicts
   const firebaseRef = storageRef(storage, "images/profile/");
+  useEffect(() => {
+    console.log(url);
+    setPreviewURL(url.url);
+  }, []);
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      setImageUpload(file);
+      setIsImageUploaded(false);
+
+      const previewURL = URL.createObjectURL(file);
+      setPreviewURL(previewURL);
+    }
+  };
   // Function to upload the file
   const uploadFile = async () => {
     if (imageUpload == null) return;
@@ -29,6 +47,7 @@ const ProfileImage = forwardRef((props, ref) => {
       const snapshot = await uploadBytes(imageRef, imageUpload);
       const url = await getDownloadURL(snapshot.ref);
       setCurrentURL(url);
+      setIsImageUploaded(true);
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -55,15 +74,82 @@ const ProfileImage = forwardRef((props, ref) => {
   }));
 
   return (
-    <div className="App">
-      <input
-        type="file"
-        onChange={(event) => {
-          setImageUpload(event.target.files[0]);
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        margin: "auto",
+        //maxWidth: "500px",
+        padding: "20px",
+        // textAlign: "center",
+      }}
+    >
+      {/* <Container sx={{ paddingLeft: 0 ,alignItems:"center"}}> */}
+      {previewURL ? (
+        <Avatar
+          sx={{
+            m: 1,
+            width: "130px",
+            height: "130px",
+            overflow: "hidden",
+          }}
+        >
+          <img
+            src={previewURL}
+            alt="Preview"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </Avatar>
+      ) : (
+        <AccountCircle sx={{ fontSize: 70 }} />
+      )}
+      {/* </Container> */}
+      {/* <Container
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: 0,
         }}
-      />
-      <button onClick={uploadFile}> Upload Image</button>
-    </div>
+      > */}
+      <Button
+        component="label"
+        htmlFor="file-input"
+        variant="outlined"
+        //disabled={isImageUploaded}
+        sx={{ marginBottom: 1 }}
+      >
+        {isImageUploaded ? "Image Chosen" : "Choose file"}
+        <input
+          id="file-input"
+          type="file"
+          style={{ display: "none" }}
+          onChange={handleFileChange}
+        />
+      </Button>
+      <Button
+        onClick={uploadFile}
+        variant="outlined"
+        //disabled={isImageUploaded}
+        sx={{ marginTop: 1 }}
+      >
+        {isImageUploaded ? "Image Chosen" : "Upload Image"}
+      </Button>
+      {/* </Container> */}
+
+      {/* {isImageUploaded && (
+        <Container sx={{ marginLeft: 1 }}>
+          <Typography variant="subtitle1">Image Preview:</Typography>
+          <img
+            src={currentURL}
+            alt="Preview"
+            style={{ maxWidth: "100px", maxHeight: "100px", marginTop: "10px" }}
+          />
+        </Container>
+      )} */}
+    </Container>
   );
 });
 

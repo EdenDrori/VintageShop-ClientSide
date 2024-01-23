@@ -33,7 +33,7 @@ const MyItemPage = () => {
   );
   const [moneyForWithdrawal, setMoneyForWithdrawal] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [bankS, setBank] = useState(null);
+  const [bankS, setBank] = useState("");
   const [errorsState, setErrorsState] = useState(null);
   const [inputsValue, setInputsValue] = useState({
     fullName: "",
@@ -189,9 +189,8 @@ const MyItemPage = () => {
     setErrorsState(joiResponse);
     // console.log(joiResponse);
     if (joiResponse) return;
-    if (!bankS) {
-      setErrorsState(!bankS);
-
+    if (bankS === "") {
+      setErrorsState("bankS");
       return;
     }
     handleDeleteSoldItems();
@@ -368,7 +367,7 @@ const MyItemPage = () => {
                             Mizrahi Tefahot Bank - 20
                           </MenuItem>
                         </Select>
-                        {errorsState && !bankS && (
+                        {errorsState && bankS === "" && (
                           <Alert severity="warning">Please choose a Bank</Alert>
                         )}
                       </FormControl>

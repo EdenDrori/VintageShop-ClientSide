@@ -25,6 +25,7 @@ const EditItem = () => {
   const navigate = useNavigate();
   const [inputsValue, setInputValue] = useState(inputsValueObj());
   const [status, setStatus] = useState("available");
+  const [category, setCategory] = useState("");
   const urlRef = useRef();
 
   const { _id } = useParams();
@@ -33,11 +34,16 @@ const EditItem = () => {
       .get("/items/" + _id)
       .then(({ data }) => {
         setInputValue(newDataForInputs(data));
+        setCategory(data.category);
       })
       .catch((err) => {});
   }, []);
-  const handleChange = (event) => {
+  console.log(inputsValue.url);
+  const handleChangeStatus = (event) => {
     setStatus(event.target.value);
+  };
+  const handleChangeCategory = (event) => {
+    setCategory(event.target.value);
   };
   const handleInputChange = (e) => {
     setInputValue((currentState) => ({
@@ -45,11 +51,15 @@ const EditItem = () => {
       [e.target.id]: e.target.value,
     }));
   };
+  const handleNavigate = () => {
+    navigate(ROUTES.MYITEM);
+  };
   const handleUpdateChangesClick = () => {
     const childState = urlRef.current.getChildState();
     updateChangesClick(
       inputsValue,
       status,
+      category,
       setErrorsState,
       navigate,
       _id,
@@ -64,8 +74,26 @@ const EditItem = () => {
       <Typography variant="body1" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
         Put a new values in the correct input
       </Typography>
+
       <Divider sx={{ mb: 3 }} />
       <Grid container flexDirection={"column"}>
+        <ImageUpload url={inputsValue.url} ref={urlRef} />
+        <FormControl fullWidth sx={{ mt: "10px" }}>
+          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="category"
+            value={category}
+            label="Category"
+            onChange={handleChangeCategory}
+          >
+            <MenuItem value={"clothing"}>Clothing</MenuItem>
+            <MenuItem value={"accessories"}>Accessories</MenuItem>
+            <MenuItem value={"shoes"}>Shoes</MenuItem>
+            <MenuItem value={"bags"}>Bags</MenuItem>
+            <MenuItem value={"others"}>Others</MenuItem>
+          </Select>
+        </FormControl>
         <TextField
           id="title"
           label="Title"
@@ -139,7 +167,6 @@ const EditItem = () => {
           <Alert severity="warning">{errorsState.size}</Alert>
         )}
 
-        <ImageUpload ref={urlRef} />
         <TextField
           id="alt"
           label="Alt"
@@ -207,7 +234,7 @@ const EditItem = () => {
             id="status"
             value={status}
             label="Status"
-            onChange={handleChange}
+            onChange={handleChangeStatus}
           >
             <MenuItem value={"sold"}>Sold</MenuItem>
             <MenuItem value={"available"}>Available</MenuItem>
@@ -233,7 +260,7 @@ const EditItem = () => {
                 width: "100%",
                 ml: "0%",
               }}
-              onClick={<Link to={ROUTES.MYITEM}></Link>}
+              onClick={handleNavigate}
             >
               Discard Changes
             </Button>

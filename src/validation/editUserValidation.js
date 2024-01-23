@@ -6,8 +6,8 @@ const editUserSchema = Joi.object({
   middle: Joi.string().min(2).max(256).allow(""),
   last: Joi.string().required().min(2).max(256),
   phone: Joi.string().required().min(9).max(11),
-  url: Joi.string().min(14).allow(""),
-  alt: Joi.string().min(2).max(256).allow(""),
+  url: Joi.string().max(5000).allow(""),
+  alt: Joi.string().max(256).allow(""),
 
   country: Joi.string().min(2).max(256).required(),
   city: Joi.string().min(2).max(256).required(),

@@ -31,6 +31,7 @@ const ItemComponent = ({
   _id,
   title,
   brand,
+  category,
   phone,
   price,
   value,
@@ -253,10 +254,10 @@ ItemComponent.propTypes = {
   description: PropTypes.string,
   itemNumber: PropTypes.number,
   like: PropTypes.bool,
-  onDeleteItem: PropTypes.func.isRequired,
-  onEditItem: PropTypes.func.isRequired,
-  onLikeItem: PropTypes.func.isRequired,
-  onLikeSuccess: PropTypes.func.isRequired,
+  onDeleteItem: PropTypes.func,
+  onEditItem: PropTypes.func,
+  onLikeItem: PropTypes.func,
+  onLikeSuccess: PropTypes.func,
   onViewItem: PropTypes.func.isRequired,
 };
 ItemComponent.defaultProps = {

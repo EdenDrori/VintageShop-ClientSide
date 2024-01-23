@@ -9,7 +9,7 @@ const normalizeData = (inputsValue, isBusiness, childState) => {
     email: inputsValue.email,
     password: inputsValue.password,
     image: {
-      image: childState,
+      url: childState,
       alt: inputsValue.alt,
     },
     address: {

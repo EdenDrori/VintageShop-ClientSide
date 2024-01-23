@@ -8,7 +8,7 @@ const FooterComponent = () => {
     <Fragment>
       <Divider></Divider>
       <BottomNavigation
-        showLabels
+      
         value={value}
         sx={{
           position: "fixed",

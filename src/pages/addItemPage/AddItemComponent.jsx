@@ -6,12 +6,14 @@ import {
   Typography,
   Divider,
   Button,
+  Select,
   Input,
   InputAdornment,
   Alert,
   OutlinedInput,
   InputLabel,
   FormControl,
+  MenuItem,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
@@ -24,27 +26,25 @@ const AddItem = () => {
   const urlRef = useRef();
   const navigate = useNavigate();
   const [inputsValue, setInputValue] = useState(inputsValueObj());
-  
+  const [category, setCategory] = useState("");
 
   const handleInputChange = (e) => {
     setInputValue((currentState) => ({
       ...currentState,
       [e.target.id]: e.target.value,
     }));
+ 
+  };
+  const handleChangeCategory = (event) => {
+    setCategory(event.target.value);
   };
   const handleAddItemClick = () => {
     const childState = urlRef.current.getChildState();
-    
-   // setFile(childState);
-    addItemClick(inputsValue, setErrorsState, navigate, childState);
-    
-    //console.log(inputsValue);
+
+    addItemClick(inputsValue, setErrorsState, navigate, childState, category);
+
   };
-  // const handleUploadImage = (e) => {
-  //   //console.log(e.target.files);
-  //   //console.log(file, "file");
-  //   setFile(URL.createObjectURL(e.target.files[0]));
-  // };
+ 
   return (
     <Container sx={{ paddingBottom: "60px" }}>
       <Typography
@@ -65,6 +65,27 @@ const AddItem = () => {
 
       <Divider sx={{ mb: 3 }} />
       <Grid container flexDirection={"column"}>
+        
+        <ImageUpload ref={urlRef} />
+        <FormControl fullWidth sx={{ mt: "10px" }}>
+          <InputLabel id="demo-simple-select-label">Category</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="category"
+            value={category}
+            label="Category"
+            onChange={handleChangeCategory}
+          >
+            <MenuItem value={"clothing"}>Clothing</MenuItem>
+            <MenuItem value={"accessories"}>Accessories</MenuItem>
+            <MenuItem value={"shoes"}>Shoes</MenuItem>
+            <MenuItem value={"bags"}>Bags</MenuItem>
+            <MenuItem value={"others"}>Others</MenuItem>
+          </Select>
+          {errorsState && category === "" && (
+            <Alert severity="warning">"please choose category"</Alert>
+          )}
+        </FormControl>
         <TextField
           id="title"
           label="Title"
@@ -137,8 +158,6 @@ const AddItem = () => {
         {errorsState && errorsState.size && (
           <Alert severity="warning">{errorsState.size}</Alert>
         )}
-
-        <ImageUpload ref={urlRef} />
 
         <TextField
           id="alt"

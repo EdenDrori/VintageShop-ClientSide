@@ -4,7 +4,8 @@ const newDataForInputs = (data) => {
     brand: data.brand,
     description: data.description,
     phone: data.phone,
-    price:data.price,
+    category: data.category,
+    price: data.price,
     size: data.size,
     url: data.image.url,
     alt: data.image.alt,
@@ -13,8 +14,8 @@ const newDataForInputs = (data) => {
     street: data.address.street,
     houseNumber: data.address.houseNumber,
     status: data.status,
-    
   };
+  
   return newData;
 };
 export { newDataForInputs };

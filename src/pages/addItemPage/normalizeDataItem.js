@@ -1,7 +1,8 @@
-const normalizeDataItem = (inputsValue, childState) => {
+const normalizeDataItem = (inputsValue, childState, category) => {
   return {
     title: inputsValue.title,
     brand: inputsValue.brand,
+    category: category,
     description: inputsValue.description,
     phone: inputsValue.phone,
     price: inputsValue.price,

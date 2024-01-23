@@ -8,16 +8,20 @@ const addItemClick = async (
   inputsValue,
   setErrorsState,
   navigate,
-  childState
+  childState,
+  category
 ) => {
   try {
     const joiResponse = validateItem(inputsValue);
-    //console.log(joiResponse);
+    console.log(joiResponse);
     setErrorsState(joiResponse);
-
     if (joiResponse) return;
-    const request = normalizeDataItem(inputsValue, childState);
-   
+    if (category === "") {
+      setErrorsState("category");
+      return;
+    }
+    const request = normalizeDataItem(inputsValue, childState, category);
+
     const { data } = await axios.post("/items", request);
     console.log(data);
 

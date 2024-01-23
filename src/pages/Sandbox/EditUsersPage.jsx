@@ -20,6 +20,7 @@ const EditUsersPage = () => {
   const [errorsState, setErrorsState] = useState(null);
   const [inputsValue, setInputsValue] = useState(inputsValueObj);
   const { userId } = useParams();
+  
   useEffect(() => {
     axios
       .get("/users/" + userId)
@@ -42,6 +43,9 @@ const EditUsersPage = () => {
     event.preventDefault();
     editUserSubmit(inputsValue, setErrorsState, navigate, userId);
   };
+  const handleNavigate=()=>{
+    navigate(ROUTES.USERS)
+  }
   return (
     <Box
       sx={{
@@ -235,7 +239,7 @@ const EditUsersPage = () => {
               <Alert severity="warning">{errorsState.houseNumber}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextField
               fullWidth
               name="zip"
@@ -248,7 +252,7 @@ const EditUsersPage = () => {
             {errorsState && errorsState.zip && (
               <Alert severity="warning">{errorsState.zip}</Alert>
             )}
-          </Grid>
+          </Grid> */}
         </Grid>
         <Grid container spacing={2}>
           <Grid item lg={8} md={8} sm={8} xs>
@@ -269,7 +273,7 @@ const EditUsersPage = () => {
                   width: "100%",
                   ml: "0%",
                 }}
-                onClick={<Link to={ROUTES.USERS}></Link>}
+                onClick={handleNavigate}
               >
                 Discard Changes
               </Button>

@@ -6,11 +6,14 @@ const editProfileSubmit = async (
   inputsValue,
   setErrorsState,
   navigate,
-  userId
+  userId,
+  childState
 ) => {
   try {
     const joiResponse = validateEditUser(inputsValue);
     setErrorsState(joiResponse);
+    console.log(joiResponse);
+    console.log(inputsValue);
     if (joiResponse) return;
     const { data } = await axios.put("/users/" + userId, {
       name: {
@@ -18,20 +21,17 @@ const editProfileSubmit = async (
         middle: inputsValue.middle,
         last: inputsValue.last,
       },
-      // email: inputsValue.email,
-      // password: inputsValue.password,
+     
       phone: inputsValue.phone,
       image: {
-        url: inputsValue.url,
+        url: childState,
         alt: inputsValue.alt,
       },
       address: {
-        state: inputsValue.state,
         country: inputsValue.country,
         city: inputsValue.city,
         street: inputsValue.street,
         houseNumber: inputsValue.houseNumber,
-        zip: +inputsValue.zip,
       },
     });
     toast("You Edited Your Profile Successfully", {
@@ -46,6 +46,7 @@ const editProfileSubmit = async (
     });
     navigate(ROUTES.PROFILE);
   } catch (err) {
+    console.log(err);
     toast("Something is missing..", {
       position: "top-center",
       autoClose: 5000,

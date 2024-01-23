@@ -33,6 +33,7 @@ const ProfilePage = () => {
         const newData = normalizeDataFromServer(data.user);
         //console.log(newData, "new");
         setInputsValue(newData);
+        console.log(inputsValue);
       })
       .catch((err) => {
         console.log(err);

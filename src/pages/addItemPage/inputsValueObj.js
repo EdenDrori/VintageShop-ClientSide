@@ -3,6 +3,7 @@ const inputsValueObj = () => {
     title: "",
     brand: "",
     phone: "",
+
     size: "",
     description: "",
     price: "",

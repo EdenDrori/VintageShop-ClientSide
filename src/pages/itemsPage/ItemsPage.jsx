@@ -20,7 +20,7 @@ const ItemsPage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
   const [initialDataFromServer, setInitialDataFromServer] = useState([]);
   const [initialFilteredData, setInitialFilteredData] = useState([]);
-  const [refreshState, setRefreshState] = useState("");
+
   const navigate = useNavigate();
 
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
@@ -37,6 +37,7 @@ const ItemsPage = () => {
         //console.log("userData", userData);
         setInitialDataFromServer(data);
         setDataFromServer(data);
+        console.log(data);
       })
       .catch((err) => {
         toast("Can't get the items from server", {
@@ -77,7 +78,7 @@ const ItemsPage = () => {
         dataFromServerCopy.filter((item) => item._id != _id)
       );
     } catch (err) {
-      toast("You can only delete your items", {
+      toast("There is error on deleting", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -89,36 +90,36 @@ const ItemsPage = () => {
       });
     }
   };
-  const handleEditItem = async (_id) => {
-    try {
-      const { data } = await axios.get("/items/" + _id);
-      if (data.user_id == userData._id || userData.isAdmin) {
-        navigate(`${ROUTES.EDITITEM}/${_id}`);
-      } else {
-        toast("You can only edit your items", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-      }
-    } catch (err) {
-      toast("There's a problem with the edit request from server", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-  };
+  // const handleEditItem = async (_id) => {
+  //   try {
+  //     const { data } = await axios.get("/items/" + _id);
+  //     if (data.user_id == userData._id || userData.isAdmin) {
+  //       navigate(`${ROUTES.EDITITEM}/${_id}`);
+  //     } else {
+  //       toast("You can only edit your items", {
+  //         position: "top-center",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //         theme: "light",
+  //       });
+  //     }
+  //   } catch (err) {
+  //     toast("There's a problem with the edit request from server", {
+  //       position: "top-center",
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //     });
+  //   }
+  // };
   const handleLikeItem = async (_id) => {
     try {
       const { data } = await axios.patch("/items/" + _id);
@@ -155,14 +156,18 @@ const ItemsPage = () => {
     );
   };
   const handleCategoryButton = (e) => {
-    // console.log(initialDataFromServer);
+    console.log(initialDataFromServer, "D");
     if (!initialDataFromServer.length) return;
     const category = e.target.value;
     navigate(`${ROUTES.ITEMS}?filter=${category}`);
     const filter = query.filter ? query.filter : "";
+
     setDataFromServer(
-      initialDataFromServer.filter((item) => item.title.startsWith(filter))
+      initialDataFromServer.filter((item) =>
+        item.category.toLowerCase().startsWith(filter.toLowerCase())
+      )
     );
+  
   };
 
   // const handleDressesFilter = () => {
@@ -203,7 +208,7 @@ const ItemsPage = () => {
                   bizNumber={item.bizNumber}
                   like={item.likes}
                   itemNumber={item.itemNumber}
-                  //onDeleteItem={handleDeleteItem}
+                  onDeleteItem={handleDeleteItem}
                   //onEditItem={handleEditItem}
                   onLikeItem={handleLikeItem}
                   onLikeSuccess={handleLikeSuccess}
@@ -234,7 +239,7 @@ const ItemsPage = () => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              value="Belt"
+              value="accessories"
               onClick={handleCategoryButton}
             >
               Belts
@@ -248,7 +253,7 @@ const ItemsPage = () => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              value="Dress"
+              value="clothing"
               onClick={handleCategoryButton}
             >
               Dresses
@@ -262,7 +267,7 @@ const ItemsPage = () => {
                 display: "flex",
                 justifyContent: "center",
               }}
-              value="Bag"
+              value="bags"
               onClick={handleCategoryButton}
             >
               Bags

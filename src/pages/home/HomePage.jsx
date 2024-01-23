@@ -14,12 +14,11 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import likeItemNormalization from "../itemsPage/likeItemNormalization";
+
 import useQueryParams from "../../hooks/useQueryParams";
 import { toast } from "react-toastify";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import shoePhoto from "../../assets/shoe.jpg";
-import clothPhoto from "../../assets/cloth.jpg";
+
 import accsesorisePhoto from "../../assets/accsesorise.jpg";
 import blackBackground from "../../assets/darkBackground.jpg";
 import blackLeaves from "../../assets/blackLeaves.png";

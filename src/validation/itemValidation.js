@@ -4,6 +4,7 @@ import validation from "./validation";
 const itemSchema = Joi.object({
   title: Joi.string().min(1).max(50).required(),
   brand: Joi.string().min(1).max(50).required(),
+  category: Joi.string().min(1).max(20).allow(""),
   description: Joi.string().min(1).max(200).required(),
   size: Joi.string().max(10).allow(""),
   price: Joi.number().min(1).max(999999).required(),
@@ -11,7 +12,7 @@ const itemSchema = Joi.object({
   city: Joi.string().min(2).max(50).required(),
   street: Joi.string().min(2).max(100).required(),
   houseNumber: Joi.number().min(0).max(999999).required(),
-  url: Joi.string().max(200).allow(""),
+  url: Joi.string().max(5000).allow(""),
   alt: Joi.string().max(200).allow(""),
   phone: Joi.string()
     .min(9)

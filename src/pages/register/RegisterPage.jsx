@@ -63,9 +63,9 @@ const RegisterPage = () => {
         paddingBottom: "60px",
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-        <LockOutlinedIcon />
-      </Avatar>
+      <ProfileImage ref={urlRef} />
+      {/* <LockOutlinedIcon /> */}
+
       <Typography component="h1" variant="h5">
         Sign up
       </Typography>
@@ -229,9 +229,7 @@ const RegisterPage = () => {
               <Alert severity="warning">{errorsState.phone}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
-            <ProfileImage ref={urlRef} />
-          </Grid>
+          <Grid item xs={12}></Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth

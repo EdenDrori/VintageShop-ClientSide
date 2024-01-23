@@ -63,6 +63,9 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
       navigate(ROUTES.REGISTER);
     }
   };
+  const handleNavigate=()=>{
+    navigate(ROUTES.PROFILE);
+  }
 
   const handleLogoutLink = () => {
     if (isLoggedinOrOut) {
@@ -123,7 +126,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
-          onClick={ROUTES.PROFILE}
+          onClick={handleNavigate}
         >
           <AccountCircle />
         </IconButton>

@@ -33,22 +33,30 @@ const EditProfile = () => {
       .get(`/users/${idFromToken}`)
       .then(({ data }) => {
         setInputsValue(editProfileNormalize(data.user));
+         //console.log(inputsValue.url);
       })
+
       .catch((err) => {
+        console.log(err);
         toast.info("Error from server, can't get your profile to edit", {
           position: toast.POSITION.TOP_CENTER,
         });
       });
   }, []);
   const handleInputsChange = (e) => {
+    
     setInputsValue((currentState) => ({
       ...currentState,
       [e.target.id]: e.target.value,
     }));
   };
+  const handleNavigate = () => {
+    navigate(ROUTES.PROFILE);
+  };
   const handleEditProfile = (event) => {
     event.preventDefault();
     const childState = urlRef.current.getChildState();
+   
     editProfileSubmit(
       inputsValue,
       setErrorsState,
@@ -67,12 +75,10 @@ const EditProfile = () => {
         paddingBottom: "60px",
       }}
     >
-      <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
-        <AccountCircle />
-      </Avatar>
       <Typography component="h1" variant="h5">
         Edit Profile
       </Typography>
+
       <Box
         component="form"
         noValidate
@@ -80,6 +86,7 @@ const EditProfile = () => {
         sx={{ mt: 3 }}
       >
         <Grid container spacing={2}>
+          <ProfileImage url={inputsValue.url} ref={urlRef} />
           <Grid item xs={12} sm={4}>
             <TextField
               autoComplete="given-name"
@@ -142,9 +149,7 @@ const EditProfile = () => {
               <Alert severity="warning">{errorsState.phone}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
-            <ProfileImage ref={urlRef} />
-          </Grid>
+          <Grid item xs={12}></Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -240,7 +245,7 @@ const EditProfile = () => {
                   width: "100%",
                   ml: "0%",
                 }}
-                onClick={<Link to={ROUTES.PROFILE}></Link>}
+                onClick={handleNavigate}
               >
                 Discard Changes
               </Button>
