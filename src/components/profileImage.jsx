@@ -9,6 +9,7 @@ import { storage } from "../service/firebase";
 import { v4 as uuidv4 } from "uuid";
 import { Button, Container, Avatar } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
+import CheckIcon from "@mui/icons-material/Check";
 
 const ProfileImage = forwardRef((url, ref) => {
   const [imageUpload, setImageUpload] = useState(null);
@@ -20,6 +21,7 @@ const ProfileImage = forwardRef((url, ref) => {
   useEffect(() => {
     console.log(url);
     setPreviewURL(url.url);
+    console.log(imageUpload, "imafgj");
   }, []);
 
   const handleFileChange = (event) => {
@@ -28,7 +30,6 @@ const ProfileImage = forwardRef((url, ref) => {
     if (file) {
       setImageUpload(file);
       setIsImageUploaded(false);
-
       const previewURL = URL.createObjectURL(file);
       setPreviewURL(previewURL);
     }
@@ -121,7 +122,7 @@ const ProfileImage = forwardRef((url, ref) => {
         //disabled={isImageUploaded}
         sx={{ marginBottom: 1 }}
       >
-        {isImageUploaded ? "Image Chosen" : "Choose file"}
+       "Choose file"
         <input
           id="file-input"
           type="file"
@@ -132,10 +133,21 @@ const ProfileImage = forwardRef((url, ref) => {
       <Button
         onClick={uploadFile}
         variant="outlined"
-        //disabled={isImageUploaded}
-        sx={{ marginTop: 1 }}
+        sx={{
+          marginTop: 1,
+          display: imageUpload ? "block" : "none",
+          width: "20%",
+          justifyContent:"center"
+        }}
       >
         {isImageUploaded ? "Image Chosen" : "Upload Image"}
+        <CheckIcon
+          sx={{
+            
+            color: "green",
+            display: isImageUploaded ? "block" : "none",
+          }}
+        />
       </Button>
       {/* </Container> */}
 

@@ -5,7 +5,7 @@ import axios from "axios";
 
 const updateChangesClick = async (
   inputsValue,
-  status,
+
   category,
   setErrorsState,
   navigate,
@@ -23,7 +23,7 @@ const updateChangesClick = async (
       description: inputsValue.description,
       phone: inputsValue.phone,
       size: inputsValue.size,
-      status: status,
+
       image: {
         url: childState,
         alt: inputsValue.alt,

@@ -120,6 +120,7 @@ const ItemComponent = ({
         boxShadow: "none",
         margin: "5%",
         backgroundColor: "rgba(255, 255, 255, 0.8)",
+        width: "17vw",
       }}
     >
       <CardActionArea onClick={handleClickViewItem}>

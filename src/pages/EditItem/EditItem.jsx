@@ -24,7 +24,7 @@ const EditItem = () => {
   const [errorsState, setErrorsState] = useState(null);
   const navigate = useNavigate();
   const [inputsValue, setInputValue] = useState(inputsValueObj());
-  const [status, setStatus] = useState("available");
+  // const [status, setStatus] = useState("available");
   const [category, setCategory] = useState("");
   const urlRef = useRef();
 
@@ -39,9 +39,9 @@ const EditItem = () => {
       .catch((err) => {});
   }, []);
   console.log(inputsValue.url);
-  const handleChangeStatus = (event) => {
-    setStatus(event.target.value);
-  };
+  // const handleChangeStatus = (event) => {
+  //   setStatus(event.target.value);
+  // };
   const handleChangeCategory = (event) => {
     setCategory(event.target.value);
   };
@@ -58,7 +58,7 @@ const EditItem = () => {
     const childState = urlRef.current.getChildState();
     updateChangesClick(
       inputsValue,
-      status,
+      
       category,
       setErrorsState,
       navigate,
@@ -227,7 +227,7 @@ const EditItem = () => {
         {errorsState && errorsState.houseNumber && (
           <Alert severity="warning">{errorsState.houseNumber}</Alert>
         )}
-        <FormControl fullWidth sx={{ mt: "10px" }}>
+        {/* <FormControl fullWidth sx={{ mt: "10px" }}>
           <InputLabel id="demo-simple-select-label">Status</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -239,7 +239,7 @@ const EditItem = () => {
             <MenuItem value={"sold"}>Sold</MenuItem>
             <MenuItem value={"available"}>Available</MenuItem>
           </Select>
-        </FormControl>
+        </FormControl> */}
       </Grid>
       <Grid container spacing={2}>
         <Grid item lg={8} md={8} sm={8} xs>

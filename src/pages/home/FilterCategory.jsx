@@ -19,7 +19,7 @@ const FilterCategory = () => {
   const navigate = useNavigate();
   const handleCategoryButton = (e) => {
     const category = e.target.value;
-    navigate(`${ROUTES.ITEMS}?filter=${category}`);
+    navigate(`${ROUTES.ITEMS}?category=${category}`);
   };
 
   return (

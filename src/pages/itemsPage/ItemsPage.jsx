@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Box, Container, Grid, Link, Typography, Button } from "@mui/material";
 import nextKey from "generate-my-key";
 import ItemComponent from "../../components/ItemComponent";
@@ -19,16 +19,14 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 const ItemsPage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
   const [initialDataFromServer, setInitialDataFromServer] = useState([]);
-  const [initialFilteredData, setInitialFilteredData] = useState([]);
+  
+  const { category = "", filter = "" } = useQueryParams();
 
   const navigate = useNavigate();
 
   const userData = useSelector((bigPie) => bigPie.authSlice.userData);
-  const query = useQueryParams();
+
   useEffect(() => {
-    // setTimeout(() => {
-    //   setRefreshState("1");
-    // }, 1000);
     axios
       .get("/items")
       .then(({ data }) => {
@@ -55,12 +53,19 @@ const ItemsPage = () => {
 
   useEffect(() => {
     if (!initialDataFromServer.length) return;
-    const filter = query.filter ? query.filter : "";
+    //const filter = filter ? filter : "";
     // const filterSubvalues = filterValues[filter];
     setDataFromServer(
-      initialDataFromServer.filter((item) =>
-        item.title.toLowerCase().startsWith(filter.toLowerCase())
-      )
+      initialDataFromServer.filter((x) => {
+        return (
+          (filter
+            ? x.title.toLowerCase().indexOf(filter.toLowerCase()) !== -1
+            : true) &&
+          (category
+            ? x.category.toLowerCase() === category.toLowerCase()
+            : true)
+        );
+      })
     );
     // setDataFromServer(
     //   initialDataFromServer.filter(
@@ -69,7 +74,7 @@ const ItemsPage = () => {
     //     //item.title.toLowerCase().startsWith(filter.toLowerCase())
     //   )
     // );
-  }, [query, initialDataFromServer]);
+  }, [filter, initialDataFromServer]);
 
   const handleDeleteItem = async (_id) => {
     try {
@@ -146,6 +151,8 @@ const ItemsPage = () => {
   };
 
   const handleAllItems = () => {
+    console.log(initialDataFromServer);
+    setDataFromServer(initialDataFromServer);
     navigate(ROUTES.ITEMS);
   };
   const handleLikeSuccess = (_id) => {
@@ -159,15 +166,14 @@ const ItemsPage = () => {
     console.log(initialDataFromServer, "D");
     if (!initialDataFromServer.length) return;
     const category = e.target.value;
-    navigate(`${ROUTES.ITEMS}?filter=${category}`);
-    const filter = query.filter ? query.filter : "";
+    navigate(`${ROUTES.ITEMS}?category=${category}`);
+    //const categoryUrl = category ? category : "";
 
     setDataFromServer(
       initialDataFromServer.filter((item) =>
-        item.category.toLowerCase().startsWith(filter.toLowerCase())
+        item.category.toLowerCase().startsWith(category.toLowerCase())
       )
     );
-  
   };
 
   // const handleDressesFilter = () => {
@@ -186,117 +192,166 @@ const ItemsPage = () => {
   // };
 
   return (
-    <Container sx={{ paddingBottom: "60px" }}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} md={9}>
-          <Grid container spacing={2}>
-            {dataFromServer.map((item) => (
-              <Grid item key={nextKey()} xs={12} sm={6} md={4} lg={4}>
-                <ItemComponent
-                  _id={item._id}
-                  title={item.title}
-                  brand={item.brand}
-                  price={`${item.price}  $`}
-                  size={item.size}
-                  status={item.status}
-                  phone={item.phone}
-                  address={`${item.address.city}, ${item.address.street} ${item.address.houseNumber}`}
-                  img={item.image.url}
-                  alt={item.image.alt}
-                  description={item.description}
-                  date={item.createdAt}
-                  bizNumber={item.bizNumber}
-                  like={item.likes}
-                  itemNumber={item.itemNumber}
-                  onDeleteItem={handleDeleteItem}
-                  //onEditItem={handleEditItem}
-                  onLikeItem={handleLikeItem}
-                  onLikeSuccess={handleLikeSuccess}
-                  onViewItem={handleViewItem}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        </Grid>
-
-        <Grid item xs={12} md={2}>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              //alignItems: "center",
-              //justifyContent: "center",
-              alignItems: "flex-end",
-              height: "100%",
-            }}
-          >
-            <Button
-              variant="outlined"
-              sx={{
-                mt: 2,
-                width: "70%",
-                marginBottom: "15px",
-                display: "flex",
-                justifyContent: "center",
-              }}
-              value="accessories"
-              onClick={handleCategoryButton}
-            >
-              Belts
-            </Button>
-            <Button
-              variant="outlined"
-              sx={{
-                mt: 2,
-                width: "70%",
-                marginBottom: "15px",
-                display: "flex",
-                justifyContent: "center",
-              }}
-              value="clothing"
-              onClick={handleCategoryButton}
-            >
-              Dresses
-            </Button>
-            <Button
-              variant="outlined"
-              sx={{
-                mt: 2,
-                width: "70%",
-                marginBottom: "15px",
-                display: "flex",
-                justifyContent: "center",
-              }}
-              value="bags"
-              onClick={handleCategoryButton}
-            >
-              Bags
-            </Button>
-          </Box>
-        </Grid>
-      </Grid>
-
-      <Button
-        variant="outlined"
+    <Fragment>
+      <Box
         sx={{
-          mt: 2,
-          width: "30%",
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginBottom: "15px",
           display: "flex",
+          flexDirection: "row",
           justifyContent: "center",
+          mt: 2,
+          mb: 2,
+          backgroundColor: "background.default",
         }}
-        onClick={handleAllItems}
       >
-        Back to all items
-      </Button>
-      {/* <div className="App">
+        <Button
+          variant="text"
+          sx={{ mr: 3 }}
+          value="accessories"
+          onClick={handleCategoryButton}
+        >
+          Accessories
+        </Button>
+        <Button
+          variant="text"
+          sx={{ mr: 3 }}
+          value="clothing"
+          onClick={handleCategoryButton}
+        >
+          Clothing
+        </Button>
+        <Button
+          variant="text"
+          sx={{ mr: 3 }}
+          value="bags"
+          onClick={handleCategoryButton}
+        >
+          Bags
+        </Button>
+        <Button
+          variant="text"
+          sx={{ mr: 3 }}
+          value="shoes"
+          onClick={handleCategoryButton}
+        >
+          Shoes
+        </Button>
+        <Button variant="text" value="others" onClick={handleCategoryButton}>
+          Others
+        </Button>
+      </Box>
+      <Container sx={{ paddingBottom: "60px" }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={12}>
+            <Grid container spacing={2}>
+              {dataFromServer.map((item) => (
+                <Grid item key={nextKey()} xs={12} sm={6} md={4} lg={4}>
+                  <ItemComponent
+                    _id={item._id}
+                    title={item.title}
+                    brand={item.brand}
+                    price={`${item.price}  $`}
+                    size={item.size}
+                    status={item.status}
+                    phone={item.phone}
+                    address={`${item.address.city}, ${item.address.street} ${item.address.houseNumber}`}
+                    img={item.image.url}
+                    alt={item.image.alt}
+                    description={item.description}
+                    date={item.createdAt}
+                    bizNumber={item.bizNumber}
+                    like={item.likes}
+                    itemNumber={item.itemNumber}
+                    onDeleteItem={handleDeleteItem}
+                    //onEditItem={handleEditItem}
+                    onLikeItem={handleLikeItem}
+                    onLikeSuccess={handleLikeSuccess}
+                    onViewItem={handleViewItem}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+
+          {/* <Grid item xs={12} md={2}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                //alignItems: "center",
+                //justifyContent: "center",
+                alignItems: "flex-end",
+                height: "100%",
+              }}
+            >
+              <Button
+                variant="outlined"
+                sx={{
+                  mt: 2,
+                  width: "70%",
+                  marginBottom: "15px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                value="accessories"
+                onClick={handleCategoryButton}
+              >
+                Accessories
+              </Button>
+              <Button
+                variant="outlined"
+                sx={{
+                  mt: 2,
+                  width: "70%",
+                  marginBottom: "15px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                value="clothing"
+                onClick={handleCategoryButton}
+              >
+                Clothing
+              </Button>
+              <Button
+                variant="outlined"
+                sx={{
+                  mt: 2,
+                  width: "70%",
+                  marginBottom: "15px",
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                value="bags"
+                onClick={handleCategoryButton}
+              >
+                Bags
+              </Button>
+            </Box>
+          </Grid> */}
+        </Grid>
+
+        <Button
+          variant="outlined"
+          sx={{
+            mt: 2,
+            width: "30%",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginBottom: "15px",
+
+            display: filter === "" && category === "" ? "none" : "flex",
+            justifyContent: "center",
+          }}
+          onClick={handleAllItems}
+        >
+          Back to all items
+        </Button>
+        {/* <div className="App">
         <h2>Add Image:</h2>
         <input type="file" onChange={handleChange} />
         <img src={file} />
       </div> */}
-    </Container>
+      </Container>
+    </Fragment>
   );
 };
 

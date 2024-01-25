@@ -33,7 +33,7 @@ const EditProfile = () => {
       .get(`/users/${idFromToken}`)
       .then(({ data }) => {
         setInputsValue(editProfileNormalize(data.user));
-         //console.log(inputsValue.url);
+        //console.log(inputsValue.url);
       })
 
       .catch((err) => {
@@ -44,7 +44,6 @@ const EditProfile = () => {
       });
   }, []);
   const handleInputsChange = (e) => {
-    
     setInputsValue((currentState) => ({
       ...currentState,
       [e.target.id]: e.target.value,
@@ -56,7 +55,7 @@ const EditProfile = () => {
   const handleEditProfile = (event) => {
     event.preventDefault();
     const childState = urlRef.current.getChildState();
-   
+
     editProfileSubmit(
       inputsValue,
       setErrorsState,
@@ -83,7 +82,7 @@ const EditProfile = () => {
         component="form"
         noValidate
         onSubmit={handleEditProfile}
-        sx={{ mt: 3 }}
+        sx={{ mt: 3, mb: 7, width: "50vw" }}
       >
         <Grid container spacing={2}>
           <ProfileImage url={inputsValue.url} ref={urlRef} />
@@ -149,8 +148,8 @@ const EditProfile = () => {
               <Alert severity="warning">{errorsState.phone}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}></Grid>
-          <Grid item xs={12}>
+
+          {/* <Grid item xs={12} md={6}>
             <TextField
               fullWidth
               name="alt"
@@ -163,9 +162,9 @@ const EditProfile = () => {
             {errorsState && errorsState.alt && (
               <Alert severity="warning">{errorsState.alt}</Alert>
             )}
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth
@@ -180,7 +179,7 @@ const EditProfile = () => {
               <Alert severity="warning">{errorsState.country}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth
@@ -195,7 +194,7 @@ const EditProfile = () => {
               <Alert severity="warning">{errorsState.city}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth
@@ -210,7 +209,7 @@ const EditProfile = () => {
               <Alert severity="warning">{errorsState.street}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth
@@ -226,7 +225,7 @@ const EditProfile = () => {
             )}
           </Grid>
         </Grid>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx={{ mt: 2 }}>
           <Grid item lg={8} md={8} sm={8} xs>
             <Button
               variant="outlined"
