@@ -100,7 +100,8 @@ const HomePage = () => {
                 textAlign: "center",
                 marginBottom: "7%",
                 fontWeight: "100",
-                width:"60vw"
+                width: { xs: "auto", md: "60vw" },
+                fontSize: { xs: 27, md: "auto" },
               }}
             >
               Discover and shop for second-hand vintage clothing, accessories,
@@ -115,11 +116,11 @@ const HomePage = () => {
         <Typography
           variant="h2"
           gutterBottom
-        sx={{
-                textAlign: "center",
-                marginTop: "10%",
-                fontFamily: "serif",
-              }} 
+          sx={{
+            textAlign: "center",
+            marginTop: "10%",
+            fontFamily: "serif",
+          }}
         >
           Some of our category
         </Typography>
@@ -179,7 +180,7 @@ const HomePage = () => {
             md={4}
             lg={4}
             sx={{
-              height: "60vh",
+              height: { xs: "auto", md: "60vh" },
               backgroundImage: `url(${blackLeaves})`,
               backgroundSize: "cover",
             }}
@@ -202,6 +203,7 @@ const HomePage = () => {
             <Typography
               variant="h6"
               sx={{
+                fontSize:{xs:18,sm:"auto"},
                 marginBottom: "1%",
                 fontWeight: "100",
                 backgroundColor: "sectionBackground.default",
@@ -230,10 +232,11 @@ const HomePage = () => {
             </Typography>
             <Button
               sx={{
-                width: "20vw",
+                width: { xs: "auto", md: "20vw" },
                 border: "2px solid rgba(0, 0, 0, 0.15)",
                 backgroundColor: "rgba(255, 255, 255, 0.9)",
                 marginBottom: "3%",
+                marginTop: "2%",
               }}
               onClick={handleReadMore}
             >
@@ -245,7 +248,6 @@ const HomePage = () => {
           sx={{
             backgroundColor: "sectionBackground.default",
             paddingY: 4,
-            marginBottom: "25px",
           }}
         >
           <Container>

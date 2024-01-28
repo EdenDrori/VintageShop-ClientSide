@@ -40,7 +40,7 @@ setCurrent({...inputsValue1});
           Address
         </Typography>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               id="first"
@@ -57,7 +57,7 @@ setCurrent({...inputsValue1});
             )}
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               id="last"
@@ -108,7 +108,7 @@ setCurrent({...inputsValue1});
           <Alert severity="warning">{errorsState.street}</Alert>
         )} */}
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               id="city"
@@ -125,7 +125,7 @@ setCurrent({...inputsValue1});
             )}
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               id="country"

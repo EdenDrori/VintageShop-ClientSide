@@ -18,7 +18,7 @@ import { height } from "@mui/system";
 //import { updateChangesClick } from "./updateChangeClick";
 
 const ItemDetailsPage = () => {
-  const [errorsState, setErrorsState] = useState(null);
+  //const [errorsState, setErrorsState] = useState(null);
   const navigate = useNavigate();
   const [inputsValue, setInputValue] = useState(inputsValueObj());
   const { _id } = useParams();
@@ -74,7 +74,7 @@ const ItemDetailsPage = () => {
             {inputsValue.size}
           </Typography>
           <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
-            {inputsValue.state} {inputsValue.country}
+            {inputsValue.country}
             {inputsValue.street} {inputsValue.houseNumber}
           </Typography>
           <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>

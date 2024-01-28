@@ -19,7 +19,7 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 const ItemsPage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
   const [initialDataFromServer, setInitialDataFromServer] = useState([]);
-  
+
   const { category = "", filter = "" } = useQueryParams();
 
   const navigate = useNavigate();
@@ -197,8 +197,7 @@ const ItemsPage = () => {
         sx={{
           display: "flex",
           flexDirection: "row",
-          flexWrap: 
-          { xs: "wrap", md: "nowrap" },
+          flexWrap: { xs: "wrap", md: "nowrap" },
           justifyContent: "center",
           mt: 2,
           mb: 2,
@@ -244,34 +243,41 @@ const ItemsPage = () => {
       <Container sx={{ paddingBottom: "60px" }}>
         {/* <Grid container spacing={2}>
           <Grid item xs={12} md={12}> */}
-            <Grid container spacing={2}>
-              {dataFromServer.map((item) => (
-                <Grid item key={nextKey()} xs={12} sm={6} md={6} lg={4}>
-                  <ItemComponent
-                    _id={item._id}
-                    title={item.title}
-                    brand={item.brand}
-                    price={`${item.price}  $`}
-                    size={item.size}
-                    status={item.status}
-                    phone={item.phone}
-                    address={`${item.address.city}, ${item.address.street} ${item.address.houseNumber}`}
-                    img={item.image.url}
-                    alt={item.image.alt}
-                    description={item.description}
-                    date={item.createdAt}
-                    bizNumber={item.bizNumber}
-                    like={item.likes}
-                    itemNumber={item.itemNumber}
-                    onDeleteItem={handleDeleteItem}
-                    //onEditItem={handleEditItem}
-                    onLikeItem={handleLikeItem}
-                    onLikeSuccess={handleLikeSuccess}
-                    onViewItem={handleViewItem}
-                  />
-                </Grid>
-              ))}
-            {/* </Grid>
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            paddingLeft: { xs: "0 !important", sm: "auto" },
+            paddingRight: { xs: "0 !important", sm: "auto" },
+          }}
+        >
+          {dataFromServer.map((item) => (
+            <Grid item key={nextKey()} xs={12} sm={6} md={6} lg={4}>
+              <ItemComponent
+                _id={item._id}
+                title={item.title}
+                brand={item.brand}
+                price={`${item.price}  $`}
+                size={item.size}
+                status={item.status}
+                phone={item.phone}
+                address={`${item.address.city}, ${item.address.street} ${item.address.houseNumber}`}
+                img={item.image.url}
+                alt={item.image.alt}
+                description={item.description}
+                date={item.createdAt}
+                bizNumber={item.bizNumber}
+                like={item.likes}
+                itemNumber={item.itemNumber}
+                onDeleteItem={handleDeleteItem}
+                //onEditItem={handleEditItem}
+                onLikeItem={handleLikeItem}
+                onLikeSuccess={handleLikeSuccess}
+                onViewItem={handleViewItem}
+              />
+            </Grid>
+          ))}
+          {/* </Grid>
           </Grid> */}
         </Grid>
 

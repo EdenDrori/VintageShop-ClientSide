@@ -21,7 +21,11 @@ const AboutPage = () => {
           backgroundColor: "sectionBackground.default",
         }}
       >
-        <Typography variant="h4" gutterBottom>
+        <Typography
+          variant="h4"
+          sx={{ textAlign: { xs: "center", lg: "left" } }}
+          gutterBottom
+        >
           Welcome to our Second-Hand Vintage Emporium!
         </Typography>
 

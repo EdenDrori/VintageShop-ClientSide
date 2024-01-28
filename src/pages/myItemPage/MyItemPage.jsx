@@ -271,7 +271,7 @@ const MyItemPage = () => {
               pt: 2,
               pr: 1,
               pl: 1,
-              ml: 5,
+              ml: { xs: 0, md: 5 },
             }}
           >
             <Typography variant="h4">Account Balance</Typography>

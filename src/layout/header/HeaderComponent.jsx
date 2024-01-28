@@ -173,8 +173,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           <Box
             sx={{
               position: "absolute",
-              right: 80,
-
+              right: { xs: 15, md: 80 },
               my: 2,
               p: 1,
             }}

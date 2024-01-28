@@ -119,10 +119,12 @@ const ItemComponent = ({
     <Card
       sx={{
         boxShadow: "none",
-        margin: { xs: "0", lg: "5%" },
+        margin: { xs: 0, lg: "5%" },
         marginTop: { xs: 5, lg: "5%" },
         backgroundColor: "rgba(255, 255, 255, 0.8)",
-        width: { xs: "80vw", sm: "40vw" ,lg:"17vw" },
+        width: { xs: "80vw", sm: "40vw", lg: "17vw" },
+        paddingLeft: { xs: "0 !important", sm: "auto" },
+        paddingRight: { xs: "0 !important", sm: "auto" },
       }}
     >
       <CardActionArea onClick={handleClickViewItem}>

@@ -98,7 +98,11 @@ const AllUsersPage = () => {
         </Typography>
         <Typography
           variant="h5"
-          sx={{ textAlign: "center", marginBottom: "3%" }}
+          sx={{
+            textAlign: "center",
+            marginBottom: "7%",
+            fontSize: { xs: 17, sm: "auto" },
+          }}
         >
           Effortlessly manage user profiles. Edit, delete, and view details with
           ease. Seamlessly toggle between business and regular status to ensure
@@ -114,7 +118,7 @@ const AllUsersPage = () => {
                 <Typography
                   sx={{
                     fontSize: 20,
-                    fontWeight:"bold",
+                    fontWeight: "bold",
                     textTransform: "capitalize",
                     textAlign: "center",
                   }}

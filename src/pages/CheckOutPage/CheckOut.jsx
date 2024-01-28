@@ -221,9 +221,9 @@ const Checkout = () => {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
-  const handleButtonSold=()=>{
+  const handleButtonSold = () => {
     activeStep === steps.length - 1 ? handleSoldItem() : handleNext();
-  }
+  };
   const orderNumber = Math.round(Math.random() * 1_000_000);
   const handleBackAllItems = () => {
     navigate(ROUTES.ITEMS);
@@ -237,6 +237,7 @@ const Checkout = () => {
         elevation={0}
         sx={{
           position: "relative",
+
           borderBottom: (t) => `1px solid ${t.palette.divider}`,
         }}
       >
@@ -249,11 +250,17 @@ const Checkout = () => {
       <Container
         component="main"
         maxWidth="sm"
-        sx={{ mb: 4, marginBottom: "60px" }}
+        sx={{
+          marginBottom: "60px",
+          width: { xs: "90vw", md: "auto" },
+          paddingLeft: { xs: "0 !important", sm: "auto" },
+          paddingRight: { xs: "0 !important", sm: "auto" },
+          marginTop: { xs: "8vh", sm: "auto" },
+        }}
       >
         <Paper
           variant="outlined"
-          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+          sx={{ my: { xs: 1, md: 6 }, p: { xs: 1, md: 3 } }}
         >
           <Typography component="h1" variant="h4" align="center">
             Checkout
@@ -261,10 +268,16 @@ const Checkout = () => {
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
               <Step key={label}>
-                <StepLabel>{label}</StepLabel>
+                <StepLabel sx={{ display: { xs: "none", sm: "flex" } }}>
+                  {label}
+                </StepLabel>
+                <StepLabel
+                  sx={{ display: { xs: "flex", sm: "none" } }}
+                ></StepLabel>
               </Step>
             ))}
           </Stepper>
+
           {activeStep === steps.length ? (
             <Fragment>
               <Typography variant="h5" gutterBottom>
