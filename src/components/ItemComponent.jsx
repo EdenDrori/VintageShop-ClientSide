@@ -26,6 +26,7 @@ import { toast } from "react-toastify";
 import { useTheme } from "@mui/material/styles";
 import { ExpandMore } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import IconsGuardLocation from "../Guard/IconsGuardLocation";
 
 const ItemComponent = ({
   _id,
@@ -118,9 +119,10 @@ const ItemComponent = ({
     <Card
       sx={{
         boxShadow: "none",
-        margin: "5%",
+        margin: { xs: "0", lg: "5%" },
+        marginTop: { xs: 5, lg: "5%" },
         backgroundColor: "rgba(255, 255, 255, 0.8)",
-        width: "17vw",
+        width: { xs: "80vw", sm: "40vw" ,lg:"17vw" },
       }}
     >
       <CardActionArea onClick={handleClickViewItem}>
@@ -131,8 +133,7 @@ const ItemComponent = ({
           sx={{
             height: "40vh",
             objectFit: "cover",
-            //height: "100%",
-            width: "100%", // Ensure the image takes the full width of the container
+            width: "100%",
           }}
         />
       </CardActionArea>
@@ -156,21 +157,6 @@ const ItemComponent = ({
           </Grid>
         </Grid>
         <Divider />
-        {/* <Box sx={{ mt: 1 }}>
-          <Typography variant="body2">
-            <Typography fontWeight="700" variant="subtitle1" component="span">
-              Phone:{" "}
-            </Typography>
-            {phone}
-          </Typography>
-          <Typography variant="body2">
-            <Typography fontWeight="700" variant="subtitle1" component="span">
-              Address:{" "}
-            </Typography>
-            {address}
-          </Typography>
-        </Box>  */}
-        <Divider />
 
         <Box display="flex" justifyContent="space-between">
           <Box>
@@ -184,33 +170,37 @@ const ItemComponent = ({
             >
               <PhoneIcon />
             </IconButton>
-            <IconsGuard>
-              <IconButton
-                sx={{
-                  padding: { xs: "4px", md: "8px" },
-                  paddingTop: { xs: "12px" },
-                  marginTop: { md: "10px" },
-                }}
-                onClick={handleClickEditItem}
-              >
-                <CreateIcon />
-              </IconButton>
-            </IconsGuard>
+            <IconsGuardLocation>
+              <IconsGuard>
+                <IconButton
+                  sx={{
+                    padding: { xs: "4px", md: "8px" },
+                    paddingTop: { xs: "12px" },
+                    marginTop: { md: "10px" },
+                  }}
+                  onClick={handleClickEditItem}
+                >
+                  <CreateIcon />
+                </IconButton>
+              </IconsGuard>
+            </IconsGuardLocation>
           </Box>
 
           <Box>
-            <IconsGuard>
-              <IconButton
-                sx={{
-                  padding: { xs: "4px", md: "8px" },
-                  paddingTop: { xs: "12px" },
-                  marginTop: { md: "10px" },
-                }}
-                onClick={handleDeleteItemClick}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </IconsGuard>
+            <LoggedOutGuard>
+              <IconsGuard>
+                <IconButton
+                  sx={{
+                    padding: { xs: "4px", md: "8px" },
+                    paddingTop: { xs: "12px" },
+                    marginTop: { md: "10px" },
+                  }}
+                  onClick={handleDeleteItemClick}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </IconsGuard>
+            </LoggedOutGuard>
             <LoggedOutGuard>
               <IconButton
                 sx={{
@@ -223,18 +213,6 @@ const ItemComponent = ({
                 <FavoriteIcon color={like ? "error" : ""} />
               </IconButton>
             </LoggedOutGuard>
-            {/* <Divider />
-            <FormControlLabel
-              sx={{ marginTop: "20px" }}
-              control={
-                <Checkbox
-                  checked={status}
-                  onChange={handleCheckChangeClick}
-                  color="primary"
-                />
-              }
-              label="Mark if sold"
-            /> */}
           </Box>
         </Box>
       </CardContent>

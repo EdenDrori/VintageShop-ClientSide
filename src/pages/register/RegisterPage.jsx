@@ -44,13 +44,7 @@ const RegisterPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const childState = urlRef.current.getChildState();
-    submit(
-      navigate,
-      inputsValue,
-      setErrorsState,
-      thisChecked,
-      childState
-    );
+    submit(navigate, inputsValue, setErrorsState, thisChecked, childState);
   };
 
   return (
@@ -69,7 +63,12 @@ const RegisterPage = () => {
       <Typography component="h1" variant="h5">
         Sign up
       </Typography>
-      <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+      <Box
+        component="form"
+        noValidate
+        onSubmit={handleSubmit}
+        sx={{ mt: 3, mb: 7, width: { xs: "90vw", md: "50vw" } }}
+      >
         <Grid container spacing={2} sx={{ color: "secondary.main" }}>
           <Grid item xs={12} sm={4}>
             <TextField
@@ -150,7 +149,7 @@ const RegisterPage = () => {
               <Alert severity="warning">{errorsState.last}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth
@@ -176,7 +175,7 @@ const RegisterPage = () => {
               <Alert severity="warning">{errorsState.email}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth
@@ -229,7 +228,7 @@ const RegisterPage = () => {
               <Alert severity="warning">{errorsState.phone}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}></Grid>
+          {/* <Grid item xs={12}></Grid>
           <Grid item xs={12}>
             <TextField
               fullWidth
@@ -254,33 +253,9 @@ const RegisterPage = () => {
             {errorsState && errorsState.alt && (
               <Alert severity="warning">{errorsState.alt}</Alert>
             )}
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              name="state"
-              label="State"
-              id="state"
-              autoComplete="new-state"
-              value={inputsValue.state}
-              onChange={handleInputsChange}
-              sx={{
-                "& fieldset": {
-                  borderColor: "inputs.default",
-                },
-                "&:hover fieldset": {
-                  borderColor: "primary.dark",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "primary.dark",
-                },
-              }}
-            />
-            {errorsState && errorsState.state && (
-              <Alert severity="warning">{errorsState.state}</Alert>
-            )}
-          </Grid>
-          <Grid item xs={12}>
+          </Grid> */}
+
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth
@@ -306,7 +281,7 @@ const RegisterPage = () => {
               <Alert severity="warning">{errorsState.country}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth
@@ -332,7 +307,7 @@ const RegisterPage = () => {
               <Alert severity="warning">{errorsState.city}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth
@@ -358,7 +333,7 @@ const RegisterPage = () => {
               <Alert severity="warning">{errorsState.street}</Alert>
             )}
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               fullWidth

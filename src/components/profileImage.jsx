@@ -7,7 +7,7 @@ import {
 } from "firebase/storage";
 import { storage } from "../service/firebase";
 import { v4 as uuidv4 } from "uuid";
-import { Button, Container, Avatar } from "@mui/material";
+import { Button, Container, Avatar,Box } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import CheckIcon from "@mui/icons-material/Check";
 
@@ -120,9 +120,9 @@ const ProfileImage = forwardRef((url, ref) => {
         htmlFor="file-input"
         variant="outlined"
         //disabled={isImageUploaded}
-        sx={{ marginBottom: 1 }}
+        sx={{ marginBottom: 1, width: { xs: "50vw", md: "9vw" } }}
       >
-       "Choose file"
+        Choose file
         <input
           id="file-input"
           type="file"
@@ -132,22 +132,32 @@ const ProfileImage = forwardRef((url, ref) => {
       </Button>
       <Button
         onClick={uploadFile}
+        disabled={isImageUploaded}
         variant="outlined"
         sx={{
+          display: "flex",
+          alignItems: "center",
           marginTop: 1,
           display: imageUpload ? "block" : "none",
-          width: "20%",
-          justifyContent:"center"
+          width: "auto",
+          justifyContent: "center",
         }}
       >
-        {isImageUploaded ? "Image Chosen" : "Upload Image"}
-        <CheckIcon
+        <Box
           sx={{
-            
-            color: "green",
-            display: isImageUploaded ? "block" : "none",
+            display: "flex",
+            alignItems: "center",
           }}
-        />
+        >
+          {isImageUploaded ? "Image Chosen" : "Upload Image"}
+          <CheckIcon
+            sx={{
+              color: "green",
+              ml: 1,
+              display: isImageUploaded ? "block" : "none",
+            }}
+          />
+        </Box>
       </Button>
       {/* </Container> */}
 

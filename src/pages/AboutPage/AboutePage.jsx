@@ -22,66 +22,71 @@ const AboutPage = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Welcome to Our Business Networking Platform
+          Welcome to our Second-Hand Vintage Emporium!
         </Typography>
 
-        <Typography variant="body1" sx={{ color: "text.default" }}>
-          At "Eden Drori Business Cards", we provide a powerful platform for
-          professionals to connect, network, and grow their business. Whether
-          you're an individual looking for opportunities or a business seeking
-          to expand your reach, we've got you covered!
+        <Typography paragraph>
+          <strong>Discover Timeless Treasures:</strong> Explore a curated
+          collection of second-hand vintage items, including clothing, bags,
+          accessories, shoes, and more. Our platform is a haven for those who
+          appreciate the charm and uniqueness of vintage pieces.
         </Typography>
 
-        <Typography variant="h5" mt={3} sx={{ color: "text.default" }}>
-          Key Features
+        <Typography paragraph>
+          <strong>Register for Endless Possibilities:</strong> Join our
+          community by creating an account. You have the choice to register as a
+          Business Account, allowing you to showcase and sell your vintage gems.
+          Alternatively, sign up as a regular user to explore, like, and buy
+          stunning items.
         </Typography>
 
-        <Typography variant="body1" sx={{ color: "text.default" }}>
-          <strong>Create Your Profile:</strong> Join our community by creating a
-          user account. It's free and easy!
+        <Typography paragraph>
+          <strong>Seamless Transactions:</strong> Enjoy the convenience of
+          secure transactions. Every seller and customer is protected as all
+          payments are processed through the site using credit cards. Buy your
+          favorite items with confidence, knowing that your payment is secure.
         </Typography>
 
-        <Typography variant="body1" sx={{ color: "text.default" }}>
-          <strong>Business or Personal:</strong> Define your account as a
-          business or a personal account, depending on your needs.
+        <Typography paragraph>
+          <strong>Stay Connected:</strong> Connect with sellers to get more
+          information about items you love. Our platform enables communication
+          between buyers and sellers, fostering a community built on trust and
+          transparency.
         </Typography>
 
-        <Typography variant="body1" sx={{ color: "text.default" }}>
-          <strong>Explore Business Cards:</strong> Browse through a vast
-          collection of business cards created by our users. Find potential
-          clients, partners, or simply get inspired.
+        <Typography paragraph>
+          <strong>Effortless Selling:</strong> As a seller, manage your items
+          effortlessly. Edit or delete listings, and explore other vintage
+          treasures. See immediate payment updates on your items page, with the
+          option to withdraw funds directly to your bank account.
         </Typography>
 
-        <Typography variant="body1" sx={{ color: "text.default" }}>
-          <strong>Interact with Cards:</strong> When you log in, you can like
-          cards to show your interest. You'll also get access to the contact
-          details of businesses.
+        <Typography paragraph>
+          <strong>Sustainable Shopping:</strong> Embrace a fashion-forward
+          approach while contributing to a sustainable future. Our platform
+          supports eco-conscious choices, promoting the reuse and upcycling of
+          vintage fashion.
         </Typography>
 
-        <Typography variant="body1" sx={{ color: "text.default" }}>
-          <strong>Create, Edit, Delete Cards:</strong> Business account holders
-          can create, edit, and delete their own cards. Showcase your services
-          or products effortlessly.
+        <Typography paragraph>
+          <strong>Flexible Pick-up Options:</strong> Coordinate with sellers to
+          pick up your chosen items. Match schedules, and decide whether to have
+          your items delivered or pick them up in person. Enjoy a personalized
+          and flexible shopping experience.
         </Typography>
 
-        <Typography variant="body1" sx={{ color: "text.default" }}>
-          <strong>Favorite Cards:</strong> Keep track of the cards you've liked
-          in your "Favorite Cards" page.
+        <Typography paragraph>
+          <strong>Fashion with a Purpose:</strong> At our Second-Hand Vintage
+          Emporium, we believe in the power of fashion to make a positive
+          impact. Join us in supporting a world-saving initiative, where both
+          sellers and buyers experience a seamless and secure vintage shopping
+          journey.
         </Typography>
 
-        <Typography variant="body1" sx={{ color: "text.default" }}>
-          <strong>Manage Your Cards:</strong> Business account holders can view,
-          edit, and delete their own cards in the "My Cards" section.
-        </Typography>
-
-        <Typography variant="h5" mt={3} sx={{ color: "text.default" }}>
-          Get Started Today
-        </Typography>
-
-        <Typography variant="body1" sx={{ color: "text.default" }}>
-          Join "Eden Drori Business Cards" now and start connecting with
-          professionals, exploring business opportunities, and growing your
-          network. It's time to make your mark in the business world!
+        <Typography paragraph>
+          Welcome to a world where vintage meets modern convenience—where every
+          transaction is protected, and every purchase tells a unique story.
+          Happy shopping!
         </Typography>
 
         <Link

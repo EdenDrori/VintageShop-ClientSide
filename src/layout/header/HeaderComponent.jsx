@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,9 +9,15 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import { Switch } from "@mui/material";
+import {
+  Switch,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from "@mui/material";
 import LeftDrawerComponent from "./ui/LeftDrawerComponent";
-import { useState } from "react";
 import FilterComponent from "./ui/FilterComponent";
 import ROUTES from "../../routes/ROUTES";
 import logo from "../../images/logo.png";
@@ -20,13 +26,13 @@ import { useSelector } from "react-redux";
 
 const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [logoutDialogOpen, setLogoutDialogOpen] = useState(false);
+
   const navigate = useNavigate();
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
   const isLoggedinOrOut = useSelector((bigPie) => bigPie.authSlice.loggedIn);
 
   const handleProfileMenuOpen = (event) => {
@@ -49,31 +55,43 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   const handleThemeChange = (event) => {
     onThemeChange(event.target.checked);
   };
+
   const handleOpenDrawerClick = () => {
     setIsOpen(true);
   };
+
   const handleCloseDrawerClick = () => {
     setIsOpen(false);
   };
+
   const handleProfileLink = () => {
-    // console.log(isLoggedinOrOut, "login?");
     if (isLoggedinOrOut) {
       navigate(ROUTES.PROFILE);
     } else {
       navigate(ROUTES.REGISTER);
     }
   };
-  const handleNavigate=()=>{
+
+  const handleNavigate = () => {
     navigate(ROUTES.PROFILE);
-  }
+  };
 
   const handleLogoutLink = () => {
     if (isLoggedinOrOut) {
-      navigate(ROUTES.LOGOUT);
-      //console.log(isLoggedinOrOut, "logOut");
+      setLogoutDialogOpen(true);
     } else {
       navigate(ROUTES.LOGIN);
     }
+  };
+
+  const handleLogoutConfirm = () => {
+    // Perform logout logic here
+    setLogoutDialogOpen(false);
+    navigate(ROUTES.LOGOUT);
+  };
+
+  const handleLogoutCancel = () => {
+    setLogoutDialogOpen(false);
   };
 
   const menuId = "primary-search-account-menu";
@@ -152,9 +170,11 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
 
           <img sx={{ marginTop: "20px" }} src={logo} alt="" />
 
-          <FilterComponent />
           <Box
             sx={{
+              position: "absolute",
+              right: 80,
+
               my: 2,
               p: 1,
             }}
@@ -163,6 +183,9 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
               {isDarkTheme ? "Dark" : "Light"} Mode
             </Typography>
             <Switch checked={isDarkTheme} onChange={handleThemeChange} />
+          </Box>
+          <Box sx={{ display: { xs: "none", sm: "flex" } }}>
+            <FilterComponent />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
@@ -201,6 +224,24 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
         isOpen={isOpen}
         onCloseDrawer={handleCloseDrawerClick}
       />
+
+      {/* Logout Confirmation Dialog */}
+      <Dialog open={logoutDialogOpen} onClose={handleLogoutCancel}>
+        <DialogTitle>Logout Confirmation</DialogTitle>
+        <DialogContent>
+          <Typography>Are you sure you want to logout?</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleLogoutCancel}>Cancel</Button>
+          <Button
+            onClick={handleLogoutConfirm}
+            variant="contained"
+            color="primary"
+          >
+            Logout
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

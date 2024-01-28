@@ -13,6 +13,8 @@ const ConvertCurrency = ({ api_key, amount }) => {
 
         if (!data.success) {
           console.error(`Error: ${data.error.info}`);
+          const amountInILSDefault = amount * 3.5;
+          setConvertedAmount(amountInILSDefault);
           return;
         }
 
@@ -31,9 +33,9 @@ const ConvertCurrency = ({ api_key, amount }) => {
 
   return (
     <div>
-      
-        <p>{`${amount} USD is approximately`} <br/> {` ${convertedAmount} ILS`}</p>
-      
+      <p>
+        {`${amount} USD is approximately`} <br /> {` ${convertedAmount} ILS`}
+      </p>
     </div>
   );
 };

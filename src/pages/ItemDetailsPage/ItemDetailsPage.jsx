@@ -6,7 +6,7 @@ import {
   Typography,
   Divider,
   Button,
-  Alert,
+  Box,
 } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
@@ -38,9 +38,11 @@ const ItemDetailsPage = () => {
   };
 
   return (
-    <Container sx={{ padding: "50px", paddingBottom: "60px" }}>
+    <Container
+      sx={{ padding: { xs: "10px", md: "50px" }, paddingBottom: "60px" }}
+    >
       <Grid container>
-        <Grid item xs={4} sx={{ height: "55vh" }}>
+        <Grid item xs={12} md={4} sx={{ height: "55vh" }}>
           {" "}
           <img
             srcSet={inputsValue.url}
@@ -49,7 +51,12 @@ const ItemDetailsPage = () => {
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         </Grid>
-        <Grid item xs={8} sx={{ paddingLeft: "10%" }}>
+        <Grid
+          item
+          xs={12}
+          md={8}
+          sx={{ paddingLeft: { xs: "10px", md: "10%" } }}
+        >
           <Typography variant="h2" sx={{ mb: 1, padding: "10px", pb: "0px" }}>
             {inputsValue.title}
           </Typography>
@@ -77,14 +84,18 @@ const ItemDetailsPage = () => {
             {inputsValue.status}
           </Typography>
           <Button
-            variant={inputsValue.status === "sold" ? "disabled" : "text"}
+            variant={inputsValue.status === "sold" ? "disabled" : "outlined"}
             onClick={handleCheckout}
           >
             Buy Now 🛒
           </Button>
         </Grid>
       </Grid>
-      <Button onClick={handleBackItems}>Back to all items</Button>
+      
+        <Button onClick={handleBackItems} sx={{ mt: { xs: 8, md: 1 } }}>
+          Back to all items
+        </Button>
+     
     </Container>
   );
 };

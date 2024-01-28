@@ -92,7 +92,7 @@ const HomePage = () => {
                 fontFamily: "serif",
               }}
             >
-              Connect, Network, Grow
+              Explore Timeless Treasures
             </Typography>
             <Typography
               variant="h4"
@@ -100,13 +100,12 @@ const HomePage = () => {
                 textAlign: "center",
                 marginBottom: "7%",
                 fontWeight: "100",
+                width:"60vw"
               }}
             >
-              Welcome to My Site, where professionals and businesses come
-              together to connect, network, and grow. Explore a diverse array of
-              business cards, interact with others, and create your own presence
-              in our thriving community. Join now and start making meaningful
-              connections.
+              Discover and shop for second-hand vintage clothing, accessories,
+              and more. Join our community for secure transactions and a
+              sustainable fashion experience.
             </Typography>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
               <ArrowDownwardIcon fontSize="large" />
@@ -116,9 +115,13 @@ const HomePage = () => {
         <Typography
           variant="h2"
           gutterBottom
-          sx={{ textAlign: "center", marginBottom: "3%" }}
+        sx={{
+                textAlign: "center",
+                marginTop: "10%",
+                fontFamily: "serif",
+              }} 
         >
-          Our Business Cards
+          Some of our category
         </Typography>
         <FilterCategory />
         <Box

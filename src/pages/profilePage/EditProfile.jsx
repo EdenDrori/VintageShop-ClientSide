@@ -82,7 +82,7 @@ const EditProfile = () => {
         component="form"
         noValidate
         onSubmit={handleEditProfile}
-        sx={{ mt: 3, mb: 7, width: "50vw" }}
+        sx={{ mt: 3, mb: 7, width: { xs: "90vw", md: "50vw" } }}
       >
         <Grid container spacing={2}>
           <ProfileImage url={inputsValue.url} ref={urlRef} />

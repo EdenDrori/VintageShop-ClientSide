@@ -197,6 +197,8 @@ const ItemsPage = () => {
         sx={{
           display: "flex",
           flexDirection: "row",
+          flexWrap: 
+          { xs: "wrap", md: "nowrap" },
           justifyContent: "center",
           mt: 2,
           mb: 2,
@@ -240,11 +242,11 @@ const ItemsPage = () => {
         </Button>
       </Box>
       <Container sx={{ paddingBottom: "60px" }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={12}>
+        {/* <Grid container spacing={2}>
+          <Grid item xs={12} md={12}> */}
             <Grid container spacing={2}>
               {dataFromServer.map((item) => (
-                <Grid item key={nextKey()} xs={12} sm={6} md={4} lg={4}>
+                <Grid item key={nextKey()} xs={12} sm={6} md={6} lg={4}>
                   <ItemComponent
                     _id={item._id}
                     title={item.title}
@@ -269,63 +271,7 @@ const ItemsPage = () => {
                   />
                 </Grid>
               ))}
-            </Grid>
-          </Grid>
-
-          {/* <Grid item xs={12} md={2}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                //alignItems: "center",
-                //justifyContent: "center",
-                alignItems: "flex-end",
-                height: "100%",
-              }}
-            >
-              <Button
-                variant="outlined"
-                sx={{
-                  mt: 2,
-                  width: "70%",
-                  marginBottom: "15px",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-                value="accessories"
-                onClick={handleCategoryButton}
-              >
-                Accessories
-              </Button>
-              <Button
-                variant="outlined"
-                sx={{
-                  mt: 2,
-                  width: "70%",
-                  marginBottom: "15px",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-                value="clothing"
-                onClick={handleCategoryButton}
-              >
-                Clothing
-              </Button>
-              <Button
-                variant="outlined"
-                sx={{
-                  mt: 2,
-                  width: "70%",
-                  marginBottom: "15px",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-                value="bags"
-                onClick={handleCategoryButton}
-              >
-                Bags
-              </Button>
-            </Box>
+            {/* </Grid>
           </Grid> */}
         </Grid>
 

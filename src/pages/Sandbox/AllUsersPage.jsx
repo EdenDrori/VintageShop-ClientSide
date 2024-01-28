@@ -113,13 +113,14 @@ const AllUsersPage = () => {
               <CardContent>
                 <Typography
                   sx={{
-                    fontSize: 14,
+                    fontSize: 20,
+                    fontWeight:"bold",
                     textTransform: "capitalize",
                     textAlign: "center",
                   }}
                   color="text.secondary"
                   gutterBottom
-                  variant="h6"
+                  variant="h4"
                 >
                   {`${user.name.first} ${user.name.last}`}
                 </Typography>
@@ -156,9 +157,9 @@ const AllUsersPage = () => {
                 >
                   Delete User
                 </Button>
-                <IconButton onClick={() => handleEditUser(user._id)}>
+                {/* <IconButton onClick={() => handleEditUser(user._id)}>
                   <CreateIcon />
-                </IconButton>
+                </IconButton> */}
               </CardActions>
             </Card>
           </Grid>

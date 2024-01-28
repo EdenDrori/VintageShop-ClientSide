@@ -46,7 +46,15 @@ const AddItem = () => {
   };
  
   return (
-    <Container sx={{ paddingBottom: "60px" }}>
+    <Container
+      sx={{
+        padding: "50px",
+        paddingBottom: "60px",
+        mt: 3,
+        mb: 7,
+        width: { xs: "90vw", md: "50vw" },
+      }}
+    >
       <Typography
         variant="h2"
         sx={{
@@ -65,7 +73,6 @@ const AddItem = () => {
 
       <Divider sx={{ mb: 3 }} />
       <Grid container flexDirection={"column"}>
-        
         <ImageUpload ref={urlRef} />
         <FormControl fullWidth sx={{ mt: "10px" }}>
           <InputLabel id="demo-simple-select-label">Category</InputLabel>
