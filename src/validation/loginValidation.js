@@ -8,7 +8,7 @@ const loginSchema = Joi.object({
   password: Joi.string()
     .pattern(new RegExp("^(?=.*[A-Z])(?=.*[a-z]).{0,}$"))
     .messages({
-      "string.pattern.base": "Wrong Password",
+      "string.pattern.base": "Wrong password or email",
       "string.empty": "Password is not allowed to be empty",
     })
     .min(2)

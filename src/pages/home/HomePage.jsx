@@ -256,8 +256,8 @@ const HomePage = () => {
                 <Typography variant="h6" sx={{ marginBottom: 2 }}>
                   Customer Service
                 </Typography>
-                <Link href="#" sx={{ display: "block" }}>
-                  Help
+                <Link href={ROUTES.CONTACT} sx={{ display: "block" }}>
+                  Contact us
                 </Link>
                 <Link href="#" sx={{ display: "block" }}>
                   Track Order

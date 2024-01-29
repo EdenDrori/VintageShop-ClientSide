@@ -55,32 +55,71 @@ const ItemDetailsPage = () => {
           item
           xs={12}
           md={8}
-          sx={{ paddingLeft: { xs: "10px", md: "10%" } }}
+          sx={{ paddingLeft: { xs: "10px", md: "10%" }, position: "relative" }}
         >
-          <Typography variant="h2" sx={{ mb: 1, padding: "10px", pb: "0px" }}>
+          <Typography
+            variant="h5"
+            sx={{
+              position: "absolute",
+              top: { xs: 25, md: 35 },
+              right: { xs: 0, md: 25 },
+              // background: "rgba(255, 255, 255, 0.7)",
+              // padding: "5px",
+              // borderRadius: "5px",
+              // marginRight: "7px",
+            }}
+          >
+            {inputsValue.price} $
+          </Typography>
+          <Typography
+            variant="h2"
+            sx={{ mb: 1, padding: "10px", pb: "0px", fontFamily: "serif" }}
+          >
             {inputsValue.title}
           </Typography>
 
-          <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
+          <Typography
+            variant="h5"
+            sx={{ mb: 1, padding: "3px", ml: "7px", fontWeight: "100" }}
+          >
             {inputsValue.brand}
           </Typography>
-          <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
+          {/* <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
+            {inputsValue.price} $
+          </Typography> */}
+          <br />
+          <Typography
+            variant="h5"
+            sx={{ mb: 1, padding: "3px", ml: "7px", fontWeight: "200" }}
+          >
             {inputsValue.description}
           </Typography>
-          <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
-            {inputsValue.price} $
-          </Typography>
+
           <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
             {inputsValue.size}
           </Typography>
-          <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
-            {inputsValue.country}
-            {inputsValue.street} {inputsValue.houseNumber}
+          <Typography
+            variant="h5"
+            sx={{ mb: 1, padding: "3px", ml: "7px", fontSize: 20 }}
+          >
+            Pickup address: {inputsValue.city} ,{inputsValue.street}{" "}
+            {inputsValue.houseNumber}
           </Typography>
-          <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
-            {inputsValue.phone}
+          <Typography
+            variant="h5"
+            sx={{ mb: 1, padding: "3px", ml: "7px", fontSize: 20 }}
+          >
+            Seller's phone for more detailes: {inputsValue.phone}
           </Typography>
-          <Typography variant="h5" sx={{ mb: 1, padding: "3px", ml: "7px" }}>
+          <Typography
+            variant="h5"
+            sx={{
+              mb: 1,
+              padding: "3px",
+              ml: "7px",
+              display: inputsValue.status === "available" ? "none" : "block",
+            }}
+          >
             {inputsValue.status}
           </Typography>
           <Button
@@ -91,11 +130,10 @@ const ItemDetailsPage = () => {
           </Button>
         </Grid>
       </Grid>
-      
-        <Button onClick={handleBackItems} sx={{ mt: { xs: 8, md: 1 } }}>
-          Back to all items
-        </Button>
-     
+
+      <Button onClick={handleBackItems} sx={{ mt: { xs: 8, md: 1 } }}>
+        Back to all items
+      </Button>
     </Container>
   );
 };

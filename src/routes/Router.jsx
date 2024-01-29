@@ -20,6 +20,7 @@ import MyItemPage from "../pages/myItemPage/MyItemPage";
 import ItemsPage from "../pages/itemsPage/ItemsPage";
 import ItemDetailsPage from "../pages/ItemDetailsPage/ItemDetailsPage";
 import Checkout from "../pages/CheckOutPage/CheckOut";
+import ContactForm from "../pages/contactPage/ContactForm";
 
 
 const Router = () => {
@@ -30,6 +31,7 @@ const Router = () => {
       <Route path={`${ROUTES.ITEM}/:_id`} element={<ItemDetailsPage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Route path={ROUTES.CONTACT} element={<ContactForm />} />
 
       <Route path={ROUTES.LOGOUT} element={<Logout />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />

@@ -1,5 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
-import { Box, Container, Grid, Link, Typography, Button } from "@mui/material";
+import { Box, Container, Grid, Link, Typography, Button, Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions, } from "@mui/material";
 import nextKey from "generate-my-key";
 import ItemComponent from "../../components/ItemComponent";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +22,8 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 const ItemsPage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
   const [initialDataFromServer, setInitialDataFromServer] = useState([]);
-
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+const [deleteItemId, setDeleteItemId] = useState(null);
   const { category = "", filter = "" } = useQueryParams();
 
   const navigate = useNavigate();
@@ -75,26 +79,37 @@ const ItemsPage = () => {
     //   )
     // );
   }, [filter, initialDataFromServer]);
+const handleDeleteItem = async (_id) => {
+  setDeleteDialogOpen(true);
+  setDeleteItemId(_id);
+};
 
-  const handleDeleteItem = async (_id) => {
-    try {
-      const { data } = await axios.delete("/items/" + _id);
-      setDataFromServer((dataFromServerCopy) =>
-        dataFromServerCopy.filter((item) => item._id != _id)
-      );
-    } catch (err) {
-      toast("There is error on deleting", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-  };
+const confirmDeleteItem = async () => {
+  try {
+    const { data } = await axios.delete("/items/" + deleteItemId);
+    setDataFromServer((dataFromServerCopy) =>
+      dataFromServerCopy.filter((item) => item._id !== deleteItemId)
+    );
+    setDeleteDialogOpen(false);
+  } catch (err) {
+    toast("There is an error on deleting", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+    setDeleteDialogOpen(false);
+  }
+};
+
+const cancelDeleteItem = () => {
+  setDeleteDialogOpen(false);
+  setDeleteItemId(null);
+};
   // const handleEditItem = async (_id) => {
   //   try {
   //     const { data } = await axios.get("/items/" + _id);
@@ -285,7 +300,7 @@ const ItemsPage = () => {
           variant="outlined"
           sx={{
             mt: 2,
-            width: "30%",
+            width: {xs:"auto",md:"30%"},
             marginLeft: "auto",
             marginRight: "auto",
             marginBottom: "15px",
@@ -303,6 +318,23 @@ const ItemsPage = () => {
         <img src={file} />
       </div> */}
       </Container>
+      <Dialog
+        open={deleteDialogOpen}
+        onClose={cancelDeleteItem}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Delete Item?"}</DialogTitle>
+        <DialogContent>
+          <Typography>Are you sure you want to delete this item?</Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={cancelDeleteItem}>Cancel</Button>
+          <Button onClick={confirmDeleteItem} autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Fragment>
   );
 };

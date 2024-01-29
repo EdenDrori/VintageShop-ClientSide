@@ -51,6 +51,9 @@ setCurrent({...inputsValue1});
               variant="standard"
               value={currentState.first}
               onChange={handleInputs}
+              InputLabelProps={{
+                shrink: Boolean(currentState.first),
+              }}
             />
             {errorsState && errorsState.first && (
               <Alert severity="warning">{errorsState.first}</Alert>
@@ -68,6 +71,9 @@ setCurrent({...inputsValue1});
               variant="standard"
               value={currentState.last}
               onChange={handleInputs}
+              InputLabelProps={{
+                shrink: Boolean(currentState.last),
+              }}
             />
             {errorsState && errorsState.last && (
               <Alert severity="warning">{errorsState.last}</Alert>
@@ -85,28 +91,14 @@ setCurrent({...inputsValue1});
               variant="standard"
               value={currentState.street}
               onChange={handleInputs}
+              InputLabelProps={{
+                shrink: Boolean(currentState.street),
+              }}
             />
             {errorsState && errorsState.street && (
               <Alert severity="warning">{errorsState.street}</Alert>
             )}
           </Grid>
-
-          {/* <Grid item xs={6}>
-          <TextField
-            required
-            id="houseNumber"
-            name="houseNumber"
-            label="House number"
-            fullWidth
-            autoComplete="houseNumber"
-            variant="standard"
-            value={currentState.houseNumber}
-            onChange={handleInputs}
-          />
-        </Grid>
-        {errorsState && errorsState.street && (
-          <Alert severity="warning">{errorsState.street}</Alert>
-        )} */}
 
           <Grid item xs={12} md={6}>
             <TextField
@@ -119,6 +111,9 @@ setCurrent({...inputsValue1});
               variant="standard"
               value={currentState.city}
               onChange={handleInputs}
+              InputLabelProps={{
+                shrink: Boolean(currentState.city),
+              }}
             />
             {errorsState && errorsState.city && (
               <Alert severity="warning">{errorsState.city}</Alert>
@@ -136,6 +131,9 @@ setCurrent({...inputsValue1});
               variant="standard"
               value={currentState.country}
               onChange={handleInputs}
+              InputLabelProps={{
+                shrink: Boolean(currentState.country),
+              }}
             />
             {errorsState && errorsState.country && (
               <Alert severity="warning">{errorsState.country}</Alert>

@@ -173,7 +173,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           <Box
             sx={{
               position: "absolute",
-              right: { xs: 15, md: 80 },
+              right: { xs: 15, sm: 80 },
               my: 2,
               p: 1,
             }}
@@ -187,7 +187,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
             <FilterComponent />
           </Box>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ display: { xs: "none", sm: "flex" } }}>
             <IconButton
               size="large"
               edge="end"
@@ -200,21 +200,22 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
               <AccountCircle />
             </IconButton>
           </Box>
-          <Box
-            sx={{ display: { xs: "none", sm: "flex", md: "none", lg: "none" } }}
+          {/* Remove the following Box to eliminate the MoreIcon */}
+          {/* <Box
+          sx={{ display: { xs: "none", sm: "flex", md: "none", lg: "none" } }}
+        >
+          <IconButton
+            sx={{ padding: "0" }}
+            size="large"
+            aria-label="show more"
+            aria-controls={mobileMenuId}
+            aria-haspopup="true"
+            onClick={handleMobileMenuOpen}
+            color="inherit"
           >
-            <IconButton
-              sx={{ padding: "0" }}
-              size="large"
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </Box>
+            <MoreIcon />
+          </IconButton>
+        </Box> */}
         </Toolbar>
       </AppBar>
       {renderMobileMenu}

@@ -15,5 +15,6 @@ const ROUTES = {
   EDITUSERS: "/editusers",
   EDITPROFILE: "/editprofile",
   ABOUT: "/about",
+  CONTACT: "/contact",
 };
 export default ROUTES;

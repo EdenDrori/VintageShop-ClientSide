@@ -14,14 +14,14 @@ const alwaysLinks = [
 const loggedInLinks = [
   { to: ROUTES.PROFILE, children: "Profile" },
   { to: ROUTES.FAVORITE, children: "Favorite" },
-  { to: ROUTES.LOGOUT, children: "Logout" },
+  // { to: ROUTES.LOGOUT, children: "Logout" },
 ];
 const loggedInBizLinks = [
   { to: ROUTES.PROFILE, children: "Profile" },
   { to: ROUTES.MYITEM, children: "My Items" },
   //{ to: ROUTES.CREATEITEM, children: "New Item" },
   { to: ROUTES.FAVORITE, children: "Favorite" },
-  { to: ROUTES.LOGOUT, children: "Logout" },
+  // { to: ROUTES.LOGOUT, children: "Logout" },
 ];
 const loggedInAdminLinks = [{ to: ROUTES.USERS, children: "CRM" }];
 
