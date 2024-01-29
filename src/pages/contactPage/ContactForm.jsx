@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { TextField, Button, Typography, Box } from "@mui/material";
+import { TextField, Button, Typography, Box, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import { toast } from "react-toastify";
 import axios from "axios";
-
+import { validateMessage } from "../../validation/validateMessage";
 
 const ContactForm = () => {
   // const [name, setName] = useState("");
@@ -28,8 +28,10 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    
-
+      const joiResponse = validateMessage(inputsValue);
+      console.log(joiResponse, "");
+      setErrorsState(joiResponse);
+      if (joiResponse) return;
       const request = {
         name: inputsValue.name,
         email: inputsValue.email,
@@ -87,6 +89,9 @@ const ContactForm = () => {
             margin="normal"
             required
           />
+          {errorsState && errorsState.name && (
+            <Alert severity="warning">{errorsState.name}</Alert>
+          )}
           <TextField
             fullWidth
             label="Email"
@@ -97,6 +102,9 @@ const ContactForm = () => {
             required
             type="email"
           />
+          {errorsState && errorsState.email && (
+            <Alert severity="warning">{errorsState.email}</Alert>
+          )}
           <TextField
             fullWidth
             label="Message"
@@ -108,6 +116,9 @@ const ContactForm = () => {
             multiline
             rows={4}
           />
+          {errorsState && errorsState.message && (
+            <Alert severity="warning">{errorsState.message}</Alert>
+          )}
           <Button
             variant="outlined"
             type="submit"

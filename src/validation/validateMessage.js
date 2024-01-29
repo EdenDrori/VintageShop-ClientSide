@@ -9,7 +9,6 @@ const messageSchema = Joi.object({
   message: Joi.string().required().min(2).max(10000),
 });
 
-const validateMessage = (inputToCheck) =>
-  validation(messageSchema, inputToCheck);
+const validateMessage = (inputToCheck) =>validation(messageSchema, inputToCheck);
 
 export { validateMessage };

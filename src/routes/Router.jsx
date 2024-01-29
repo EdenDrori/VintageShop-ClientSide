@@ -21,6 +21,7 @@ import ItemsPage from "../pages/itemsPage/ItemsPage";
 import ItemDetailsPage from "../pages/ItemDetailsPage/ItemDetailsPage";
 import Checkout from "../pages/CheckOutPage/CheckOut";
 import ContactForm from "../pages/contactPage/ContactForm";
+import MessagesPage from "../pages/Sandbox/Messages";
 
 
 const Router = () => {
@@ -32,6 +33,14 @@ const Router = () => {
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.CONTACT} element={<ContactForm />} />
+      <Route
+        path={ROUTES.MESSAGE}
+        element={
+          <AdminGuard>
+            <MessagesPage />
+          </AdminGuard>
+        }
+      />
 
       <Route path={ROUTES.LOGOUT} element={<Logout />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
@@ -101,7 +110,6 @@ const Router = () => {
           </AuthGuard>
         }
       />
-      
 
       <Route path="*" element={<Error404Page />} />
     </Routes>

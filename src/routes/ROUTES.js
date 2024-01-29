@@ -16,5 +16,6 @@ const ROUTES = {
   EDITPROFILE: "/editprofile",
   ABOUT: "/about",
   CONTACT: "/contact",
+  MESSAGE: "/messages",
 };
 export default ROUTES;

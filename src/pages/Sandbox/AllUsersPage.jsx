@@ -5,6 +5,7 @@ import {
   FormControlLabel,
   Grid,
   IconButton,
+  Link,
   Typography,
 } from "@mui/material";
 import axios from "axios";
@@ -110,6 +111,9 @@ const AllUsersPage = () => {
           administrative experience.
         </Typography>
       </div>
+      <Link href={ROUTES.MESSAGE} sx={{ display: "block" }}>
+        message
+      </Link>
       <Grid container spacing={2} sx={{ paddingBottom: "60px" }}>
         {dataFromServer.map((user) => (
           <Grid item key={nextKey()} xs={12} sm={6} md={4} lg={3}>
