@@ -15,6 +15,7 @@ const ROUTES = {
   EDITUSERS: "/editusers",
   EDITPROFILE: "/editprofile",
   ABOUT: "/about",
+  POLICY: "/policy",
   CONTACT: "/contact",
   MESSAGE: "/messages",
   FAQ: "/faq",

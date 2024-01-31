@@ -84,14 +84,14 @@ const ItemComponent = ({
   const handleClickViewItem = () => {
     onViewItem(_id);
   };
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-    if (thisOP === "0.6") {
-      setOP("1");
-    } else {
-      setOP("0.6");
-    }
-  };
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded);
+  //   if (thisOP === "0.6") {
+  //     setOP("1");
+  //   } else {
+  //     setOP("0.6");
+  //   }
+  // };
   // const handleCheckChange = async (_id) => {
   //   try {
   //     const { data } = await axios.patch("/items/status/" + _id);
@@ -127,7 +127,14 @@ const ItemComponent = ({
         paddingRight: { xs: "0 !important", sm: "auto" },
       }}
     >
-      <CardActionArea onClick={handleClickViewItem}>
+      <CardActionArea
+        sx={{
+          "&:hover img": {
+            transform: "scale(1.05)", // Adjust the scale factor as needed
+          },
+        }}
+        onClick={handleClickViewItem}
+      >
         <CardMedia
           component="img"
           image={img}
@@ -136,6 +143,7 @@ const ItemComponent = ({
             height: "40vh",
             objectFit: "cover",
             width: "100%",
+            transition: "transform 0.1s ease-in-out", // Add a smooth transition
           }}
         />
       </CardActionArea>
@@ -155,7 +163,7 @@ const ItemComponent = ({
             <Typography variant="body2">{status}</Typography>
           </Grid>
           <Grid item>
-            <Typography variant="body2">{price}</Typography>
+            <Typography variant="body1">{price}</Typography>
           </Grid>
         </Grid>
         <Divider />

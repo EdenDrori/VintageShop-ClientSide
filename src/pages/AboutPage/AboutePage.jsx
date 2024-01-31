@@ -93,14 +93,14 @@ const AboutPage = () => {
           Happy shopping!
         </Typography>
 
-        <Link
+        {/* <Link
           variant="button"
           href={ROUTES.REGISTER}
           mt={3}
           sx={{ color: "primary" }}
         >
           Create Your New Account
-        </Link>
+        </Link> */}
       </Paper>
     </Container>
   );

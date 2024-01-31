@@ -1,8 +1,17 @@
 import { Fragment, useEffect, useState } from "react";
-import { Box, Container, Grid, Link, Typography, Button, Dialog,
+import React from "react";
+import {
+  Box,
+  Container,
+  Grid,
+  Link,
+  Typography,
+  Button,
+  Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions, } from "@mui/material";
+  DialogActions,
+} from "@mui/material";
 import nextKey from "generate-my-key";
 import ItemComponent from "../../components/ItemComponent";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +32,7 @@ const ItemsPage = () => {
   const [dataFromServer, setDataFromServer] = useState([]);
   const [initialDataFromServer, setInitialDataFromServer] = useState([]);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-const [deleteItemId, setDeleteItemId] = useState(null);
+  const [deleteItemId, setDeleteItemId] = useState(null);
   const { category = "", filter = "" } = useQueryParams();
 
   const navigate = useNavigate();
@@ -60,14 +69,10 @@ const [deleteItemId, setDeleteItemId] = useState(null);
     //const filter = filter ? filter : "";
     // const filterSubvalues = filterValues[filter];
     setDataFromServer(
-      initialDataFromServer.filter((x) => {
+      initialDataFromServer.filter((item) => {
         return (
-          (filter
-            ? x.title.toLowerCase().indexOf(filter.toLowerCase()) !== -1
-            : true) &&
-          (category
-            ? x.category.toLowerCase() === category.toLowerCase()
-            : true)
+          (filter ? item.title?.indeitemOf(filter) !== -1 : true) &&
+          (category ? item.category === category : true)
         );
       })
     );
@@ -79,67 +84,38 @@ const [deleteItemId, setDeleteItemId] = useState(null);
     //   )
     // );
   }, [filter, initialDataFromServer]);
-const handleDeleteItem = async (_id) => {
-  setDeleteDialogOpen(true);
-  setDeleteItemId(_id);
-};
+  const handleDeleteItem = async (_id) => {
+    setDeleteDialogOpen(true);
+    setDeleteItemId(_id);
+  };
 
-const confirmDeleteItem = async () => {
-  try {
-    const { data } = await axios.delete("/items/" + deleteItemId);
-    setDataFromServer((dataFromServerCopy) =>
-      dataFromServerCopy.filter((item) => item._id !== deleteItemId)
-    );
-    setDeleteDialogOpen(false);
-  } catch (err) {
-    toast("There is an error on deleting", {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-    setDeleteDialogOpen(false);
-  }
-};
+  const confirmDeleteItem = async () => {
+    try {
+      const { data } = await axios.delete("/items/" + deleteItemId);
+      setDataFromServer((dataFromServerCopy) =>
+        dataFromServerCopy.filter((item) => item._id !== deleteItemId)
+      );
+      setDeleteDialogOpen(false);
+    } catch (err) {
+      toast("There is an error on deleting", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      setDeleteDialogOpen(false);
+    }
+  };
 
-const cancelDeleteItem = () => {
-  setDeleteDialogOpen(false);
-  setDeleteItemId(null);
-};
-  // const handleEditItem = async (_id) => {
-  //   try {
-  //     const { data } = await axios.get("/items/" + _id);
-  //     if (data.user_id == userData._id || userData.isAdmin) {
-  //       navigate(`${ROUTES.EDITITEM}/${_id}`);
-  //     } else {
-  //       toast("You can only edit your items", {
-  //         position: "top-center",
-  //         autoClose: 5000,
-  //         hideProgressBar: false,
-  //         closeOnClick: true,
-  //         pauseOnHover: true,
-  //         draggable: true,
-  //         progress: undefined,
-  //         theme: "light",
-  //       });
-  //     }
-  //   } catch (err) {
-  //     toast("There's a problem with the edit request from server", {
-  //       position: "top-center",
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "light",
-  //     });
-  //   }
-  // };
+  const cancelDeleteItem = () => {
+    setDeleteDialogOpen(false);
+    setDeleteItemId(null);
+  };
+
   const handleLikeItem = async (_id) => {
     try {
       const { data } = await axios.patch("/items/" + _id);
@@ -185,9 +161,7 @@ const cancelDeleteItem = () => {
     //const categoryUrl = category ? category : "";
 
     setDataFromServer(
-      initialDataFromServer.filter((item) =>
-        item.category.toLowerCase().startsWith(category.toLowerCase())
-      )
+      initialDataFromServer.filter((item) => item.category.startsWith(category))
     );
   };
 
@@ -300,7 +274,7 @@ const cancelDeleteItem = () => {
           variant="outlined"
           sx={{
             mt: 2,
-            width: {xs:"auto",md:"30%"},
+            width: { xs: "auto", md: "30%" },
             marginLeft: "auto",
             marginRight: "auto",
             marginBottom: "15px",

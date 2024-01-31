@@ -23,17 +23,15 @@ import accsesorisePhoto from "../../assets/accsesorise.jpg";
 import blackBackground from "../../assets/darkBackground.jpg";
 import blackLeaves from "../../assets/blackLeaves.png";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
 import FilterCategory from "./FilterCategory";
+import { EmailRounded, LinkedIn } from "@mui/icons-material";
 const HomePage = () => {
-  const [dataFromServer, setDataFromServer] = useState([]);
-  const [initialDataFromServer, setInitialDataFromServer] = useState([]);
+  // const [dataFromServer, setDataFromServer] = useState([]);
+  // const [initialDataFromServer, setInitialDataFromServer] = useState([]);
 
   const navigate = useNavigate();
-  const userData = useSelector((bigPie) => bigPie.authSlice.userData);
-  const query = useQueryParams();
+  // const userData = useSelector((bigPie) => bigPie.authSlice.userData);
+  // const query = useQueryParams();
 
   // useEffect(() => {
   //   if (!initialDataFromServer.length) return;
@@ -259,12 +257,10 @@ const HomePage = () => {
                 <Link href={ROUTES.CONTACT} sx={{ display: "block" }}>
                   Contact us
                 </Link>
-                <Link href="#" sx={{ display: "block" }}>
-                  Track Order
+                <Link href={ROUTES.POLICY} sx={{ display: "block" }}>
+                  Site Policy
                 </Link>
-                <Link href="#" sx={{ display: "block" }}>
-                  Returns & Exchanges
-                </Link>
+
                 <Link href={ROUTES.FAQ} sx={{ display: "block" }}>
                   FAQs
                 </Link>
@@ -273,17 +269,14 @@ const HomePage = () => {
                 <Typography variant="h6" sx={{ marginBottom: 2 }}>
                   Quick Links
                 </Typography>
-                <Link href="#" sx={{ display: "block" }}>
-                  Find a Store
+                <Link href={ROUTES.ABOUT} sx={{ display: "block" }}>
+                  About Us
                 </Link>
-                <Link href="#" sx={{ display: "block" }}>
-                  Size Guide
+                <Link href={ROUTES.ITEMS} sx={{ display: "block" }}>
+                  All items
                 </Link>
-                <Link href="#" sx={{ display: "block" }}>
-                  Gift Cards
-                </Link>
-                <Link href="#" sx={{ display: "block" }}>
-                  Student Discount
+                <Link href={ROUTES.REGISTER} sx={{ display: "block" }}>
+                  Create your account
                 </Link>
               </Grid>
               <Grid item xs={12} sm={6} md={4} sx={{ textAlign: "center" }}>
@@ -291,23 +284,28 @@ const HomePage = () => {
                   Connect with Us
                 </Typography>
                 <IconButton>
-                  <Link href="#" color="inherit">
+                  <Link
+                    href="https://www.facebook.com/eden.drori2/"
+                    color="inherit"
+                  >
                     <FacebookIcon />
                   </Link>
                 </IconButton>
                 <IconButton>
-                  <Link href="#" color="inherit">
-                    <TwitterIcon />
+                  <Link
+                    href="mailto:edendrori36@gmail.com?subject=ShopApp%20Project"
+                    color="inherit"
+                  >
+                    <EmailRounded />
                   </Link>
                 </IconButton>
+                
                 <IconButton>
-                  <Link href="#" color="inherit">
-                    <InstagramIcon />
-                  </Link>
-                </IconButton>
-                <IconButton>
-                  <Link href="#" color="inherit">
-                    <PinterestIcon />
+                  <Link
+                    href="https://www.linkedin.com/in/eden-drori"
+                    color="inherit"
+                  >
+                    <LinkedIn />
                   </Link>
                 </IconButton>
               </Grid>

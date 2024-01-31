@@ -13,6 +13,7 @@ import ProfilePage from "../pages/profilePage/ProfilePage";
 import AllUsersPage from "../pages/Sandbox/AllUsersPage";
 import AdminGuard from "../Guard/AdminGuard";
 import AboutPage from "../pages/AboutPage/AboutePage";
+import SitePolicy from "../pages/AboutPage/PolicyPage";
 import EditProfile from "../pages/profilePage/EditProfile";
 import AddItem from "../pages/addItemPage/AddItemComponent";
 import MyItemPage from "../pages/myItemPage/MyItemPage";
@@ -44,6 +45,7 @@ const Router = () => {
 
       <Route path={ROUTES.LOGOUT} element={<Logout />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+      <Route path={ROUTES.POLICY} element={<SitePolicy />} />
       <Route
         path={`${ROUTES.EDITITEM}/:_id`}
         element={
