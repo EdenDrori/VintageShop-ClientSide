@@ -1,10 +1,15 @@
+
 import React, { useState, useEffect } from "react";
 
 const ConvertCurrency = ({ api_key, amount }) => {
-  const [convertedAmount, setConvertedAmount] = useState(null);
+  const [convertedAmount, setConvertedAmount] = useState(0);
 
   useEffect(() => {
     const convertUSDToILS = async () => {
+      if (!amount) {
+        
+        return;
+      }
       try {
         const response = await fetch(
           `http://data.fixer.io/api/latest?access_key=${api_key}`
@@ -33,7 +38,7 @@ const ConvertCurrency = ({ api_key, amount }) => {
 
   return (
     <div>
-      <p>
+      <p style={{ display: !amount ? "none" : "flex" }}>
         {`${amount} USD is approximately`} <br /> {` ${convertedAmount} ILS`}
       </p>
     </div>

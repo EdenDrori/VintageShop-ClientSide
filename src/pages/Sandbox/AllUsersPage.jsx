@@ -111,9 +111,11 @@ const AllUsersPage = () => {
           administrative experience.
         </Typography>
       </div>
-      <Link href={ROUTES.MESSAGE} sx={{ display: "block" }}>
-        message
-      </Link>
+      <Grid sx={{ justifyContent: "center", fontSize: 22, mb:"7vh"}}>
+        <Link href={ROUTES.MESSAGE} sx={{ display: "block" }}>
+          Check messages from costumers
+        </Link>
+      </Grid>
       <Grid container spacing={2} sx={{ paddingBottom: "60px" }}>
         {dataFromServer.map((user) => (
           <Grid item key={nextKey()} xs={12} sm={6} md={4} lg={3}>

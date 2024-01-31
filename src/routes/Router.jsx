@@ -12,7 +12,6 @@ import Logout from "../pages/login/Logout";
 import ProfilePage from "../pages/profilePage/ProfilePage";
 import AllUsersPage from "../pages/Sandbox/AllUsersPage";
 import AdminGuard from "../Guard/AdminGuard";
-import EditUsersPage from "../pages/Sandbox/EditUsersPage";
 import AboutPage from "../pages/AboutPage/AboutePage";
 import EditProfile from "../pages/profilePage/EditProfile";
 import AddItem from "../pages/addItemPage/AddItemComponent";
@@ -22,13 +21,14 @@ import ItemDetailsPage from "../pages/ItemDetailsPage/ItemDetailsPage";
 import Checkout from "../pages/CheckOutPage/CheckOut";
 import ContactForm from "../pages/contactPage/ContactForm";
 import MessagesPage from "../pages/Sandbox/Messages";
-
+import FAQPage from "../pages/contactPage/FAQPage";
 
 const Router = () => {
   return (
     <Routes>
       <Route path={ROUTES.HOME} element={<HomePage />} />
       <Route path={ROUTES.ITEMS} element={<ItemsPage />} />
+      <Route path={ROUTES.FAQ} element={<FAQPage />} />
       <Route path={`${ROUTES.ITEM}/:_id`} element={<ItemDetailsPage />} />
       <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
@@ -77,7 +77,7 @@ const Router = () => {
           </AdminGuard>
         }
       />
-      <Route path={`${ROUTES.EDITUSERS}/:userId`} element={<EditUsersPage />} />
+      {/* <Route path={`${ROUTES.EDITUSERS}/:userId`} element={<EditUsersPage />} /> */}
       <Route
         path={ROUTES.FAVORITE}
         element={

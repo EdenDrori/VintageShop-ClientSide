@@ -71,9 +71,7 @@ const MessagesPage = () => {
     }
     
   };
-const handleDeleteClickButton=()=>{
-    
-}
+// const handleDeleteClickButton=()=>
   const handleDeleteCancel = () => {
     setSelectedMessage(null);
     setDeleteDialogOpen(false);

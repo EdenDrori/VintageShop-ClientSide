@@ -149,21 +149,6 @@ const EditProfile = () => {
             )}
           </Grid>
 
-          {/* <Grid item xs={12} md={6}>
-            <TextField
-              fullWidth
-              name="alt"
-              label="Alt"
-              id="alt"
-              autoComplete="new-alt"
-              value={inputsValue.alt}
-              onChange={handleInputsChange}
-            />
-            {errorsState && errorsState.alt && (
-              <Alert severity="warning">{errorsState.alt}</Alert>
-            )}
-          </Grid> */}
-
           <Grid item xs={12} md={6}>
             <TextField
               required

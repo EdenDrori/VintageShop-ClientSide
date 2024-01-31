@@ -7,19 +7,17 @@ import {
   Divider,
   Button,
   Select,
-  Input,
-  InputAdornment,
-  Alert,
-  OutlinedInput,
   InputLabel,
   FormControl,
   MenuItem,
+  Alert,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import { addItemClick } from "./addItemClick";
 import { inputsValueObj } from "./inputsValueObj";
 import ImageUpload from "../../components/imageInput";
+import axios from "axios";
 
 const AddItem = () => {
   const [errorsState, setErrorsState] = useState(null);
@@ -28,23 +26,51 @@ const AddItem = () => {
   const [inputsValue, setInputValue] = useState(inputsValueObj());
   const [category, setCategory] = useState("");
 
+  const validateAddress = async () => {
+    console.log("api");
+    const addressToValidate = `${inputsValue.houseNumber} ${inputsValue.street}, ${inputsValue.city}, ${inputsValue.country}`;
+    const apiKey = "AIzaSyB14AY-b2zU0WJ43-7TeqYsmsdD7VbmVu0";
+    const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+      addressToValidate
+    )}&key=${apiKey}`;
+
+    try {
+      const response = await axios.get(apiUrl);
+
+      if (response.data.status === "OK") {
+        const location = response.data.results[0].geometry.location;
+        const formattedAddress = response.data.results[0].formatted_address;
+
+        console.log("Validated Address:", formattedAddress);
+      } else {
+        console.error("Geocoding API request failed:", response.data.status);
+      }
+    } catch (error) {
+      console.error("Error making Geocoding API request:", error);
+      return;
+    }
+  };
+
   const handleInputChange = (e) => {
     setInputValue((currentState) => ({
       ...currentState,
       [e.target.id]: e.target.value,
     }));
- 
   };
+
   const handleChangeCategory = (event) => {
     setCategory(event.target.value);
   };
+
   const handleAddItemClick = () => {
     const childState = urlRef.current.getChildState();
 
-    addItemClick(inputsValue, setErrorsState, navigate, childState, category);
+    // Add address validation before submitting the item
+    validateAddress();
 
+    addItemClick(inputsValue, setErrorsState, navigate, childState, category);
   };
- 
+
   return (
     <Container
       sx={{
@@ -167,18 +193,6 @@ const AddItem = () => {
         )}
 
         <TextField
-          id="alt"
-          label="Alt"
-          variant="outlined"
-          sx={{ mt: "10px" }}
-          onChange={handleInputChange}
-          value={inputsValue.alt}
-        />
-        {errorsState && errorsState.alt && (
-          <Alert severity="warning">{errorsState.alt}</Alert>
-        )}
-
-        <TextField
           id="country"
           label="Country"
           variant="outlined"
@@ -226,17 +240,6 @@ const AddItem = () => {
         {errorsState && errorsState.houseNumber && (
           <Alert severity="warning">{errorsState.houseNumber}</Alert>
         )}
-        {/* <TextField
-          id="zip"
-          label="Zip"
-          variant="outlined"
-          sx={{ mt: "10px" }}
-          onChange={handleInputChange}
-          value={inputsValue.zip}
-        />
-        {errorsState && errorsState.zip && (
-          <Alert severity="warning">{errorsState.zip}</Alert>
-        )} */}
       </Grid>
       <Grid container spacing={2}>
         <Grid item lg={8} md={8} sm={8} xs={12}>
@@ -245,7 +248,7 @@ const AddItem = () => {
             sx={{ mt: 2, width: "100%", ml: "0%" }}
             onClick={handleAddItemClick}
           >
-            Create Card
+            Publish Item
           </Button>
         </Grid>
         <Grid item xs>

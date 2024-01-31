@@ -369,7 +369,7 @@ const RegisterPage = () => {
                   color="primary"
                 />
               }
-              label="Business Account"
+              label="Seller account"
             />
           </Grid>
         </Grid>

@@ -58,7 +58,7 @@ const EditItem = () => {
     const childState = urlRef.current.getChildState();
     updateChangesClick(
       inputsValue,
-      
+
       category,
       setErrorsState,
       navigate,
@@ -182,18 +182,6 @@ const EditItem = () => {
         )}
 
         <TextField
-          id="alt"
-          label="Alt"
-          variant="outlined"
-          sx={{ mt: "10px" }}
-          onChange={handleInputChange}
-          value={inputsValue.alt}
-        />
-        {errorsState && errorsState.alt && (
-          <Alert severity="warning">{errorsState.alt}</Alert>
-        )}
-
-        <TextField
           id="country"
           label="Country"
           variant="outlined"
@@ -241,19 +229,6 @@ const EditItem = () => {
         {errorsState && errorsState.houseNumber && (
           <Alert severity="warning">{errorsState.houseNumber}</Alert>
         )}
-        {/* <FormControl fullWidth sx={{ mt: "10px" }}>
-          <InputLabel id="demo-simple-select-label">Status</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="status"
-            value={status}
-            label="Status"
-            onChange={handleChangeStatus}
-          >
-            <MenuItem value={"sold"}>Sold</MenuItem>
-            <MenuItem value={"available"}>Available</MenuItem>
-          </Select>
-        </FormControl> */}
       </Grid>
       <Grid container spacing={2}>
         <Grid item lg={8} md={8} sm={8} xs>

@@ -18,10 +18,9 @@ const ImageUpload = forwardRef((url, ref) => {
 
   const firebaseRef = storageRef(storage, "images/");
   useEffect(() => {
-    
     setPreviewURL(url.url);
   }, []);
-  console.log(url);
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
 

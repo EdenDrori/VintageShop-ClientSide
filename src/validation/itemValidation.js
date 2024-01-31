@@ -12,7 +12,10 @@ const itemSchema = Joi.object({
   city: Joi.string().min(2).max(50).required(),
   street: Joi.string().min(2).max(100).required(),
   houseNumber: Joi.number().min(0).max(999999).required(),
-  url: Joi.string().max(5000).allow(""),
+  url: Joi.string()
+    .max(5000)
+    .allow(""),
+   
   alt: Joi.string().max(200).allow(""),
   phone: Joi.string()
     .min(9)

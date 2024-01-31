@@ -203,7 +203,7 @@ const HomePage = () => {
             <Typography
               variant="h6"
               sx={{
-                fontSize:{xs:18,sm:"auto"},
+                fontSize: { xs: 18, sm: "auto" },
                 marginBottom: "1%",
                 fontWeight: "100",
                 backgroundColor: "sectionBackground.default",
@@ -265,7 +265,7 @@ const HomePage = () => {
                 <Link href="#" sx={{ display: "block" }}>
                   Returns & Exchanges
                 </Link>
-                <Link href="#" sx={{ display: "block" }}>
+                <Link href={ROUTES.FAQ} sx={{ display: "block" }}>
                   FAQs
                 </Link>
               </Grid>
