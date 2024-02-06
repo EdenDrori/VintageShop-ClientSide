@@ -7,22 +7,26 @@ import {
 } from "firebase/storage";
 import { storage } from "../service/firebase";
 import { v4 as uuidv4 } from "uuid";
-import { Button, Container, Avatar,Box } from "@mui/material";
+import { Button, Container, Avatar, Box } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import CheckIcon from "@mui/icons-material/Check";
 
 const ProfileImage = forwardRef((url, ref) => {
+  console.log(url);
+
   const [imageUpload, setImageUpload] = useState(null);
-  const [currentURL, setCurrentURL] = useState("");
+  const [currentURL, setCurrentURL] = useState(url?.url);
   const [isImageUploaded, setIsImageUploaded] = useState(false);
   const [previewURL, setPreviewURL] = useState(null);
   // Referring to storageRef as firebaseRef to avoid naming conflicts
   const firebaseRef = storageRef(storage, "images/profile/");
-  useEffect(() => {
-    console.log(url);
-    setPreviewURL(url.url);
-    console.log(imageUpload, "imafgj");
-  }, []);
+  // useEffect(() => {
+  //   console.log(url);
+  //   setPreviewURL(url.url);
+  //   console.log(imageUpload, "imafgj");
+  // }, []);
+
+  const finalUrl = previewURL || currentURL;
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -88,7 +92,7 @@ const ProfileImage = forwardRef((url, ref) => {
       }}
     >
       {/* <Container sx={{ paddingLeft: 0 ,alignItems:"center"}}> */}
-      {previewURL ? (
+      {finalUrl ? (
         <Avatar
           sx={{
             m: 1,
@@ -98,7 +102,7 @@ const ProfileImage = forwardRef((url, ref) => {
           }}
         >
           <img
-            src={previewURL}
+            src={finalUrl}
             alt="Preview"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />

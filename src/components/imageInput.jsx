@@ -15,6 +15,7 @@ const ImageUpload = forwardRef((url, ref) => {
   const [currentURL, setCurrentURL] = useState("");
   const [isImageUploaded, setIsImageUploaded] = useState(false);
   const [previewURL, setPreviewURL] = useState(null);
+  
 
   const firebaseRef = storageRef(storage, "images/");
   useEffect(() => {
@@ -55,7 +56,7 @@ const ImageUpload = forwardRef((url, ref) => {
       const urls = await Promise.all(
         response.items.map(async (item) => await getDownloadURL(item))
       );
-      // Handle the URLs as needed (e.g., update state)
+      
     } catch (error) {
       console.error("Error loading initial images:", error);
     }

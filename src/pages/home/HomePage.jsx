@@ -118,9 +118,10 @@ const HomePage = () => {
             textAlign: "center",
             marginTop: "10%",
             fontFamily: "serif",
+            fontSize: { xs: 35, sm: "auto" },
           }}
         >
-          Some of our category
+          Some of our categories
         </Typography>
         <FilterCategory />
         <Box
@@ -133,6 +134,7 @@ const HomePage = () => {
             marginTop: "8%",
             marginBottom: "8%",
             backgroundColor: "rgba(255, 255, 255, 0.5)",
+            padding: { xs: 1.5, sm: "auto" },
           }}
         >
           <Typography
@@ -142,6 +144,7 @@ const HomePage = () => {
               marginBottom: "1%",
               marginTop: "3%",
               fontWeight: "500",
+              fontSize: { xs: 30, sm: "auto" },
             }}
           >
             Create now new account!
@@ -154,9 +157,10 @@ const HomePage = () => {
               fontWeight: "100",
               paddingLeft: "1%",
               paddingRight: "1%",
+              fontSize: { xs: 18, sm: "auto" },
             }}
           >
-            You can like your favorite items and post your oun items for sell
+            You can like your favorite items and post your own items for sell
           </Typography>
           <Button
             sx={{
@@ -299,7 +303,7 @@ const HomePage = () => {
                     <EmailRounded />
                   </Link>
                 </IconButton>
-                
+
                 <IconButton>
                   <Link
                     href="https://www.linkedin.com/in/eden-drori"

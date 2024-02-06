@@ -38,9 +38,7 @@ const ItemDetailsPage = () => {
   };
 
   return (
-    <Container
-      sx={{ padding: { xs: "10px", md: "50px" }, paddingBottom: "60px" }}
-    >
+    <Container sx={{ padding: { xs: 0, md: "50px" }, paddingBottom: "60px" }}>
       <Grid container>
         <Grid item xs={12} md={4} sx={{ height: "55vh" }}>
           {" "}
@@ -90,7 +88,13 @@ const ItemDetailsPage = () => {
           <br />
           <Typography
             variant="h5"
-            sx={{ mb: 1, padding: "3px", ml: "7px", fontWeight: "200" }}
+            sx={{
+              mb: 1,
+              padding: "3px",
+              ml: "7px",
+              fontWeight: "200",
+              fontSize: { xs: 20, sm: "auto" },
+            }}
           >
             {inputsValue.description}
           </Typography>
@@ -102,14 +106,29 @@ const ItemDetailsPage = () => {
             variant="h5"
             sx={{ mb: 1, padding: "3px", ml: "7px", fontSize: 20 }}
           >
-            Pickup address: {inputsValue.city} ,{inputsValue.street}{" "}
-            {inputsValue.houseNumber}
+            Pickup address:
+            <br />
+            <span
+              style={{
+                fontWeight: "200",
+              }}
+            >
+              {" "}
+              {inputsValue.city} ,{inputsValue.street} {inputsValue.houseNumber}
+            </span>
           </Typography>
           <Typography
             variant="h5"
             sx={{ mb: 1, padding: "3px", ml: "7px", fontSize: 20 }}
           >
-            Seller's phone for more detailes: {inputsValue.phone}
+            Seller's phone for more detailes:
+            <span
+              style={{
+                fontWeight: "200",
+              }}
+            >
+              {inputsValue.phone}
+            </span>
           </Typography>
           <Typography
             variant="h5"

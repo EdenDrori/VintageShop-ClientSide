@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 
 const ConvertCurrency = ({ api_key, amount }) => {
@@ -7,7 +6,6 @@ const ConvertCurrency = ({ api_key, amount }) => {
   useEffect(() => {
     const convertUSDToILS = async () => {
       if (!amount) {
-        
         return;
       }
       try {
@@ -37,7 +35,7 @@ const ConvertCurrency = ({ api_key, amount }) => {
   }, [api_key, amount]);
 
   return (
-    <div>
+    <div style={{ padding: 7 }}>
       <p style={{ display: !amount ? "none" : "flex" }}>
         {`${amount} USD is approximately`} <br /> {` ${convertedAmount} ILS`}
       </p>
