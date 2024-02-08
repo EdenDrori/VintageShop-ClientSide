@@ -1,26 +1,37 @@
-import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
 import {
   ref as storageRef,
   uploadBytes,
   getDownloadURL,
   listAll,
+  deleteObject,
 } from "firebase/storage";
 import { storage } from "../service/firebase";
 import { v4 as uuidv4 } from "uuid";
-import { Button, Container, Box } from "@mui/material";
+import { Button, Container, Box, IconButton } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ImageUpload = forwardRef((url, ref) => {
   const [imageUpload, setImageUpload] = useState(null);
   const [currentURL, setCurrentURL] = useState("");
   const [isImageUploaded, setIsImageUploaded] = useState(false);
   const [previewURL, setPreviewURL] = useState(null);
-  
-
   const firebaseRef = storageRef(storage, "images/");
   useEffect(() => {
-    setPreviewURL(url.url);
-  }, []);
+    if (url.url) {
+      setPreviewURL(url.url);
+      setCurrentURL(url.url);
+    }
+  }, [url.url]);
+  // useEffect(() => {
+  //   setPreviewURL(url.url);
+  // }, []);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -28,7 +39,6 @@ const ImageUpload = forwardRef((url, ref) => {
     if (file) {
       setImageUpload(file);
       setIsImageUploaded(false);
-
       const previewURL = URL.createObjectURL(file);
       setPreviewURL(previewURL);
     }
@@ -50,13 +60,31 @@ const ImageUpload = forwardRef((url, ref) => {
     }
   };
 
+  const handleDeleteImage = async () => {
+    try {
+      // Delete the image from Firebase Storage
+      // Replace 'imageToDelete.jpg' with the actual image name or construct it dynamically
+      // await deleteObject(storageRef(storage, "images/imageToDelete.jpg"));
+      // Clear input file value
+      const fileInput = document.getElementById("file-input");
+      if (fileInput) {
+        fileInput.value = null;
+      }
+      // Reset state
+      setCurrentURL("");
+      setPreviewURL(null);
+      setIsImageUploaded(false);
+    } catch (error) {
+      console.error("Error deleting file:", error);
+    }
+  };
+
   const loadInitialImages = async () => {
     try {
       const response = await listAll(firebaseRef);
       const urls = await Promise.all(
         response.items.map(async (item) => await getDownloadURL(item))
       );
-      
     } catch (error) {
       console.error("Error loading initial images:", error);
     }
@@ -76,9 +104,7 @@ const ImageUpload = forwardRef((url, ref) => {
         alignItems: "center",
         justifyContent: "center",
         margin: "auto",
-        //maxWidth: "500px",
         padding: "20px",
-        // textAlign: "center",
       }}
     >
       <Container
@@ -93,7 +119,6 @@ const ImageUpload = forwardRef((url, ref) => {
           component="label"
           htmlFor="file-input"
           variant="outlined"
-          //disabled={isImageUploaded}
           sx={{ marginBottom: 1, width: { xs: "50vw", md: "9vw" } }}
         >
           Choose file
@@ -133,26 +158,32 @@ const ImageUpload = forwardRef((url, ref) => {
         </Button>
       </Container>
 
-      <Container sx={{ paddingLeft: 0 }}>
+      <Container sx={{ paddingLeft: 0, position: "relative" }}>
         {previewURL && (
-          <img
-            src={previewURL}
-            alt="Preview"
-            style={{ maxWidth: "100px", maxHeight: "100px" }}
-          />
+          <>
+            <img
+              src={previewURL}
+              alt="Preview"
+              style={{ maxWidth: "100px", maxHeight: "100px" }}
+            />
+            <IconButton
+              aria-label="delete"
+              onClick={handleDeleteImage}
+              sx={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                bgcolor: "rgba(255, 255, 255, 0.7)",
+                borderRadius: "50%",
+            
+                marginRight:{xs:0,sm:5,md:15,lg:20,xl:25}
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </>
         )}
       </Container>
-
-      {/* {isImageUploaded && (
-        <Container sx={{ marginLeft: 1 }}>
-          <Typography variant="subtitle1">Image Preview:</Typography>
-          <img
-            src={currentURL}
-            alt="Preview"
-            style={{ maxWidth: "100px", maxHeight: "100px", marginTop: "10px" }}
-          />
-        </Container>
-      )} */}
     </Container>
   );
 });
