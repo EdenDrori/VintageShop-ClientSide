@@ -104,7 +104,8 @@ const ImageUpload = forwardRef((url, ref) => {
         alignItems: "center",
         justifyContent: "center",
         margin: "auto",
-        padding: "20px",
+        padding: { xs: 0, md: "20px" },
+        paddingBottom: { xs: "10px", md: "auto" },
       }}
     >
       <Container
@@ -138,6 +139,7 @@ const ImageUpload = forwardRef((url, ref) => {
             alignItems: "center",
             marginTop: 1,
             display: imageUpload ? "block" : "none",
+            width: { xs: "50vw", md: "9vw" },
           }}
         >
           <Box
@@ -175,8 +177,8 @@ const ImageUpload = forwardRef((url, ref) => {
                 right: 0,
                 bgcolor: "rgba(255, 255, 255, 0.7)",
                 borderRadius: "50%",
-            
-                marginRight:{xs:0,sm:5,md:15,lg:20,xl:25}
+
+                marginRight: { xs: 0, sm: 5, md: 15, lg: 20, xl: 25 },
               }}
             >
               <DeleteIcon />

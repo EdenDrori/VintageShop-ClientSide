@@ -74,7 +74,11 @@ const EditProfile = () => {
         paddingBottom: "60px",
       }}
     >
-      <Typography component="h1" variant="h5">
+      <Typography
+        component="h1"
+        variant="h5"
+        sx={{ fontSize: { xs: "2.5rem", md: "4rem" } }}
+      >
         Edit Profile
       </Typography>
 

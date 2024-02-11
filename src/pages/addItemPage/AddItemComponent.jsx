@@ -74,7 +74,7 @@ const AddItem = () => {
   return (
     <Container
       sx={{
-        padding: "50px",
+        padding: { xs: 0, md: "50px" },
         paddingBottom: "60px",
         mt: 3,
         mb: 7,
@@ -92,7 +92,7 @@ const AddItem = () => {
       >
         Create New Item
       </Typography>
-      <Typography variant="h5" sx={{ textAlign: "center", marginBottom: "3%" }}>
+      <Typography variant="h5" sx={{ textAlign: "center", marginBottom: "3%" ,fontSize: { xs: "1rem", md: "auto" },}}>
         Craft your professional identity in seconds. Create and customize your
         business card with ease, making a lasting impression effortlessly.
       </Typography>

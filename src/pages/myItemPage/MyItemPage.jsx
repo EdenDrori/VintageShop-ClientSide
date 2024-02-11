@@ -249,7 +249,15 @@ const MyItemPage = () => {
         <Grid item xs={12} md={9}>
           <Grid container spacing={2}>
             {dataFromServer.map((item) => (
-              <Grid item key={nextKey()} xs={12} sm={6} md={4} lg={4}>
+              <Grid
+                item
+                key={nextKey()}
+                xs={12}
+                sm={6}
+                md={6}
+                lg={4}
+                
+              >
                 <ItemComponent
                   _id={item._id}
                   title={item.title}
@@ -293,7 +301,7 @@ const MyItemPage = () => {
             <Typography variant="h4">Account Balance</Typography>
 
             <Typography variant="h2">{moneyForWithdrawal}</Typography>
-            <Box sx={{ backgroundColor: "sectionBackground.default" }}>
+            <Box >
               <ConvertCurrency
                 api_key={"69eb4eb0b7cdf5687d7f3464639f7935"}
                 amount={moneyForWithdrawal}
@@ -338,12 +346,20 @@ const MyItemPage = () => {
                 >
                   <CloseIcon />
                 </IconButton>
-                <Typography variant="h6" gutterBottom>
+                <Typography
+                  variant="h6"
+                  sx={{ width: { xs: "80vw", md: "auto" } }}
+                  gutterBottom
+                >
                   Fill here your account details for transfer
                 </Typography>
                 <form noValidate autoComplete="off">
-                  <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                  <Grid
+                    container
+                    spacing={2}
+                    sx={{ width: { xs: "80vw", md: "auto" } }}
+                  >
+                    <Grid item xs={12} sm={6}>
                       <TextField
                         label="Full Name"
                         variant="outlined"
@@ -356,7 +372,7 @@ const MyItemPage = () => {
                         <Alert severity="warning">{errorsState.fullName}</Alert>
                       )}
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} sm={6}>
                       <FormControl fullWidth>
                         <InputLabel id="demo-simple-select-label">
                           Bank
@@ -388,7 +404,7 @@ const MyItemPage = () => {
                         )}
                       </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} sm={6}>
                       <TextField
                         label="Branch Number"
                         id="branch"
@@ -401,7 +417,7 @@ const MyItemPage = () => {
                         <Alert severity="warning">{errorsState.branch}</Alert>
                       )}
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={12} sm={6}>
                       <TextField
                         label="Account Number"
                         variant="outlined"
@@ -420,7 +436,7 @@ const MyItemPage = () => {
                   <Button
                     variant="contained"
                     color="primary"
-                    style={{ marginTop: 10 }}
+                    sx={{ marginTop: 3, width: { xs: "75vw", md: "auto" } }}
                     fullWidth
                     onClick={handleSubmit}
                   >

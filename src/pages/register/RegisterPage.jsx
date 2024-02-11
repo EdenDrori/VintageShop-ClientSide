@@ -60,7 +60,11 @@ const RegisterPage = () => {
       <ProfileImage ref={urlRef} />
       {/* <LockOutlinedIcon /> */}
 
-      <Typography component="h1" variant="h5">
+      <Typography
+        component="h1"
+        variant="h5"
+        sx={{ fontSize: { xs: "2.5rem", md: "4rem" } }}
+      >
         Sign up
       </Typography>
       <Box

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
 
 const ConvertCurrency = ({ api_key, amount }) => {
   const [convertedAmount, setConvertedAmount] = useState(0);
@@ -35,11 +36,17 @@ const ConvertCurrency = ({ api_key, amount }) => {
   }, [api_key, amount]);
 
   return (
-    <div style={{ padding: 7 }}>
+    <Box
+      sx={{
+        backgroundColor: "sectionBackground.default",
+        padding: 4,
+        textAlign: "center",
+      }}
+    >
       <p style={{ display: !amount ? "none" : "flex" }}>
         {`${amount} USD is approximately`} <br /> {` ${convertedAmount} ILS`}
       </p>
-    </div>
+    </Box>
   );
 };
 

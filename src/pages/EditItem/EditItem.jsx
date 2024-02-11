@@ -69,7 +69,7 @@ const EditItem = () => {
   return (
     <Container
       sx={{
-        padding: "50px",
+        padding: { xs: "0px", md: "50px" },
         paddingBottom: "60px",
         mt: 3,
         mb: 7,
@@ -78,13 +78,25 @@ const EditItem = () => {
     >
       <Typography
         variant="h2"
-        sx={{ mb: 1, padding: "10px", pb: "0px", textAlign: "center" }}
+        sx={{
+          mb: 1,
+          padding: "10px",
+          pb: "0px",
+          textAlign: "center",
+          fontSize: { xs: "2.5rem", md: "4rem" },
+        }}
       >
         Edit Your Item
       </Typography>
       <Typography
         variant="body1"
-        sx={{ mb: 1, padding: "3px", ml: "7px", textAlign: "center" }}
+        sx={{
+          mb: 1,
+          padding: "3px",
+          ml: "7px",
+          textAlign: "center",
+          fontSize: { xs: "1rem", md: "auto" },
+        }}
       >
         Put a new values in the correct input
       </Typography>
