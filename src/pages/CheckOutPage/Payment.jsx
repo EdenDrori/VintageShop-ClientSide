@@ -20,6 +20,19 @@ const PaymentForm = forwardRef(({ inputsValue, errorStatePay }, ref) => {
       ...currentStatePay,
       [e.target.id]: e.target.value,
     }));
+    let { id, value } = e.target;
+    if (
+      id === "expDate" &&
+      value.length === 2 &&
+      currentStatePay.expDate.length === 1
+    ) {
+      value += "/";
+    }
+
+    setCurrent((currentStatePay) => ({
+      ...currentStatePay,
+      [id]: value,
+    }));
     //console.log(currentStatePay);
   };
   useImperativeHandle(ref, () => ({

@@ -27,6 +27,7 @@ import { useTheme } from "@mui/material/styles";
 import { ExpandMore } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import IconsGuardLocation from "../Guard/IconsGuardLocation";
+import IconsGuardFavorite from "../Guard/IconsGuardFavorite";
 
 const ItemComponent = ({
   _id,
@@ -199,16 +200,18 @@ const ItemComponent = ({
           <Box>
             <LoggedOutGuard>
               <IconsGuard>
-                <IconButton
-                  sx={{
-                    padding: { xs: "4px", md: "8px" },
-                    paddingTop: { xs: "12px" },
-                    marginTop: { md: "10px" },
-                  }}
-                  onClick={handleDeleteItemClick}
-                >
-                  <DeleteIcon />
-                </IconButton>
+                <IconsGuardFavorite>
+                  <IconButton
+                    sx={{
+                      padding: { xs: "4px", md: "8px" },
+                      paddingTop: { xs: "12px" },
+                      marginTop: { md: "10px" },
+                    }}
+                    onClick={handleDeleteItemClick}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </IconsGuardFavorite>
               </IconsGuard>
             </LoggedOutGuard>
             <LoggedOutGuard>

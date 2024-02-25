@@ -179,7 +179,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
             }}
           >
             <Typography sx={{ display: { xs: "none", md: "inline" } }}>
-              {isDarkTheme ? "Dark 🌑" : "Light ☀️"} Mode
+              {isDarkTheme ? "Dark Mode 🌑" : "Light Mode ☀️"}
             </Typography>
             <Switch checked={isDarkTheme} onChange={handleThemeChange} />
           </Box>

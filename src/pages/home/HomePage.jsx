@@ -8,6 +8,7 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import nextKey from "generate-my-key";
 import ItemComponent from "../../components/ItemComponent";
 import { useNavigate } from "react-router-dom";
@@ -310,6 +311,11 @@ const HomePage = () => {
                     color="inherit"
                   >
                     <LinkedIn />
+                  </Link>
+                </IconButton>
+                <IconButton>
+                  <Link href="https://wa.me/972526960404" color="inherit">
+                    <WhatsAppIcon />
                   </Link>
                 </IconButton>
               </Grid>
