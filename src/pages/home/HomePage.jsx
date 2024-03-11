@@ -288,7 +288,6 @@ const HomePage = () => {
             </Grid>
           </Container>
         </Box>
-      
       </Container>
     </Box>
   );
