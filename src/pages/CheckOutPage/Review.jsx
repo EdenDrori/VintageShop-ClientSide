@@ -1,13 +1,9 @@
 import * as React from "react";
-import { useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
-import { useState } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
 
 const Review = ({ inputsValue, inputsValue1, dataFromServer }) => {
   const addresses = [
@@ -27,31 +23,7 @@ const Review = ({ inputsValue, inputsValue1, dataFromServer }) => {
     { name: "Card number", detail: formatCardNumber(inputsValue.cardNumber) },
     { name: "Expiry date", detail: inputsValue.expDate },
   ];
-  console.log(inputsValue);
-
-  //const { _id } = useParams();
-  //console.log(_id);
-  //console.log("address",address);
-  // const [itemDetails, setItemDetails] = useState({
-  //   title: "",
-  //   description: "",
-  //   price: "",
-  // });
-  //  setItemDetails(dataFromServer);
-  // console.log(dataFromServer);
-  // console.log(itemDetails);
-  // // useEffect(() => {
-  //   axios
-  //     .get("/items/" + _id)
-  //     .then(({ data }) => {
-  //       setItemDetails({
-  //         title: data.title,
-  //         description: data.description,
-  //         price: data.price,
-  //       });
-  //     })
-  //     .catch((err) => {console.log(err);});
-  // }, []);
+ 
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

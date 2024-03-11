@@ -5,7 +5,6 @@ import axios from "axios";
 
 const updateChangesClick = async (
   inputsValue,
-
   category,
   setErrorsState,
   navigate,
@@ -23,7 +22,6 @@ const updateChangesClick = async (
       description: inputsValue.description,
       phone: inputsValue.phone,
       size: inputsValue.size,
-
       image: {
         url: childState,
         alt: inputsValue.alt,
@@ -34,7 +32,6 @@ const updateChangesClick = async (
         city: inputsValue.city,
         street: inputsValue.street,
         houseNumber: inputsValue.houseNumber,
-        //zip: +inputsValue.zip,
       },
     });
     console.log(data);

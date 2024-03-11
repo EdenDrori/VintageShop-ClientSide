@@ -17,7 +17,6 @@ import ROUTES from "../../routes/ROUTES";
 import { addItemClick } from "./addItemClick";
 import { inputsValueObj } from "./inputsValueObj";
 import ImageUpload from "../../components/imageInput";
-import axios from "axios";
 
 const AddItem = () => {
   const [errorsState, setErrorsState] = useState(null);
@@ -25,31 +24,6 @@ const AddItem = () => {
   const navigate = useNavigate();
   const [inputsValue, setInputValue] = useState(inputsValueObj());
   const [category, setCategory] = useState("");
-
-  // const validateAddress = async () => {
-  //   console.log("api");
-  //   const addressToValidate = `${inputsValue.houseNumber} ${inputsValue.street}, ${inputsValue.city}, ${inputsValue.country}`;
-  //   const apiKey = "AIzaSyB14AY-b2zU0WJ43-7TeqYsmsdD7VbmVu0";
-  //   const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-  //     addressToValidate
-  //   )}&key=${apiKey}`;
-
-  //   try {
-  //     const response = await axios.get(apiUrl);
-
-  //     if (response.data.status === "OK") {
-  //       const location = response.data.results[0].geometry.location;
-  //       const formattedAddress = response.data.results[0].formatted_address;
-
-  //       console.log("Validated Address:", formattedAddress);
-  //     } else {
-  //       console.error("Geocoding API request failed:", response.data.status);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error making Geocoding API request:", error);
-  //     return;
-  //   }
-  // };
 
   const handleInputChange = (e) => {
     setInputValue((currentState) => ({
@@ -64,9 +38,6 @@ const AddItem = () => {
 
   const handleAddItemClick = () => {
     const childState = urlRef.current.getChildState();
-
-    // Add address validation before submitting the item
-    // validateAddress();
 
     addItemClick(inputsValue, setErrorsState, navigate, childState, category);
   };

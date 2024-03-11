@@ -24,7 +24,6 @@ const EditItem = () => {
   const [errorsState, setErrorsState] = useState(null);
   const navigate = useNavigate();
   const [inputsValue, setInputValue] = useState(inputsValueObj());
-  // const [status, setStatus] = useState("available");
   const [category, setCategory] = useState("");
   const urlRef = useRef();
 
@@ -38,10 +37,7 @@ const EditItem = () => {
       })
       .catch((err) => {});
   }, []);
-  console.log(inputsValue.url);
-  // const handleChangeStatus = (event) => {
-  //   setStatus(event.target.value);
-  // };
+
   const handleChangeCategory = (event) => {
     setCategory(event.target.value);
   };
@@ -58,7 +54,6 @@ const EditItem = () => {
     const childState = urlRef.current.getChildState();
     updateChangesClick(
       inputsValue,
-
       category,
       setErrorsState,
       navigate,

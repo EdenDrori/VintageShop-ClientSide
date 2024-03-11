@@ -7,7 +7,6 @@ const inputsValueObj = () => {
     email: "",
     url: "",
     alt: "",
-
     country: "",
     city: "",
     street: "",

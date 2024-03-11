@@ -1,15 +1,9 @@
-import { useEffect, useState } from "react";
+
 import {
-  Box,
-  Container,
   Grid,
-  Link,
-  Typography,
   Button,
-  IconButton,
 } from "@mui/material";
 import nextKey from "generate-my-key";
-
 import shoePhoto from "../../assets/shoe.jpg";
 import clothPhoto from "../../assets/cloth.jpg";
 import accsesorisePhoto from "../../assets/accsesorise.jpg";
@@ -130,8 +124,6 @@ const FilterCategory = () => {
         <Button
           variant="outlined"
           sx={{
-            //mt: 2,
-
             width: "100%",
             height: "100%",
             border: "2px solid rgba(0, 0, 0, 0.15)",

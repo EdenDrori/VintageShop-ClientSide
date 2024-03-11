@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { getToken } from "../../../service/storageService";
 import { jwtDecode } from "jwt-decode";
 import NavLinkComponent from "../NavLinkComponent";
-import myLinks, {
+import {
   alwaysLinks,
   loggedInLinks,
   loggedOutLinks,
@@ -35,7 +35,6 @@ const LeftDrawerComponent = ({ isOpen, onCloseDrawer }) => {
      }
   };
    const handleLogoutConfirm = () => {
-     // Perform logout logic here
      setLogoutDialogOpen(false);
      navigate(ROUTES.LOGOUT);
    };

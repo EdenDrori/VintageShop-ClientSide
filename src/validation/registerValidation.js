@@ -8,12 +8,10 @@ const registerSchema = Joi.object({
   phone: Joi.string().required().min(9).max(11),
   url: Joi.string().max(5000).allow(""),
   alt: Joi.string().max(256).allow(""),
-  
   country: Joi.string().min(2).max(256).required(),
   city: Joi.string().min(2).max(256).required(),
   street: Joi.string().min(2).max(256).required(),
   houseNumber: Joi.number().min(2).max(256).required(),
-  
   isBussines: Joi.boolean().allow(""),
   email: Joi.string()
     .email({ tlds: { allow: false } })

@@ -79,7 +79,7 @@ const Router = () => {
           </AdminGuard>
         }
       />
-      {/* <Route path={`${ROUTES.EDITUSERS}/:userId`} element={<EditUsersPage />} /> */}
+      
       <Route
         path={ROUTES.FAVORITE}
         element={

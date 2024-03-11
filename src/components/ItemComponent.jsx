@@ -5,13 +5,11 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
-  Collapse,
   Divider,
   IconButton,
   Typography,
   Grid,
-  Checkbox,
-  FormControlLabel,
+  
 } from "@mui/material";
 import PhoneIcon from "@mui/icons-material/Phone";
 import CreateIcon from "@mui/icons-material/Create";
@@ -24,8 +22,6 @@ import LoggedOutGuard from "../Guard/LoggedOutGuard";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useTheme } from "@mui/material/styles";
-import { ExpandMore } from "@mui/icons-material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import IconsGuardLocation from "../Guard/IconsGuardLocation";
 import IconsGuardFavorite from "../Guard/IconsGuardFavorite";
 
@@ -54,9 +50,6 @@ const ItemComponent = ({
   onLikeSuccess,
   onViewItem,
 }) => {
-  const [expanded, setExpanded] = useState(false);
-  const [thisOP, setOP] = useState("1");
-  //const [statusVal, setStatusVal] = useState("");
   const theme = useTheme();
   const handlePhoneClick = () => {
     toast.info(`Phone Num:${phone}. `, {
@@ -64,7 +57,7 @@ const ItemComponent = ({
     });
   };
   const statusVal = status;
-  //setStatusVal(status);
+  
   const handleDeleteItemClick = () => {
     onDeleteItem(_id);
   };
@@ -85,37 +78,7 @@ const ItemComponent = ({
   const handleClickViewItem = () => {
     onViewItem(_id);
   };
-  // const handleExpandClick = () => {
-  //   setExpanded(!expanded);
-  //   if (thisOP === "0.6") {
-  //     setOP("1");
-  //   } else {
-  //     setOP("0.6");
-  //   }
-  // };
-  // const handleCheckChange = async (_id) => {
-  //   try {
-  //     const { data } = await axios.patch("/items/status/" + _id);
-  //     console.log(_id);
-  //     setThisChecked(!thisChecked);
-  //   } catch (err) {
-  //     console.log(err);
-  //     toast("There's a problem at changing status for this user from server", {
-  //       position: "top-center",
-  //       autoClose: 5000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "light",
-  //     });
-  //   }
-  // };
-  // const handleCheckChangeClick = () => {
-  //   handleCheckChange(_id);
-
-  // };
+ 
   return (
     <Card
       sx={{
@@ -131,7 +94,7 @@ const ItemComponent = ({
       <CardActionArea
         sx={{
           "&:hover img": {
-            transform: "scale(1.05)", // Adjust the scale factor as needed
+            transform: "scale(1.05)",
           },
         }}
         onClick={handleClickViewItem}
@@ -144,7 +107,7 @@ const ItemComponent = ({
             height: "40vh",
             objectFit: "cover",
             width: "100%",
-            transition: "transform 0.1s ease-in-out", // Add a smooth transition
+            transition: "transform 0.1s ease-in-out", 
           }}
         />
       </CardActionArea>

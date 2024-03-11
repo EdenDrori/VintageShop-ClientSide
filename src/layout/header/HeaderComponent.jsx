@@ -8,7 +8,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import MoreIcon from "@mui/icons-material/MoreVert";
 import {
   Switch,
   Dialog,
@@ -71,11 +70,9 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
       navigate(ROUTES.REGISTER);
     }
   };
-
   const handleNavigate = () => {
     navigate(ROUTES.PROFILE);
   };
-
   const handleLogoutLink = () => {
     if (isLoggedinOrOut) {
       setLogoutDialogOpen(true);
@@ -83,17 +80,13 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
       navigate(ROUTES.LOGIN);
     }
   };
-
-  const handleLogoutConfirm = () => {
-    // Perform logout logic here
+  const handleLogoutConfirm = () => { 
     setLogoutDialogOpen(false);
     navigate(ROUTES.LOGOUT);
   };
-
   const handleLogoutCancel = () => {
     setLogoutDialogOpen(false);
   };
-
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -119,7 +112,6 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
       </MenuItem>
     </Menu>
   );
-
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
@@ -152,7 +144,6 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
       </MenuItem>
     </Menu>
   );
-
   return (
     <Box sx={{ flexGrow: 1, mb: 2 }}>
       <AppBar position="static">
@@ -167,9 +158,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           >
             <MenuIcon />
           </IconButton>
-
           <img sx={{ marginTop: "20px" }} src={logo} alt="" />
-
           <Box
             sx={{
               position: "absolute",
@@ -200,22 +189,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
               <AccountCircle />
             </IconButton>
           </Box>
-          {/* Remove the following Box to eliminate the MoreIcon */}
-          {/* <Box
-          sx={{ display: { xs: "none", sm: "flex", md: "none", lg: "none" } }}
-        >
-          <IconButton
-            sx={{ padding: "0" }}
-            size="large"
-            aria-label="show more"
-            aria-controls={mobileMenuId}
-            aria-haspopup="true"
-            onClick={handleMobileMenuOpen}
-            color="inherit"
-          >
-            <MoreIcon />
-          </IconButton>
-        </Box> */}
+          
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
@@ -224,8 +198,6 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
         isOpen={isOpen}
         onCloseDrawer={handleCloseDrawerClick}
       />
-
-      {/* Logout Confirmation Dialog */}
       <Dialog open={logoutDialogOpen} onClose={handleLogoutCancel}>
         <DialogTitle>Logout Confirmation</DialogTitle>
         <DialogContent>

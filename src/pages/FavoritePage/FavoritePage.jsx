@@ -19,7 +19,7 @@ const FavoritePage = () => {
       .get("/items")
       .then(({ data }) => {
         if (userData) data = likeItemNormalization(data, userData._id);
-        setDataFromServer(data.filter((item) => item.likes == true));
+        setDataFromServer(data.filter((item) => item.likes === true));
       })
       .catch((err) => {
         toast("Looks like there is problem with the server..", {
@@ -68,18 +68,11 @@ const FavoritePage = () => {
               price={`${item.price} $ `}
               size={item.size}
               phone={item.phone}
-              //address={`${item.address.city}, ${item.address.street} ${item.address.houseNumber}`}
               img={item.image.url}
               alt={item.image.alt}
-              //description={item.description}
               status={item.status}
-              //date={item.createdAt}
-              //itemNumber={item.itemNumber}
               like={item.likes}
               onViewItem={handleViewItem}
-              //onDeleteItem={handleDeleteItem}
-              //onEditItem={handleEditItem}
-              //onLikeItem={handleLikeItem}
               onLikeSuccess={handleLikeSuccess}
             />
           </Grid>

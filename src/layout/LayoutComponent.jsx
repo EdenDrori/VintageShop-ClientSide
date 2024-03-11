@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import HeaderComponent from "./header/HeaderComponent";
@@ -7,7 +7,7 @@ import FooterComponent from "./footer/FooterComponent";
 import tmc from "twin-moon-color";
 import { useDispatch, useSelector } from "react-redux";
 import { darkThemeActions } from "../store/darkThemeSlice";
-import { blueGrey, amber, teal } from "@mui/material/colors";
+import { blueGrey, teal } from "@mui/material/colors";
 
 const LayoutComponent = ({ children }) => {
   const isDarkTheme = useSelector((bigPie) => bigPie.darkThemeSlice.darkTheme);

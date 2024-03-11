@@ -5,8 +5,6 @@ const checkoutNormalize = (data) => {
     country: data.address.country,
     city: data.address.city,
     street: data.address.street,
-    //houseNumber: data.address.houseNumber,
-    // zip: +data.address.zip,
   };
   return newData;
 };

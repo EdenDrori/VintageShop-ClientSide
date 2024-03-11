@@ -13,7 +13,6 @@ const paymentSchema = Joi.object({
       const currentDate = new Date();
       const currentYear = currentDate.getFullYear();
       const currentMonth = currentDate.getMonth() + 1; // January is 0
-
       const [inputMonth, inputYear] = value.split("/").map(Number);
 
       if (
@@ -26,7 +25,7 @@ const paymentSchema = Joi.object({
         });
       }
 
-      return value; // Return the original value if validation passes
+      return value; 
     })
     .messages({
       "string.pattern.base":

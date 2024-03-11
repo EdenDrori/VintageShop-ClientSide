@@ -33,7 +33,7 @@ const EditProfile = () => {
       .get(`/users/${idFromToken}`)
       .then(({ data }) => {
         setInputsValue(editProfileNormalize(data.user));
-        //console.log(inputsValue.url);
+        
       })
 
       .catch((err) => {
@@ -55,7 +55,6 @@ const EditProfile = () => {
   const handleEditProfile = (event) => {
     event.preventDefault();
     const childState = urlRef.current.getChildState();
-
     editProfileSubmit(
       inputsValue,
       setErrorsState,

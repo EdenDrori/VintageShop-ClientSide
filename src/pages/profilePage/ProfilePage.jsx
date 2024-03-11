@@ -51,7 +51,7 @@ const ProfilePage = () => {
   };
 
   const handleDeleteProfile = async () => {
-    setOpenDialog(true); // Open the dialog when delete button is clicked
+    setOpenDialog(true); 
   };
 
   const handleConfirmDelete = async () => {
@@ -72,7 +72,7 @@ const ProfilePage = () => {
         theme: "light",
       });
     } finally {
-      setOpenDialog(false); // Close the dialog after handling deletion
+      setOpenDialog(false); 
     }
   };
 
@@ -206,7 +206,6 @@ const ProfilePage = () => {
         </Button>
       </Paper>
 
-      {/* Delete Confirmation Dialog */}
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
         <DialogTitle>Confirm Deletion</DialogTitle>
         <DialogContent>

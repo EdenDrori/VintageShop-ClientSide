@@ -51,10 +51,8 @@ const MyItemPage = () => {
   useEffect(() => {
     try {
       axios.get("/items/my-items").then(({ data }) => {
-        //console.log(data);
         const isItems = data.message;
         if (isItems) {
-          //console.log(data.message);
           setMyItemHeader("No items yet, add new item easily now ");
           return;
         }
@@ -64,34 +62,28 @@ const MyItemPage = () => {
         for (let item of data) {
           if (item.status === "sold") {
             const price = item.price;
-            //console.log(price);
+
             sum += price;
           } else {
-            // console.log(sum);
+            sum += 0;
           }
         }
-        //console.log(data);
         setMoneyForWithdrawal(sum);
       });
     } catch (e) {
-      //console.log(e, "errorrrrr");
+      toast("Error from server", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   }, [moneyForWithdrawal]);
-  //   useEffect(() => {
-  //     try {
-  //       axios
-  //         .get(
-  //           `http://data.fixer.io/api/latest69eb4eb0b7cdf5687d7f3464639f7935
-  // `
-  //         )
-  //         .then(({ data }) => {
-  //           console.log(data);
-  //         });
-  //     } catch (e) {
-  //       console.log()
-  //       console.log(e, "errorrrrr");
-  //     }
-  //   }, [moneyForWithdrawal]);
+
   const handleEditItem = (_id) => {
     navigate(`${ROUTES.EDITITEM}/${_id}`);
   };
@@ -153,7 +145,7 @@ const MyItemPage = () => {
   const handleLikeSuccess = (_id) => {
     setDataFromServer(
       dataFromServer.map((item) =>
-        item._id == _id ? { ...item, likes: !item.likes } : item
+        item._id === _id ? { ...item, likes: !item.likes } : item
       )
     );
   };
@@ -167,18 +159,14 @@ const MyItemPage = () => {
     setAnchorEl(null);
   };
   const handleDeleteSoldItems = async () => {
-    //console.log(dataFromServer);
     const data = dataFromServer;
-    //console.log(data);
     for (let item of data) {
-      // console.log(item);
-      // console.log(item.status);
-      if (item.status == "sold") {
+      if (item.status === "sold") {
         const _id = item._id;
         try {
           const { data } = await axios.delete("/items/" + _id);
           setDataFromServer((dataFromServerCopy) =>
-            dataFromServerCopy.filter((item) => item._id != _id)
+            dataFromServerCopy.filter((item) => item._id !== _id)
           );
           setMoneyForWithdrawal(0);
         } catch (err) {
@@ -193,24 +181,18 @@ const MyItemPage = () => {
             theme: "light",
           });
         }
-        // console.log(dataFromServer);
-        // console.log("item", item.status);
-      } else {
-        // console.log(item);
-      }
+      } 
     }
   };
   const handleSubmit = () => {
     const joiResponse = validateBankDetails(inputsValue);
     setErrorsState(joiResponse);
-    // console.log(joiResponse);
     if (joiResponse) return;
     if (bankS === "") {
       setErrorsState("bankS");
       return;
     }
     handleDeleteSoldItems();
-    //console.log(inputsValue);
     setAnchorEl(null);
   };
 
@@ -218,11 +200,8 @@ const MyItemPage = () => {
   const id = open ? "simple-popover" : undefined;
 
   const handleChangeBank = (event) => {
-    // console.log(event.target.value);
     let bank = event.target.value;
     setBank(bank);
-
-    //console.log(bankS);
   };
 
   return (
@@ -249,15 +228,7 @@ const MyItemPage = () => {
         <Grid item xs={12} md={9}>
           <Grid container spacing={2}>
             {dataFromServer.map((item) => (
-              <Grid
-                item
-                key={nextKey()}
-                xs={12}
-                sm={6}
-                md={6}
-                lg={4}
-                
-              >
+              <Grid item key={nextKey()} xs={12} sm={6} md={6} lg={4}>
                 <ItemComponent
                   _id={item._id}
                   title={item.title}
@@ -301,7 +272,7 @@ const MyItemPage = () => {
             <Typography variant="h4">Account Balance</Typography>
 
             <Typography variant="h2">{moneyForWithdrawal}</Typography>
-            <Box >
+            <Box>
               <ConvertCurrency
                 api_key={"69eb4eb0b7cdf5687d7f3464639f7935"}
                 amount={moneyForWithdrawal}

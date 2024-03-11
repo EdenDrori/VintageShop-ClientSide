@@ -12,7 +12,6 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import PersonIcon from "@mui/icons-material/Person";
 import axios from "axios";
@@ -71,7 +70,7 @@ const MessagesPage = () => {
     }
     
   };
-// const handleDeleteClickButton=()=>
+
   const handleDeleteCancel = () => {
     setSelectedMessage(null);
     setDeleteDialogOpen(false);
@@ -115,7 +114,6 @@ const MessagesPage = () => {
         </Accordion>
       ))}
 
-      {/* Delete Confirmation Dialog */}
       <Dialog open={isDeleteDialogOpen} onClose={handleDeleteCancel}>
         <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>

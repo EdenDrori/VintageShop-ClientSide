@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -9,48 +8,16 @@ import {
   IconButton,
 } from "@mui/material";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import nextKey from "generate-my-key";
-import ItemComponent from "../../components/ItemComponent";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
-import axios from "axios";
-import { useSelector } from "react-redux";
-
-import useQueryParams from "../../hooks/useQueryParams";
-import { toast } from "react-toastify";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-
 import accsesorisePhoto from "../../assets/accsesorise.jpg";
-import blackBackground from "../../assets/darkBackground.jpg";
 import blackLeaves from "../../assets/blackLeaves.png";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import FilterCategory from "./FilterCategory";
 import { EmailRounded, LinkedIn } from "@mui/icons-material";
 const HomePage = () => {
-  // const [dataFromServer, setDataFromServer] = useState([]);
-  // const [initialDataFromServer, setInitialDataFromServer] = useState([]);
-
   const navigate = useNavigate();
-  // const userData = useSelector((bigPie) => bigPie.authSlice.userData);
-  // const query = useQueryParams();
-
-  // useEffect(() => {
-  //   if (!initialDataFromServer.length) return;
-  //   const filter = query.filter ? query.filter : "";
-  //   setDataFromServer(
-  //     initialDataFromServer.filter((item) => item.title.startsWith(filter))
-  //   );
-  // }, [query, initialDataFromServer]);
-
-  //to make the background all of the site:
-  // useEffect(() => {
-  //   // Apply global styles to the body
-  //   // document.body.style.margin = "0";
-  //   // document.body.style.padding = "0";
-  //   document.body.style.backgroundImage = `url(${blackBackground})`;
-  //   //document.body.style.backgroundSize = "cover";
-  // }, []);
-
   const handleSignup = () => {
     navigate(ROUTES.REGISTER);
   };
@@ -62,7 +29,6 @@ const HomePage = () => {
     <Box
       sx={{
         backgroundImage: `url(${accsesorisePhoto})`,
-
         backgroundSize: "cover",
         padding: 0,
         margin: 0,
@@ -322,48 +288,7 @@ const HomePage = () => {
             </Grid>
           </Container>
         </Box>
-        {/* 
-      <Box sx={{ backgroundColor: "#f7f7f7", paddingY: 4 }}>
-        <Container>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={4} sx={{ textAlign: "center" }}>
-              <Typography variant="h6" sx={{ marginBottom: 2 }}>
-                Customer Service
-              </Typography>
-              <Typography>Help</Typography>
-              <Typography>Track Order</Typography>
-              <Typography>Returns & Exchanges</Typography>
-              <Typography>FAQs</Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4} sx={{ textAlign: "center" }}>
-              <Typography variant="h6" sx={{ marginBottom: 2 }}>
-                Quick Links
-              </Typography>
-              <Typography>Find a Store</Typography>
-              <Typography>Size Guide</Typography>
-              <Typography>Gift Cards</Typography>
-              <Typography>Student Discount</Typography>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4} sx={{ textAlign: "center" }}>
-              <Typography variant="h6" sx={{ marginBottom: 2 }}>
-                Connect with Us
-              </Typography>
-              <IconButton>
-                <FacebookIcon />
-              </IconButton>
-              <IconButton>
-                <TwitterIcon />
-              </IconButton>
-              <IconButton>
-                <InstagramIcon />
-              </IconButton>
-              <IconButton>
-                <PinterestIcon />
-              </IconButton>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box> */}
+      
       </Container>
     </Box>
   );

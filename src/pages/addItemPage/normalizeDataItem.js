@@ -16,7 +16,6 @@ const normalizeDataItem = (inputsValue, childState, category) => {
       city: inputsValue.city,
       street: inputsValue.street,
       houseNumber: inputsValue.houseNumber,
-      // zip: +inputsValue.zip,
     },
   };
 };

@@ -1,9 +1,8 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
-import ROUTES from "../../routes/ROUTES";
+
 
 const AboutPage = () => {
   return (
@@ -93,14 +92,6 @@ const AboutPage = () => {
           Happy shopping!
         </Typography>
 
-        {/* <Link
-          variant="button"
-          href={ROUTES.REGISTER}
-          mt={3}
-          sx={{ color: "primary" }}
-        >
-          Create Your New Account
-        </Link> */}
       </Paper>
     </Container>
   );

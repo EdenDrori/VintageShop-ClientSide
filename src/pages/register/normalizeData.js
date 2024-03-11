@@ -17,7 +17,6 @@ const normalizeData = (inputsValue, isBusiness, childState) => {
       city: inputsValue.city,
       street: inputsValue.street,
       houseNumber: inputsValue.houseNumber,
-      // zip: +inputsValue.zip,
     },
     isBusiness: isBusiness,
   };

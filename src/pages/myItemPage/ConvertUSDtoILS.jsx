@@ -50,12 +50,5 @@ const ConvertCurrency = ({ api_key, amount }) => {
   );
 };
 
-// // Example usage:
-// const YourReactComponent = () => {
-//   const apiKey = "69eb4eb0b7cdf5687d7f3464639f7935"; // Replace with your API key
-//   const usdAmount = 25; // Replace with the amount you want to convert from USD to ILS
-
-//   return <ConvertCurrency api_key={apiKey} amount={usdAmount} />;
-// };
 
 export default ConvertCurrency;

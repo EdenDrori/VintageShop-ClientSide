@@ -6,7 +6,7 @@ import {
   AccordionDetails,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import PhoneIcon from "@mui/icons-material/Phone";
+
 
 const FAQPage = () => {
   return (
@@ -15,7 +15,7 @@ const FAQPage = () => {
         Frequently Asked Questions
       </Typography>
 
-      {/* How does the buying process work? */}
+    
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">
@@ -31,7 +31,7 @@ const FAQPage = () => {
         </AccordionDetails>
       </Accordion>
 
-      {/* How can I get more details about an item? */}
+      
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">
@@ -46,7 +46,7 @@ const FAQPage = () => {
         </AccordionDetails>
       </Accordion>
 
-      {/* What is the return policy? */}
+    
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">What is the return policy?</Typography>
@@ -60,7 +60,6 @@ const FAQPage = () => {
         </AccordionDetails>
       </Accordion>
 
-      {/* Add more FAQ items as needed */}
     </div>
   );
 };

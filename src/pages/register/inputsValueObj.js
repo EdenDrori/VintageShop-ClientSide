@@ -8,7 +8,6 @@ const inputsValueObj = () => {
     password: "",
     url: "",
     alt: "",
-    
     country: "",
     city: "",
     street: "",

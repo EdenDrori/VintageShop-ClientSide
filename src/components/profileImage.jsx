@@ -4,7 +4,7 @@ import {
   uploadBytes,
   getDownloadURL,
   listAll,
-  deleteObject,
+
 } from "firebase/storage";
 import { storage } from "../service/firebase";
 import { v4 as uuidv4 } from "uuid";
@@ -18,7 +18,7 @@ const ProfileImage = React.forwardRef((props, ref) => {
   const [currentURL, setCurrentURL] = useState("");
   const [isImageUploaded, setIsImageUploaded] = useState(false);
   const [previewURL, setPreviewURL] = useState(null);
-  // Referring to storageRef as firebaseRef to avoid naming conflicts
+  
   const firebaseRef = storageRef(storage, "images/profile/");
   useEffect(() => {
     if (props.url) {
@@ -38,7 +38,7 @@ const ProfileImage = React.forwardRef((props, ref) => {
     }
   };
 
-  // Function to upload the file
+ 
   const uploadFile = async () => {
     if (imageUpload == null) return;
     const uuid = uuidv4();
@@ -57,18 +57,15 @@ const ProfileImage = React.forwardRef((props, ref) => {
     }
   };
 
-  // Function to delete the image and reset to default
+  
   const handleDeleteImage =  () => {
     try {
-      //  await deleteObject(storageRef(storage, "images/profile/default.jpg"));
       const fileInput = document.getElementById("file-input");
       if (fileInput) {
         fileInput.value = null;
       }
 
  setCurrentURL(
-        // "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbddmDRu7qROC6lOLN74P8ga_CHUewnn9m6g&usqp=CAU"
-        //"https://i.pinimg.com/550x/a8/fb/57/a8fb57f5bbc581b53dd717303d6df98e.jpg"
         ""
       );
       console.log("current", currentURL);
@@ -79,20 +76,20 @@ const ProfileImage = React.forwardRef((props, ref) => {
     }
   };
 
-  // Load initial images
+
   const loadInitialImages = async () => {
     try {
       const response = await listAll(firebaseRef);
       const urls = await Promise.all(
         response.items.map(async (item) => await getDownloadURL(item))
       );
-      // Handle the URLs as needed (e.g., update state)
+  
     } catch (error) {
       console.error("Error loading initial images:", error);
     }
   };
 
-  // Call loadInitialImages directly instead of using useEffect
+  
   loadInitialImages();
 
   useImperativeHandle(ref, () => ({

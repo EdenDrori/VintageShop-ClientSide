@@ -37,7 +37,7 @@ const addItemClick = async (
     });
     navigate(ROUTES.MYITEM);
   } catch (err) {
-    //console.log(err, "err");
+    
     toast("Somthing is missing... try again", {
       position: "top-center",
       autoClose: 5000,

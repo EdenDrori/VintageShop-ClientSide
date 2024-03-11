@@ -12,8 +12,7 @@ const newDataForInputs = (data) => {
     country: data.address.country,
     city: data.address.city,
     street: data.address.street,
-    houseNumber: data.address.houseNumber,
-    status: data.status,
+    houseNumber: data.address.houseNumber
   };
   
   return newData;

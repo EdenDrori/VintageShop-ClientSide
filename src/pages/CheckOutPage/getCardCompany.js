@@ -1,11 +1,11 @@
-// utility function to identify credit card company
+
 const getCardCompany = (cardNumber) => {
       if (!cardNumber || typeof cardNumber !== "string") {
-        return "unknown"; // Handle cases where cardNumber is undefined or not a string
+        return "unknown"; 
       }
   const firstFourDigits = cardNumber.substring(0, 4);
 
-  // Add more conditions for other credit card companies
+
   if (firstFourDigits.startsWith("4")) {
     return "visa";
   } else if (firstFourDigits.startsWith("5")) {
@@ -17,7 +17,7 @@ const getCardCompany = (cardNumber) => {
     return "amex";
   }
 
-  // Add more conditions as needed
+ 
   return "unknown";
 };
 export default getCardCompany;

@@ -4,7 +4,6 @@ import {
   Divider,
   FormControlLabel,
   Grid,
-  IconButton,
   Link,
   Typography,
 } from "@mui/material";
@@ -15,13 +14,11 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
-import CreateIcon from "@mui/icons-material/Create";
-import { useNavigate, useParams } from "react-router-dom";
 import ROUTES from "../../routes/ROUTES";
 import { toast } from "react-toastify";
 
 const AllUsersPage = () => {
-  const navigate = useNavigate();
+  
   const [dataFromServer, setDataFromServer] = useState([]);
   const [thisChecked, setThisChecked] = useState(true);
   useEffect(() => {
@@ -62,9 +59,6 @@ const AllUsersPage = () => {
         theme: "light",
       });
     }
-  };
-  const handleEditUser = (userId) => {
-    navigate(`${ROUTES.EDITUSERS}/${userId}`);
   };
   const handleCheckChange = async (id) => {
     try {
@@ -167,9 +161,7 @@ const AllUsersPage = () => {
                 >
                   Delete User
                 </Button>
-                {/* <IconButton onClick={() => handleEditUser(user._id)}>
-                  <CreateIcon />
-                </IconButton> */}
+               
               </CardActions>
             </Card>
           </Grid>

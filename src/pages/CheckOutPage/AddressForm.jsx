@@ -1,19 +1,9 @@
 import * as React from "react";
-import { useEffect, useNavigate } from "react";
+import { useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { Alert } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { getToken } from "../../service/storageService";
-import { jwtDecode } from "jwt-decode";
-import { toast } from "react-toastify";
-import axios from "axios";
-import normalizeDataFromServer from "../profilePage/normalizeDataFromServer";
-import { checkoutNormalize } from "./checkoutNormalize";
-import { inputsValueObjCheckout } from "./inputsValueObjCheckout";
-import { validateAddress } from "../../validation/validateAddress";
 import { useState, forwardRef, useImperativeHandle } from "react";
 const AddressForm = forwardRef(
   ({  inputsValue1, errorsState }, ref) => {
@@ -27,7 +17,7 @@ setCurrent({...inputsValue1});
         ...currentState,
         [e.target.id]: e.target.value,
       }));
-      //console.log(currentState);
+      
     };
 
     useImperativeHandle(ref, () => ({

@@ -1,13 +1,10 @@
 const inputsValueObjCheckout = () => {
   const inputs = {
     first: "",
-    last: "",
-   
+    last: "", 
     country: "",
     city: "",
     street: "",
-    //houseNumber: "",
-    // zip: "",
   };
   return inputs;
 };

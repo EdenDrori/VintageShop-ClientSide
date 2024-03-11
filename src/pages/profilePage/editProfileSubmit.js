@@ -21,7 +21,6 @@ const editProfileSubmit = async (
         middle: inputsValue.middle,
         last: inputsValue.last,
       },
-     
       phone: inputsValue.phone,
       image: {
         url: childState,

@@ -46,7 +46,6 @@ const LoginPage = () => {
       });
       const tokenFromData = data.jwt;
 
-      //("token:", tokenFromData);
       storeToken(tokenFromData, rememberMe);
       toast("You logged in successfully", {
         position: "top-center",
@@ -58,7 +57,7 @@ const LoginPage = () => {
         progress: undefined,
         theme: "light",
       });
-     // console.log(data, "loggggg");
+     
       autoLogin(true);
       navigate(ROUTES.HOME);
     } catch (err) {

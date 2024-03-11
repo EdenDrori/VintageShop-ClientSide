@@ -8,8 +8,7 @@ import {
   ref as storageRef,
   uploadBytes,
   getDownloadURL,
-  listAll,
-  deleteObject,
+  listAll
 } from "firebase/storage";
 import { storage } from "../service/firebase";
 import { v4 as uuidv4 } from "uuid";
@@ -29,9 +28,6 @@ const ImageUpload = forwardRef((url, ref) => {
       setCurrentURL(url.url);
     }
   }, [url.url]);
-  // useEffect(() => {
-  //   setPreviewURL(url.url);
-  // }, []);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -62,15 +58,11 @@ const ImageUpload = forwardRef((url, ref) => {
 
   const handleDeleteImage = async () => {
     try {
-      // Delete the image from Firebase Storage
-      // Replace 'imageToDelete.jpg' with the actual image name or construct it dynamically
-      // await deleteObject(storageRef(storage, "images/imageToDelete.jpg"));
-      // Clear input file value
+
       const fileInput = document.getElementById("file-input");
       if (fileInput) {
         fileInput.value = null;
       }
-      // Reset state
       setCurrentURL("");
       setPreviewURL(null);
       setIsImageUploaded(false);
