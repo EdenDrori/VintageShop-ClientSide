@@ -54,9 +54,9 @@ const FavoritePage = () => {
         Your Favorites Items
       </Typography>
       <Typography variant="h5" sx={{ textAlign: "center", marginBottom: "3%" }}>
-        Curate a collection of your favorite business cards. Easily access and
-        stay connected with the profiles that matter most to you. Streamline
-        your networking experience.
+        Craft your own collection of beloved vintage items. Effortlessly access
+        and admire the pieces that capture your heart. Simplify your vintage
+        shopping experience with curated favorites at your fingertips.
       </Typography>
       <Grid container spacing={2}>
         {dataFromServer.map((item) => (

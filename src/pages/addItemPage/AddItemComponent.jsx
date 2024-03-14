@@ -63,9 +63,16 @@ const AddItem = () => {
       >
         Create New Item
       </Typography>
-      <Typography variant="h5" sx={{ textAlign: "center", marginBottom: "3%" ,fontSize: { xs: "1rem", md: "auto" },}}>
-        Craft your professional identity in seconds. Create and customize your
-        business card with ease, making a lasting impression effortlessly.
+      <Typography
+        variant="h5"
+        sx={{
+          textAlign: "center",
+          marginBottom: "3%",
+          fontSize: { xs: "1rem", md: "auto" },
+        }}
+      >
+        Create and customize your Item for sell with ease, making a lasting
+        impression effortlessly.
       </Typography>
 
       <Divider sx={{ mb: 3 }} />
