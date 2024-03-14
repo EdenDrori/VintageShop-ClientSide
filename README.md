@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# Final_Project_Server
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Vintage Shop Project README
 
-## Available Scripts
+Project Overview:
 
-In the project directory, you can run:
+The Vintage Shop project is a web application that serves as an online marketplace for vintage items. Users can register as either sellers or buyers, with distinct functionalities tailored to each role. Sellers can publish items for sale, manage their listings, and track sales. Buyers can browse items, add them to favorites, and make purchases securely using valid credit card information.
 
-### `npm start`
+Features:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+User Registration and Authentication:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Users can register for an account, choosing between seller and buyer roles based on their intended use.
+Authentication is implemented to ensure secure access to user accounts and functionalities.
+Seller Functionality:
 
-### `npm test`
+Sellers can publish items for sale, providing details such as item description, price, and images.
+Sellers can manage their listings, including editing or deleting items as needed.
+Upon successful sale, sellers can view the amount to withdraw from their earnings.
+Buyer Functionality:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Buyers can browse available items, add them to favorites for future reference, or initiate purchases.
+Secure payment processing is implemented, requiring valid credit card information for purchases.
+Buyers can contact sellers to arrange item pickup or ask questions about listings.
+Admin Control:
 
-### `npm run build`
+An admin account is provided for administrative tasks, accessible through a CRM (Customer Relationship Management) page.
+Admins have the ability to manage users and items, including deletion of accounts or listings as necessary.
+Setup Instructions:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Server-side Setup:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Download the project folder and open the server-side folder in Visual Studio.
+Open the terminal and run pnpm run watch to connect to the database.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Client-side Setup:
 
-### `npm run eject`
+Open the client-side folder in Visual Studio.
+In the terminal, run npm start to launch the website.
+Access the site in your web browser to begin using the application.
+Admin Credentials:
+To access the admin account and CRM functionality, please use the following credentials:
+- Email: admin@gmail.com
+- Password: 123456aA!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Support and Feedback:
+For any questions, issues, or feedback regarding the Vintage Shop project, please contact edendrori36@gmail.com.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you for using our Vintage Shop project! We hope you enjoy exploring the world of vintage items through our platform.
