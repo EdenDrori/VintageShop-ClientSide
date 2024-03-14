@@ -13,7 +13,7 @@ const addItemClick = async (
 ) => {
   try {
     const joiResponse = validateItem(inputsValue);
-    console.log(joiResponse);
+
     setErrorsState(joiResponse);
     if (joiResponse) return;
     if (category === "") {
@@ -23,7 +23,7 @@ const addItemClick = async (
     const request = normalizeDataItem(inputsValue, childState, category);
 
     const { data } = await axios.post("/items", request);
-    console.log(data);
+    data;
 
     toast("New item has been published! :)", {
       position: "top-center",
@@ -37,7 +37,6 @@ const addItemClick = async (
     });
     navigate(ROUTES.MYITEM);
   } catch (err) {
-    
     toast("Somthing is missing... try again", {
       position: "top-center",
       autoClose: 5000,

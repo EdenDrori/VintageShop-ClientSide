@@ -26,7 +26,7 @@ const ContactForm = () => {
     e.preventDefault();
     try {
       const joiResponse = validateMessage(inputsValue);
-      console.log(joiResponse, "");
+      
       setErrorsState(joiResponse);
       if (joiResponse) return;
       const request = {
@@ -35,7 +35,7 @@ const ContactForm = () => {
         message: inputsValue.message,
       };
       const { data } = await axios.post("/contact", request);
-      console.log(data);
+     
 
       toast("We got your message, thank you :)", {
         position: "top-center",

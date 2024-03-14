@@ -14,7 +14,7 @@ const useAutoLogin = () => {
       if (skipTokenTest) await axios.get(`/users/${dataFromToken._id}`);
       dispatch(authActions.login(dataFromToken));
     } catch (err) {
-      console.log("errTOKEN",err);
+     
       localStorage.clear();
     }
   };

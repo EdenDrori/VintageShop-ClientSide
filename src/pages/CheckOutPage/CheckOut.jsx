@@ -112,10 +112,10 @@ const Checkout = () => {
           first: data.user.name.first,
           last: data.user.name.last,
         });
-        console.log(data.name.first, "user");
+       
       })
       .catch((err) => {
-        console.log(err);
+       
       });
   }, [dataFromServer]);
 

@@ -26,7 +26,7 @@ const ItemsPage = () => {
   category = category.toLowerCase();
   filter = filter.toLowerCase();
   const [items, setItems] = useState([]);
-  console.log({ items, category, filter });
+
 
   useEffect(() => {
     axios

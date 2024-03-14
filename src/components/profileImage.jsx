@@ -68,7 +68,7 @@ const ProfileImage = React.forwardRef((props, ref) => {
  setCurrentURL(
         ""
       );
-      console.log("current", currentURL);
+     
       setPreviewURL(null);
       setIsImageUploaded(false);
     } catch (error) {

@@ -34,7 +34,7 @@ const updateChangesClick = async (
         houseNumber: inputsValue.houseNumber,
       },
     });
-    console.log(data);
+    
     toast("Your item has been edit succssefully", {
       position: "top-center",
       autoClose: 5000,

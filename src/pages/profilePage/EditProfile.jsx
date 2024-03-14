@@ -37,7 +37,7 @@ const EditProfile = () => {
       })
 
       .catch((err) => {
-        console.log(err);
+     
         toast.info("Error from server, can't get your profile to edit", {
           position: toast.POSITION.TOP_CENTER,
         });

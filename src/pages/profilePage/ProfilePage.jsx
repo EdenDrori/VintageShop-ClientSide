@@ -39,7 +39,7 @@ const ProfilePage = () => {
         setInputsValue(newData);
       })
       .catch((err) => {
-        console.log(err);
+        
         toast.info("Error from server, can't get your profile", {
           position: toast.POSITION.TOP_CENTER,
         });
